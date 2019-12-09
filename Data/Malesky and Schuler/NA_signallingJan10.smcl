@@ -1,0 +1,1676 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\Dropbox (MIT)\Documents\Works\G1 17.830 Empirical Methods in Political Economy\Project\Data\Malesky and Schuler\NA_signallingJan10.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}14 Nov 2015, 21:08:12
+{txt}
+{com}. drop candidates_district;
+{txt}
+{com}. drop  b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 b15 b16 b73 b74 b75;
+{txt}
+{com}. drop prob;
+{txt}
+{com}. drop s_trans;
+{txt}
+{com}. gen candidates_district=1 if candidates_seat<2;
+{txt}(390 missing values generated)
+
+{com}. replace candidates_district=0 if candidates_seat>=2 & candidates_seat !=.;
+{txt}(266 real changes made)
+
+{com}. replace birthyear=1967 if stt==2;
+{txt}(0 real changes made)
+
+{com}. replace age=40 if stt==2;
+{txt}(0 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\MINHTR~1\AppData\Local\Temp\STD0b000000.tmp"
+{txt}
+{com}. #delimit;
+{txt}delimiter now ;
+{com}. xi: dprobit candidates_district centralnom polit, robust;
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.43856
+{txt}Iteration 1:   log pseudolikelihood = {res}-536.23216
+{txt}Iteration 2:   log pseudolikelihood = {res}-536.19978
+{txt}Iteration 3:   log pseudolikelihood = {res}-536.19971
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res}   2.09
+                                                        {txt}Prob > chi2   ={res} 0.3512
+{txt}Log pseudolikelihood = {res}-536.19971                       {txt}Pseudo R2     ={res} 0.0023
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res}  .009274   .0405873     0.23   0.820   .187429  -.070276  .088824
+{txt}politb~o*{c |}  {res} .2024064   .1003825     1.37   0.172   .011429    .00566  .399152
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}     .696
+{txt} pred. P {c |}  {res} .6967538{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. 
+{txt}end of do-file
+
+{com}. xi: dprobit candidates_district centralnom polit, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.43856
+{txt}Iteration 1:   log pseudolikelihood = {res}-536.23216
+{txt}Iteration 2:   log pseudolikelihood = {res}-536.19978
+{txt}Iteration 3:   log pseudolikelihood = {res}-536.19971
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res}   2.09
+                                                        {txt}Prob > chi2   ={res} 0.3512
+{txt}Log pseudolikelihood = {res}-536.19971                       {txt}Pseudo R2     ={res} 0.0023
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res}  .009274   .0405873     0.23   0.820   .187429  -.070276  .088824
+{txt}politb~o*{c |}  {res} .2024064   .1003825     1.37   0.172   .011429    .00566  .399152
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}     .696
+{txt} pred. P {c |}  {res} .6967538{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. dprobit candidates_district centralnom polit, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.43856
+{txt}Iteration 1:   log pseudolikelihood = {res}-536.23216
+{txt}Iteration 2:   log pseudolikelihood = {res}-536.19978
+{txt}Iteration 3:   log pseudolikelihood = {res}-536.19971
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res}   2.09
+                                                        {txt}Prob > chi2   ={res} 0.3512
+{txt}Log pseudolikelihood = {res}-536.19971                       {txt}Pseudo R2     ={res} 0.0023
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res}  .009274   .0405873     0.23   0.820   .187429  -.070276  .088824
+{txt}politb~o*{c |}  {res} .2024064   .1003825     1.37   0.172   .011429    .00566  .399152
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}     .696
+{txt} pred. P {c |}  {res} .6967538{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. help dprobit
+
+. mfx
+
+{txt}Marginal effects after dprobit
+      y  = Pr(candidates_district) (predict)
+         = {res} .69675378
+{txt}{hline 9}{c TT}{hline 68}
+variable {c |}{col 17}dy/dx{col 26}Std. Err.{col 40}z{col 45}P>|z|{col 52}[    95% C.I.   ]{col 75}X
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res}  .009274      .04059    0.23   0.819  -.070276  .088824   .187429
+{txt}politb~o*{c |}  {res} .2024064      .10038    2.02   0.044    .00566  .399152   .011429
+{txt}{hline 9}{c BT}{hline 68}
+(*) dy/dx is for discrete change of dummy variable from 0 to 1
+
+{com}. probit candidates_district centralnom polit, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-537.43856}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-536.20581}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-536.19972}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-536.19971}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}      2.09
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.3512
+{txt}Log pseudolikelihood = {res}-536.19971{txt}{col 49}Pseudo R2{col 67}= {res}    0.0023
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}candidates_district{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}centralnominated {c |}{col 21}{res}{space 2}   .02666{col 33}{space 2} .1171928{col 44}{space 1}    0.23{col 53}{space 3}0.820{col 61}{space 4}-.2030338{col 74}{space 3} .2563537
+{txt}{space 10}politburo {c |}{col 21}{res}{space 2} .7534117{col 33}{space 2} .5512298{col 44}{space 1}    1.37{col 53}{space 3}0.172{col 61}{space 4}-.3269789{col 74}{space 3} 1.833802
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} .5014794{col 33}{space 2} .0492433{col 44}{space 1}   10.18{col 53}{space 3}0.000{col 61}{space 4} .4049644{col 74}{space 3} .5979945
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. probit candidates_district centralnom polit
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-537.43856}  
+Iteration 1:{space 3}log likelihood = {res:-536.20581}  
+Iteration 2:{space 3}log likelihood = {res:-536.19972}  
+Iteration 3:{space 3}log likelihood = {res:-536.19971}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}LR chi2({res}2{txt}){col 67}= {res}      2.48
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.2897
+{txt}Log likelihood = {res}-536.19971{txt}{col 49}Pseudo R2{col 67}= {res}    0.0023
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}candidates_district{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}centralnominated {c |}{col 21}{res}{space 2}   .02666{col 33}{space 2} .1171259{col 44}{space 1}    0.23{col 53}{space 3}0.820{col 61}{space 4}-.2029025{col 74}{space 3} .2562224
+{txt}{space 10}politburo {c |}{col 21}{res}{space 2} .7534117{col 33}{space 2} .5509149{col 44}{space 1}    1.37{col 53}{space 3}0.171{col 61}{space 4}-.3263616{col 74}{space 3} 1.833185
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} .5014794{col 33}{space 2} .0492151{col 44}{space 1}   10.19{col 53}{space 3}0.000{col 61}{space 4} .4050195{col 74}{space 3} .5979393
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. probit candidates_district centralnom polit, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-537.43856}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-536.20581}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-536.19972}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-536.19971}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}      2.09
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.3512
+{txt}Log pseudolikelihood = {res}-536.19971{txt}{col 49}Pseudo R2{col 67}= {res}    0.0023
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}candidates_district{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}centralnominated {c |}{col 21}{res}{space 2}   .02666{col 33}{space 2} .1171928{col 44}{space 1}    0.23{col 53}{space 3}0.820{col 61}{space 4}-.2030338{col 74}{space 3} .2563537
+{txt}{space 10}politburo {c |}{col 21}{res}{space 2} .7534117{col 33}{space 2} .5512298{col 44}{space 1}    1.37{col 53}{space 3}0.172{col 61}{space 4}-.3269789{col 74}{space 3} 1.833802
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} .5014794{col 33}{space 2} .0492433{col 44}{space 1}   10.18{col 53}{space 3}0.000{col 61}{space 4} .4049644{col 74}{space 3} .5979945
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. logit candidates_district centralnom polit, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-537.43856}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-536.20587}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-536.19971}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-536.19971}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}      1.76
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.4157
+{txt}Log pseudolikelihood = {res}-536.19971{txt}{col 49}Pseudo R2{col 67}= {res}    0.0023
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}candidates_district{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}centralnominated {c |}{col 21}{res}{space 2} .0440828{col 33}{space 2} .1940107{col 44}{space 1}    0.23{col 53}{space 3}0.820{col 61}{space 4}-.3361711{col 74}{space 3} .4243368
+{txt}{space 10}politburo {c |}{col 21}{res}{space 2} 1.343735{col 33}{space 2} 1.069306{col 44}{space 1}    1.26{col 53}{space 3}0.209{col 61}{space 4}-.7520672{col 74}{space 3} 3.439536
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2}  .809407{col 33}{space 2}  .081279{col 44}{space 1}    9.96{col 53}{space 3}0.000{col 61}{space 4}  .650103{col 74}{space 3}  .968711
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. probit candidates_district centralnom polit, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-537.43856}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-536.20581}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-536.19972}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-536.19971}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}      2.09
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.3512
+{txt}Log pseudolikelihood = {res}-536.19971{txt}{col 49}Pseudo R2{col 67}= {res}    0.0023
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}candidates_district{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}centralnominated {c |}{col 21}{res}{space 2}   .02666{col 33}{space 2} .1171928{col 44}{space 1}    0.23{col 53}{space 3}0.820{col 61}{space 4}-.2030338{col 74}{space 3} .2563537
+{txt}{space 10}politburo {c |}{col 21}{res}{space 2} .7534117{col 33}{space 2} .5512298{col 44}{space 1}    1.37{col 53}{space 3}0.172{col 61}{space 4}-.3269789{col 74}{space 3} 1.833802
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} .5014794{col 33}{space 2} .0492433{col 44}{space 1}   10.18{col 53}{space 3}0.000{col 61}{space 4} .4049644{col 74}{space 3} .5979945
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. mfx
+
+{txt}Marginal effects after probit
+      y  = Pr(candidates_district) (predict)
+         = {res} .69675378
+{txt}{hline 9}{c TT}{hline 68}
+variable {c |}{col 17}dy/dx{col 26}Std. Err.{col 40}z{col 45}P>|z|{col 52}[    95% C.I.   ]{col 75}X
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res}  .009274      .04059    0.23   0.819  -.070276  .088824   .187429
+{txt}politb~o*{c |}  {res} .2024063      .10038    2.02   0.044   .005658  .399154   .011429
+{txt}{hline 9}{c BT}{hline 68}
+(*) dy/dx is for discrete change of dummy variable from 0 to 1
+
+{com}. dprobit candidates_district centralnom polit, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.43856
+{txt}Iteration 1:   log pseudolikelihood = {res}-536.23216
+{txt}Iteration 2:   log pseudolikelihood = {res}-536.19978
+{txt}Iteration 3:   log pseudolikelihood = {res}-536.19971
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res}   2.09
+                                                        {txt}Prob > chi2   ={res} 0.3512
+{txt}Log pseudolikelihood = {res}-536.19971                       {txt}Pseudo R2     ={res} 0.0023
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res}  .009274   .0405873     0.23   0.820   .187429  -.070276  .088824
+{txt}politb~o*{c |}  {res} .2024064   .1003825     1.37   0.172   .011429    .00566  .399152
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}     .696
+{txt} pred. P {c |}  {res} .6967538{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. help dprobit
+
+. help dprobit
+
+. help dprobit
+
+. dprobit candidates_district centralnom polit male minority religion degree age que, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.43856
+{txt}Iteration 1:   log pseudolikelihood = {res}-524.02734
+{txt}Iteration 2:   log pseudolikelihood = {res}-523.98085
+{txt}Iteration 3:   log pseudolikelihood = {res}-523.98076
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}8{txt})  ={res}  25.78
+                                                        {txt}Prob > chi2   ={res} 0.0011
+{txt}Log pseudolikelihood = {res}-523.98076                       {txt}Pseudo R2     ={res} 0.0250
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res} .0763549   .0439421     1.66   0.097   .187429   -.00977   .16248
+{txt}politb~o*{c |}  {res} .1976973   .1013249     1.33   0.182   .011429  -.000896   .39629
+    {txt}male*{c |}  {res}-.0146245   .0357518    -0.41   0.684   .646857  -.084697  .055448
+{txt}minority*{c |}  {res} .0524576    .041025     1.24   0.214      .192   -.02795  .132865
+{txt}religi~y*{c |}  {res}-.2354635   .0983584    -2.48   0.013   .033143  -.428242 -.042685
+  {txt}degree {c |}  {res}-.0241527    .019894    -1.21   0.225   1.31886  -.063144  .014839
+     {txt}age {c |}  {res} .0009059   .0019855     0.46   0.648    44.952  -.002986  .004797
+{txt}que_di~e*{c |}  {res} .1216654   .0347685     3.52   0.000   .594286    .05352   .18981
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}     .696
+{txt} pred. P {c |}  {res} .7006396{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. probit candidates_district centralnom polit male minority religion degree age que, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-537.43856}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-524.02734}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-523.98085}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-523.98076}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-523.98076}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}Wald chi2({res}8{txt}){col 67}= {res}     25.78
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0011
+{txt}Log pseudolikelihood = {res}-523.98076{txt}{col 49}Pseudo R2{col 67}= {res}    0.0250
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}candidates_district{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}centralnominated {c |}{col 21}{res}{space 2} .2291696{col 33}{space 2} .1382765{col 44}{space 1}    1.66{col 53}{space 3}0.097{col 61}{space 4}-.0418474{col 74}{space 3} .5001866
+{txt}{space 10}politburo {c |}{col 21}{res}{space 2} .7379659{col 33}{space 2} .5535587{col 44}{space 1}    1.33{col 53}{space 3}0.182{col 61}{space 4}-.3469893{col 74}{space 3} 1.822921
+{txt}{space 15}male {c |}{col 21}{res}{space 2}-.0422431{col 33}{space 2} .1036319{col 44}{space 1}   -0.41{col 53}{space 3}0.684{col 61}{space 4} -.245358{col 74}{space 3} .1608717
+{txt}{space 11}minority {c |}{col 21}{res}{space 2} .1551465{col 33}{space 2} .1249473{col 44}{space 1}    1.24{col 53}{space 3}0.214{col 61}{space 4}-.0897457{col 74}{space 3} .4000387
+{txt}{space 7}religion_any {c |}{col 21}{res}{space 2}-.6163256{col 33}{space 2} .2483499{col 44}{space 1}   -2.48{col 53}{space 3}0.013{col 61}{space 4}-1.103082{col 74}{space 3}-.1295687
+{txt}{space 13}degree {c |}{col 21}{res}{space 2}-.0695327{col 33}{space 2} .0573111{col 44}{space 1}   -1.21{col 53}{space 3}0.225{col 61}{space 4}-.1818604{col 74}{space 3} .0427949
+{txt}{space 16}age {c |}{col 21}{res}{space 2} .0026081{col 33}{space 2} .0057159{col 44}{space 1}    0.46{col 53}{space 3}0.648{col 61}{space 4}-.0085948{col 74}{space 3} .0138111
+{txt}{space 3}que_districtsame {c |}{col 21}{res}{space 2} .3457845{col 33}{space 2} .0981301{col 44}{space 1}    3.52{col 53}{space 3}0.000{col 61}{space 4}  .153453{col 74}{space 3}  .538116
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} .2617869{col 33}{space 2} .2620654{col 44}{space 1}    1.00{col 53}{space 3}0.318{col 61}{space 4}-.2518519{col 74}{space 3} .7754257
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. dprobit candidates_district centralnom polit male minority religion degree age que, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.43856
+{txt}Iteration 1:   log pseudolikelihood = {res}-524.02734
+{txt}Iteration 2:   log pseudolikelihood = {res}-523.98085
+{txt}Iteration 3:   log pseudolikelihood = {res}-523.98076
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}8{txt})  ={res}  25.78
+                                                        {txt}Prob > chi2   ={res} 0.0011
+{txt}Log pseudolikelihood = {res}-523.98076                       {txt}Pseudo R2     ={res} 0.0250
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res} .0763549   .0439421     1.66   0.097   .187429   -.00977   .16248
+{txt}politb~o*{c |}  {res} .1976973   .1013249     1.33   0.182   .011429  -.000896   .39629
+    {txt}male*{c |}  {res}-.0146245   .0357518    -0.41   0.684   .646857  -.084697  .055448
+{txt}minority*{c |}  {res} .0524576    .041025     1.24   0.214      .192   -.02795  .132865
+{txt}religi~y*{c |}  {res}-.2354635   .0983584    -2.48   0.013   .033143  -.428242 -.042685
+  {txt}degree {c |}  {res}-.0241527    .019894    -1.21   0.225   1.31886  -.063144  .014839
+     {txt}age {c |}  {res} .0009059   .0019855     0.46   0.648    44.952  -.002986  .004797
+{txt}que_di~e*{c |}  {res} .1216654   .0347685     3.52   0.000   .594286    .05352   .18981
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}     .696
+{txt} pred. P {c |}  {res} .7006396{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. dprobit candidates_district age, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.80071
+{txt}Iteration 1:   log pseudolikelihood = {res}-537.74251
+{txt}Iteration 2:   log pseudolikelihood = {res}-537.74251
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    876
+                                                        {txt}Wald chi2({res}1{txt})  ={res}   0.11
+                                                        {txt}Prob > chi2   ={res} 0.7391
+{txt}Log pseudolikelihood = {res}-537.74251                       {txt}Pseudo R2     ={res} 0.0001
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+     age {c |}  {res}-.0005734   .0017217    -0.33   0.739   44.9589  -.003948  .002801
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}  .696347
+{txt} pred. P {c |}  {res} .6963664{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. dprobit candidates_district centralnom, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.80071
+{txt}Iteration 1:   log pseudolikelihood = {res}-537.62915
+{txt}Iteration 2:   log pseudolikelihood = {res}-537.62914
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    876
+                                                        {txt}Wald chi2({res}1{txt})  ={res}   0.34
+                                                        {txt}Prob > chi2   ={res} 0.5590
+{txt}Log pseudolikelihood = {res}-537.62914                       {txt}Pseudo R2     ={res} 0.0003
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res} .0231684   .0391936     0.58   0.559   .188356   -.05365  .099986
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}  .696347
+{txt} pred. P {c |}  {res} .6964099{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. dprobit candidates_district centralnominated age, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.80071
+{txt}Iteration 1:   log pseudolikelihood = {res}-537.45424
+{txt}Iteration 2:   log pseudolikelihood = {res}-537.45423
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    876
+                                                        {txt}Wald chi2({res}2{txt})  ={res}   0.71
+                                                        {txt}Prob > chi2   ={res} 0.7009
+{txt}Log pseudolikelihood = {res}-537.45423                       {txt}Pseudo R2     ={res} 0.0006
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res} .0320351   .0410462     0.77   0.443   .188356  -.048414  .112484
+     {txt}age {c |}  {res}-.0010652   .0018302    -0.58   0.561   44.9589  -.004652  .002522
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}  .696347
+{txt} pred. P {c |}  {res} .6964758{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. dprobit candidates_district centralnom polit male minority religion degree age que, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.43856
+{txt}Iteration 1:   log pseudolikelihood = {res}-524.02734
+{txt}Iteration 2:   log pseudolikelihood = {res}-523.98085
+{txt}Iteration 3:   log pseudolikelihood = {res}-523.98076
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}8{txt})  ={res}  25.78
+                                                        {txt}Prob > chi2   ={res} 0.0011
+{txt}Log pseudolikelihood = {res}-523.98076                       {txt}Pseudo R2     ={res} 0.0250
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res} .0763549   .0439421     1.66   0.097   .187429   -.00977   .16248
+{txt}politb~o*{c |}  {res} .1976973   .1013249     1.33   0.182   .011429  -.000896   .39629
+    {txt}male*{c |}  {res}-.0146245   .0357518    -0.41   0.684   .646857  -.084697  .055448
+{txt}minority*{c |}  {res} .0524576    .041025     1.24   0.214      .192   -.02795  .132865
+{txt}religi~y*{c |}  {res}-.2354635   .0983584    -2.48   0.013   .033143  -.428242 -.042685
+  {txt}degree {c |}  {res}-.0241527    .019894    -1.21   0.225   1.31886  -.063144  .014839
+     {txt}age {c |}  {res} .0009059   .0019855     0.46   0.648    44.952  -.002986  .004797
+{txt}que_di~e*{c |}  {res} .1216654   .0347685     3.52   0.000   .594286    .05352   .18981
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}     .696
+{txt} pred. P {c |}  {res} .7006396{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. probit candidates_district centralnom polit male minority religion degree age que, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-537.43856}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-524.02734}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-523.98085}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-523.98076}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-523.98076}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}Wald chi2({res}8{txt}){col 67}= {res}     25.78
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0011
+{txt}Log pseudolikelihood = {res}-523.98076{txt}{col 49}Pseudo R2{col 67}= {res}    0.0250
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}candidates_district{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}centralnominated {c |}{col 21}{res}{space 2} .2291696{col 33}{space 2} .1382765{col 44}{space 1}    1.66{col 53}{space 3}0.097{col 61}{space 4}-.0418474{col 74}{space 3} .5001866
+{txt}{space 10}politburo {c |}{col 21}{res}{space 2} .7379659{col 33}{space 2} .5535587{col 44}{space 1}    1.33{col 53}{space 3}0.182{col 61}{space 4}-.3469893{col 74}{space 3} 1.822921
+{txt}{space 15}male {c |}{col 21}{res}{space 2}-.0422431{col 33}{space 2} .1036319{col 44}{space 1}   -0.41{col 53}{space 3}0.684{col 61}{space 4} -.245358{col 74}{space 3} .1608717
+{txt}{space 11}minority {c |}{col 21}{res}{space 2} .1551465{col 33}{space 2} .1249473{col 44}{space 1}    1.24{col 53}{space 3}0.214{col 61}{space 4}-.0897457{col 74}{space 3} .4000387
+{txt}{space 7}religion_any {c |}{col 21}{res}{space 2}-.6163256{col 33}{space 2} .2483499{col 44}{space 1}   -2.48{col 53}{space 3}0.013{col 61}{space 4}-1.103082{col 74}{space 3}-.1295687
+{txt}{space 13}degree {c |}{col 21}{res}{space 2}-.0695327{col 33}{space 2} .0573111{col 44}{space 1}   -1.21{col 53}{space 3}0.225{col 61}{space 4}-.1818604{col 74}{space 3} .0427949
+{txt}{space 16}age {c |}{col 21}{res}{space 2} .0026081{col 33}{space 2} .0057159{col 44}{space 1}    0.46{col 53}{space 3}0.648{col 61}{space 4}-.0085948{col 74}{space 3} .0138111
+{txt}{space 3}que_districtsame {c |}{col 21}{res}{space 2} .3457845{col 33}{space 2} .0981301{col 44}{space 1}    3.52{col 53}{space 3}0.000{col 61}{space 4}  .153453{col 74}{space 3}  .538116
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} .2617869{col 33}{space 2} .2620654{col 44}{space 1}    1.00{col 53}{space 3}0.318{col 61}{space 4}-.2518519{col 74}{space 3} .7754257
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. dprobit candidates_district centralnom polit male minority religion degree age que, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-537.43856
+{txt}Iteration 1:   log pseudolikelihood = {res}-524.02734
+{txt}Iteration 2:   log pseudolikelihood = {res}-523.98085
+{txt}Iteration 3:   log pseudolikelihood = {res}-523.98076
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}8{txt})  ={res}  25.78
+                                                        {txt}Prob > chi2   ={res} 0.0011
+{txt}Log pseudolikelihood = {res}-523.98076                       {txt}Pseudo R2     ={res} 0.0250
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+candi~ct {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+centra~d*{c |}  {res} .0763549   .0439421     1.66   0.097   .187429   -.00977   .16248
+{txt}politb~o*{c |}  {res} .1976973   .1013249     1.33   0.182   .011429  -.000896   .39629
+    {txt}male*{c |}  {res}-.0146245   .0357518    -0.41   0.684   .646857  -.084697  .055448
+{txt}minority*{c |}  {res} .0524576    .041025     1.24   0.214      .192   -.02795  .132865
+{txt}religi~y*{c |}  {res}-.2354635   .0983584    -2.48   0.013   .033143  -.428242 -.042685
+  {txt}degree {c |}  {res}-.0241527    .019894    -1.21   0.225   1.31886  -.063144  .014839
+     {txt}age {c |}  {res} .0009059   .0019855     0.46   0.648    44.952  -.002986  .004797
+{txt}que_di~e*{c |}  {res} .1216654   .0347685     3.52   0.000   .594286    .05352   .18981
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res}     .696
+{txt} pred. P {c |}  {res} .7006396{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. reg candidates_district centralnom polit male minority religion degree age que i.prov_id, robust
+
+{txt}Linear regression                               Number of obs     = {res}       875
+                                                {txt}F(71, 803)        =  {res}   506.69
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.4806
+                                                {txt}Root MSE          =    {res} .34605
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 18}{c |}{col 30}    Robust
+{col 1}candidates_dis~t{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      t{col 50}   P>|t|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+centralnominated {c |}{col 18}{res}{space 2}-.0478255{col 30}{space 2} .0361857{col 41}{space 1}   -1.32{col 50}{space 3}0.187{col 58}{space 4}-.1188552{col 71}{space 3} .0232042
+{txt}{space 7}politburo {c |}{col 18}{res}{space 2} .2858071{col 30}{space 2} .1276976{col 41}{space 1}    2.24{col 50}{space 3}0.025{col 58}{space 4} .0351466{col 71}{space 3} .5364676
+{txt}{space 12}male {c |}{col 18}{res}{space 2} -.003636{col 30}{space 2}  .027873{col 41}{space 1}   -0.13{col 50}{space 3}0.896{col 58}{space 4}-.0583486{col 71}{space 3} .0510766
+{txt}{space 8}minority {c |}{col 18}{res}{space 2} -.032527{col 30}{space 2} .0395668{col 41}{space 1}   -0.82{col 50}{space 3}0.411{col 58}{space 4}-.1101936{col 71}{space 3} .0451395
+{txt}{space 4}religion_any {c |}{col 18}{res}{space 2}-.0916177{col 30}{space 2} .0668007{col 41}{space 1}   -1.37{col 50}{space 3}0.171{col 58}{space 4}-.2227423{col 71}{space 3} .0395068
+{txt}{space 10}degree {c |}{col 18}{res}{space 2}-.0041293{col 30}{space 2} .0161442{col 41}{space 1}   -0.26{col 50}{space 3}0.798{col 58}{space 4}-.0358192{col 71}{space 3} .0275606
+{txt}{space 13}age {c |}{col 18}{res}{space 2} .0024077{col 30}{space 2} .0015606{col 41}{space 1}    1.54{col 50}{space 3}0.123{col 58}{space 4}-.0006556{col 71}{space 3} .0054711
+{txt}que_districtsame {c |}{col 18}{res}{space 2} .0088067{col 30}{space 2} .0334845{col 41}{space 1}    0.26{col 50}{space 3}0.793{col 58}{space 4}-.0569208{col 71}{space 3} .0745342
+{txt}{space 16} {c |}
+{space 9}prov_id {c |}
+{space 14}2  {c |}{col 18}{res}{space 2}-.1298753{col 30}{space 2} .1432458{col 41}{space 1}   -0.91{col 50}{space 3}0.365{col 58}{space 4}-.4110557{col 71}{space 3}  .151305
+{txt}{space 14}3  {c |}{col 18}{res}{space 2} .3154475{col 30}{space 2} .0841277{col 41}{space 1}    3.75{col 50}{space 3}0.000{col 58}{space 4} .1503114{col 71}{space 3} .4805836
+{txt}{space 14}4  {c |}{col 18}{res}{space 2}-.5817828{col 30}{space 2} .0894701{col 41}{space 1}   -6.50{col 50}{space 3}0.000{col 58}{space 4}-.7574056{col 71}{space 3}  -.40616
+{txt}{space 14}5  {c |}{col 18}{res}{space 2}-.3034608{col 30}{space 2} .1657087{col 41}{space 1}   -1.83{col 50}{space 3}0.067{col 58}{space 4}-.6287341{col 71}{space 3} .0218125
+{txt}{space 14}6  {c |}{col 18}{res}{space 2} .1900035{col 30}{space 2} .1088154{col 41}{space 1}    1.75{col 50}{space 3}0.081{col 58}{space 4}-.0235927{col 71}{space 3} .4035996
+{txt}{space 14}7  {c |}{col 18}{res}{space 2}  .321618{col 30}{space 2} .0846927{col 41}{space 1}    3.80{col 50}{space 3}0.000{col 58}{space 4} .1553727{col 71}{space 3} .4878633
+{txt}{space 14}8  {c |}{col 18}{res}{space 2}-.3040093{col 30}{space 2} .1613241{col 41}{space 1}   -1.88{col 50}{space 3}0.060{col 58}{space 4}-.6206762{col 71}{space 3} .0126575
+{txt}{space 14}9  {c |}{col 18}{res}{space 2} .3303292{col 30}{space 2} .0827096{col 41}{space 1}    3.99{col 50}{space 3}0.000{col 58}{space 4} .1679768{col 71}{space 3} .4926817
+{txt}{space 13}10  {c |}{col 18}{res}{space 2} .3466413{col 30}{space 2} .0842556{col 41}{space 1}    4.11{col 50}{space 3}0.000{col 58}{space 4} .1812541{col 71}{space 3} .5120285
+{txt}{space 13}11  {c |}{col 18}{res}{space 2}-.2795762{col 30}{space 2} .1634193{col 41}{space 1}   -1.71{col 50}{space 3}0.088{col 58}{space 4}-.6003556{col 71}{space 3} .0412033
+{txt}{space 13}12  {c |}{col 18}{res}{space 2} .0454286{col 30}{space 2} .1509725{col 41}{space 1}    0.30{col 50}{space 3}0.764{col 58}{space 4}-.2509188{col 71}{space 3}  .341776
+{txt}{space 13}13  {c |}{col 18}{res}{space 2}-.2729644{col 30}{space 2} .1657728{col 41}{space 1}   -1.65{col 50}{space 3}0.100{col 58}{space 4}-.5983635{col 71}{space 3} .0524348
+{txt}{space 13}14  {c |}{col 18}{res}{space 2} .0435863{col 30}{space 2} .1529198{col 41}{space 1}    0.29{col 50}{space 3}0.776{col 58}{space 4}-.2565835{col 71}{space 3} .3437561
+{txt}{space 13}15  {c |}{col 18}{res}{space 2} .3360301{col 30}{space 2} .0815916{col 41}{space 1}    4.12{col 50}{space 3}0.000{col 58}{space 4} .1758721{col 71}{space 3} .4961881
+{txt}{space 13}16  {c |}{col 18}{res}{space 2}-.2823209{col 30}{space 2}  .164266{col 41}{space 1}   -1.72{col 50}{space 3}0.086{col 58}{space 4}-.6047623{col 71}{space 3} .0401205
+{txt}{space 13}17  {c |}{col 18}{res}{space 2} .0424987{col 30}{space 2} .1502248{col 41}{space 1}    0.28{col 50}{space 3}0.777{col 58}{space 4} -.252381{col 71}{space 3} .3373784
+{txt}{space 13}18  {c |}{col 18}{res}{space 2}-.1043392{col 30}{space 2} .1464806{col 41}{space 1}   -0.71{col 50}{space 3}0.476{col 58}{space 4}-.3918694{col 71}{space 3} .1831909
+{txt}{space 13}19  {c |}{col 18}{res}{space 2} .3265403{col 30}{space 2} .0833501{col 41}{space 1}    3.92{col 50}{space 3}0.000{col 58}{space 4} .1629305{col 71}{space 3} .4901501
+{txt}{space 13}20  {c |}{col 18}{res}{space 2} .3334388{col 30}{space 2} .0842002{col 41}{space 1}    3.96{col 50}{space 3}0.000{col 58}{space 4} .1681604{col 71}{space 3} .4987172
+{txt}{space 13}21  {c |}{col 18}{res}{space 2} -.674345{col 30}{space 2} .0838561{col 41}{space 1}   -8.04{col 50}{space 3}0.000{col 58}{space 4}-.8389479{col 71}{space 3} -.509742
+{txt}{space 13}22  {c |}{col 18}{res}{space 2} .0643496{col 30}{space 2} .1500857{col 41}{space 1}    0.43{col 50}{space 3}0.668{col 58}{space 4}-.2302569{col 71}{space 3} .3589561
+{txt}{space 13}23  {c |}{col 18}{res}{space 2} .3673832{col 30}{space 2} .0885564{col 41}{space 1}    4.15{col 50}{space 3}0.000{col 58}{space 4} .1935539{col 71}{space 3} .5412126
+{txt}{space 13}24  {c |}{col 18}{res}{space 2}-.2773143{col 30}{space 2} .1604808{col 41}{space 1}   -1.73{col 50}{space 3}0.084{col 58}{space 4}-.5923256{col 71}{space 3} .0376971
+{txt}{space 13}25  {c |}{col 18}{res}{space 2} .3568572{col 30}{space 2} .0835583{col 41}{space 1}    4.27{col 50}{space 3}0.000{col 58}{space 4} .1928387{col 71}{space 3} .5208757
+{txt}{space 13}26  {c |}{col 18}{res}{space 2}-.2860484{col 30}{space 2} .1647621{col 41}{space 1}   -1.74{col 50}{space 3}0.083{col 58}{space 4}-.6094637{col 71}{space 3} .0373669
+{txt}{space 13}27  {c |}{col 18}{res}{space 2}-.2006799{col 30}{space 2} .1734518{col 41}{space 1}   -1.16{col 50}{space 3}0.248{col 58}{space 4}-.5411524{col 71}{space 3} .1397926
+{txt}{space 13}28  {c |}{col 18}{res}{space 2}-.2124566{col 30}{space 2} .1759827{col 41}{space 1}   -1.21{col 50}{space 3}0.228{col 58}{space 4}-.5578971{col 71}{space 3} .1329838
+{txt}{space 13}29  {c |}{col 18}{res}{space 2} .3456503{col 30}{space 2} .0819373{col 41}{space 1}    4.22{col 50}{space 3}0.000{col 58}{space 4} .1848136{col 71}{space 3} .5064869
+{txt}{space 13}30  {c |}{col 18}{res}{space 2} .0422622{col 30}{space 2} .1515646{col 41}{space 1}    0.28{col 50}{space 3}0.780{col 58}{space 4}-.2552473{col 71}{space 3} .3397717
+{txt}{space 13}31  {c |}{col 18}{res}{space 2}-.2722276{col 30}{space 2} .1606366{col 41}{space 1}   -1.69{col 50}{space 3}0.091{col 58}{space 4}-.5875449{col 71}{space 3} .0430897
+{txt}{space 13}32  {c |}{col 18}{res}{space 2} .3389117{col 30}{space 2} .0822036{col 41}{space 1}    4.12{col 50}{space 3}0.000{col 58}{space 4} .1775523{col 71}{space 3} .5002711
+{txt}{space 13}33  {c |}{col 18}{res}{space 2} .3262827{col 30}{space 2} .0802211{col 41}{space 1}    4.07{col 50}{space 3}0.000{col 58}{space 4} .1688149{col 71}{space 3} .4837505
+{txt}{space 13}34  {c |}{col 18}{res}{space 2} .3253891{col 30}{space 2} .0841048{col 41}{space 1}    3.87{col 50}{space 3}0.000{col 58}{space 4} .1602979{col 71}{space 3} .4904803
+{txt}{space 13}35  {c |}{col 18}{res}{space 2} .3369183{col 30}{space 2} .0803799{col 41}{space 1}    4.19{col 50}{space 3}0.000{col 58}{space 4} .1791386{col 71}{space 3} .4946979
+{txt}{space 13}37  {c |}{col 18}{res}{space 2}-.2806443{col 30}{space 2} .1632062{col 41}{space 1}   -1.72{col 50}{space 3}0.086{col 58}{space 4}-.6010054{col 71}{space 3} .0397168
+{txt}{space 13}39  {c |}{col 18}{res}{space 2}-.1079429{col 30}{space 2} .1445115{col 41}{space 1}   -0.75{col 50}{space 3}0.455{col 58}{space 4}-.3916079{col 71}{space 3}  .175722
+{txt}{space 13}40  {c |}{col 18}{res}{space 2} .3340028{col 30}{space 2} .0855836{col 41}{space 1}    3.90{col 50}{space 3}0.000{col 58}{space 4} .1660088{col 71}{space 3} .5019968
+{txt}{space 13}42  {c |}{col 18}{res}{space 2} .3135406{col 30}{space 2} .0835266{col 41}{space 1}    3.75{col 50}{space 3}0.000{col 58}{space 4} .1495844{col 71}{space 3} .4774968
+{txt}{space 13}43  {c |}{col 18}{res}{space 2} .3211866{col 30}{space 2} .0835077{col 41}{space 1}    3.85{col 50}{space 3}0.000{col 58}{space 4} .1572674{col 71}{space 3} .4851058
+{txt}{space 13}45  {c |}{col 18}{res}{space 2}-.2855964{col 30}{space 2} .1610828{col 41}{space 1}   -1.77{col 50}{space 3}0.077{col 58}{space 4}-.6017894{col 71}{space 3} .0305966
+{txt}{space 13}47  {c |}{col 18}{res}{space 2}  .336787{col 30}{space 2} .0848604{col 41}{space 1}    3.97{col 50}{space 3}0.000{col 58}{space 4} .1702125{col 71}{space 3} .5033614
+{txt}{space 13}48  {c |}{col 18}{res}{space 2}  .327146{col 30}{space 2} .0862005{col 41}{space 1}    3.80{col 50}{space 3}0.000{col 58}{space 4}  .157941{col 71}{space 3}  .496351
+{txt}{space 13}51  {c |}{col 18}{res}{space 2} .3316459{col 30}{space 2}  .084627{col 41}{space 1}    3.92{col 50}{space 3}0.000{col 58}{space 4} .1655296{col 71}{space 3} .4977622
+{txt}{space 13}53  {c |}{col 18}{res}{space 2}-.2843129{col 30}{space 2} .1637296{col 41}{space 1}   -1.74{col 50}{space 3}0.083{col 58}{space 4}-.6057014{col 71}{space 3} .0370756
+{txt}{space 13}54  {c |}{col 18}{res}{space 2}  .355621{col 30}{space 2} .0853619{col 41}{space 1}    4.17{col 50}{space 3}0.000{col 58}{space 4} .1880623{col 71}{space 3} .5231797
+{txt}{space 13}55  {c |}{col 18}{res}{space 2} .0468816{col 30}{space 2} .1447651{col 41}{space 1}    0.32{col 50}{space 3}0.746{col 58}{space 4}-.2372811{col 71}{space 3} .3310443
+{txt}{space 13}56  {c |}{col 18}{res}{space 2} .3582915{col 30}{space 2} .0855067{col 41}{space 1}    4.19{col 50}{space 3}0.000{col 58}{space 4} .1904485{col 71}{space 3} .5261344
+{txt}{space 13}57  {c |}{col 18}{res}{space 2} .3408769{col 30}{space 2} .0819127{col 41}{space 1}    4.16{col 50}{space 3}0.000{col 58}{space 4} .1800885{col 71}{space 3} .5016652
+{txt}{space 13}58  {c |}{col 18}{res}{space 2} .3428638{col 30}{space 2} .0835045{col 41}{space 1}    4.11{col 50}{space 3}0.000{col 58}{space 4}  .178951{col 71}{space 3} .5067766
+{txt}{space 13}59  {c |}{col 18}{res}{space 2} .3222161{col 30}{space 2}    .0893{col 41}{space 1}    3.61{col 50}{space 3}0.000{col 58}{space 4} .1469272{col 71}{space 3}  .497505
+{txt}{space 13}60  {c |}{col 18}{res}{space 2} -.273201{col 30}{space 2} .1631563{col 41}{space 1}   -1.67{col 50}{space 3}0.094{col 58}{space 4}-.5934643{col 71}{space 3} .0470623
+{txt}{space 13}62  {c |}{col 18}{res}{space 2}-.1520602{col 30}{space 2} .1809349{col 41}{space 1}   -0.84{col 50}{space 3}0.401{col 58}{space 4}-.5072215{col 71}{space 3}  .203101
+{txt}{space 13}63  {c |}{col 18}{res}{space 2} .3454574{col 30}{space 2} .0834477{col 41}{space 1}    4.14{col 50}{space 3}0.000{col 58}{space 4} .1816561{col 71}{space 3} .5092588
+{txt}{space 13}64  {c |}{col 18}{res}{space 2} .3603941{col 30}{space 2} .0881648{col 41}{space 1}    4.09{col 50}{space 3}0.000{col 58}{space 4} .1873335{col 71}{space 3} .5334547
+{txt}{space 13}65  {c |}{col 18}{res}{space 2}-.6224813{col 30}{space 2}  .087567{col 41}{space 1}   -7.11{col 50}{space 3}0.000{col 58}{space 4}-.7943686{col 71}{space 3}-.4505941
+{txt}{space 13}66  {c |}{col 18}{res}{space 2}   .35419{col 30}{space 2}  .085817{col 41}{space 1}    4.13{col 50}{space 3}0.000{col 58}{space 4} .1857379{col 71}{space 3} .5226421
+{txt}{space 13}67  {c |}{col 18}{res}{space 2}  .350744{col 30}{space 2} .0861835{col 41}{space 1}    4.07{col 50}{space 3}0.000{col 58}{space 4} .1815725{col 71}{space 3} .5199156
+{txt}{space 13}68  {c |}{col 18}{res}{space 2}-.2768086{col 30}{space 2} .1644698{col 41}{space 1}   -1.68{col 50}{space 3}0.093{col 58}{space 4}  -.59965{col 71}{space 3} .0460328
+{txt}{space 13}69  {c |}{col 18}{res}{space 2} .3622777{col 30}{space 2} .0872616{col 41}{space 1}    4.15{col 50}{space 3}0.000{col 58}{space 4} .1909899{col 71}{space 3} .5335655
+{txt}{space 13}70  {c |}{col 18}{res}{space 2}-.2799993{col 30}{space 2} .1544715{col 41}{space 1}   -1.81{col 50}{space 3}0.070{col 58}{space 4} -.583215{col 71}{space 3} .0232164
+{txt}{space 13}71  {c |}{col 18}{res}{space 2} .3576627{col 30}{space 2} .0823265{col 41}{space 1}    4.34{col 50}{space 3}0.000{col 58}{space 4} .1960621{col 71}{space 3} .5192633
+{txt}{space 13}72  {c |}{col 18}{res}{space 2} .3490606{col 30}{space 2} .0838921{col 41}{space 1}    4.16{col 50}{space 3}0.000{col 58}{space 4} .1843868{col 71}{space 3} .5137344
+{txt}{space 13}73  {c |}{col 18}{res}{space 2} .3574685{col 30}{space 2} .0884922{col 41}{space 1}    4.04{col 50}{space 3}0.000{col 58}{space 4} .1837652{col 71}{space 3} .5311718
+{txt}{space 16} {c |}
+{space 11}_cons {c |}{col 18}{res}{space 2}   .57466{col 30}{space 2} .1102003{col 41}{space 1}    5.21{col 50}{space 3}0.000{col 58}{space 4} .3583454{col 71}{space 3} .7909745
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. g dif = birthyear + age
+{txt}(125 missing values generated)
+
+{com}. summary dif
+{err}command {bf}summary{sf} is unrecognized
+{txt}{search r(199):r(199);}
+
+{com}. summarize dif
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}dif {c |}{res}        875        2007           0       2007       2007
+
+{com}. summarize age
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}        876     44.9589    9.186606         22         80
+
+{com}. summarize birthyear
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 3}birthyear {c |}{res}        875    1962.048    9.189586       1927       1985
+
+{com}. help summarize
+
+. help summarize, detail
+{err}option {bf:detail} not allowed
+{txt}{search r(198):r(198);}
+
+{com}. summarize birthyear, detail
+
+                          {txt}birthyear
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}     1938           1927
+{txt} 5%    {res}     1949           1929
+{txt}10%    {res}     1951           1931       {txt}Obs         {res}        875
+{txt}25%    {res}     1955           1933       {txt}Sum of Wgt. {res}        875
+
+{txt}50%    {res}     1962                      {txt}Mean          {res} 1962.048
+                        {txt}Largest       Std. Dev.     {res} 9.189586
+{txt}75%    {res}     1967           1983
+{txt}90%    {res}     1975           1984       {txt}Variance      {res} 84.44849
+{txt}95%    {res}     1978           1984       {txt}Skewness      {res}-.1323727
+{txt}99%    {res}     1982           1985       {txt}Kurtosis      {res}  3.27231
+
+{com}. br electiondistrict hvtn ngysinh birthyear age
+
+. br
+
+. br prov stt hvtn ngsinh
+{err}variable {bf}ngsinh{sf} not found
+{txt}{search r(111):r(111);}
+
+{com}. br prov stt hvtn ngysinh
+
+. br prov stt hvtn ngysinh power_total
+
+. sort prov_id electiondistrict stt
+
+. tab power_total
+
+{txt}power_total {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}         16        1.83        1.83
+{txt}          2 {c |}{res}         67        7.66        9.49
+{txt}          3 {c |}{res}        154       17.60       27.09
+{txt}          4 {c |}{res}        203       23.20       50.29
+{txt}          5 {c |}{res}        202       23.09       73.37
+{txt}          6 {c |}{res}        106       12.11       85.49
+{txt}          7 {c |}{res}         65        7.43       92.91
+{txt}          8 {c |}{res}         41        4.69       97.60
+{txt}          9 {c |}{res}         18        2.06       99.66
+{txt}         10 {c |}{res}          2        0.23       99.89
+{txt}         11 {c |}{res}          1        0.11      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        875      100.00
+
+{com}. tab incumbent_dummy
+
+{txt}incumbent_d {c |}
+       ummy {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        718       81.96       81.96
+{txt}          1 {c |}{res}        158       18.04      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        876      100.00
+
+{com}. tab incumbencyterms
+
+{txt}incumbencyt {c |}
+       erms {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        718       82.06       82.06
+{txt}          1 {c |}{res}        109       12.46       94.51
+{txt}          2 {c |}{res}         42        4.80       99.31
+{txt}          3 {c |}{res}          5        0.57       99.89
+{txt}          4 {c |}{res}          1        0.11      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        875      100.00
+
+{com}. reg power_total centralnominated polit male minority religion degree age que, robust
+
+{txt}Linear regression                               Number of obs     = {res}       875
+                                                {txt}F(8, 866)         =  {res}    12.16
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.0869
+                                                {txt}Root MSE          =    {res} 1.6758
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 18}{c |}{col 30}    Robust
+{col 1}     power_total{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      t{col 50}   P>|t|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+centralnominated {c |}{col 18}{res}{space 2}-.9897165{col 30}{space 2} .1619592{col 41}{space 1}   -6.11{col 50}{space 3}0.000{col 58}{space 4}-1.307595{col 71}{space 3} -.671838
+{txt}{space 7}politburo {c |}{col 18}{res}{space 2}-.6695676{col 30}{space 2}  .492297{col 41}{space 1}   -1.36{col 50}{space 3}0.174{col 58}{space 4}-1.635802{col 71}{space 3} .2966671
+{txt}{space 12}male {c |}{col 18}{res}{space 2}-.0647099{col 30}{space 2} .1305686{col 41}{space 1}   -0.50{col 50}{space 3}0.620{col 58}{space 4}-.3209779{col 71}{space 3}  .191558
+{txt}{space 8}minority {c |}{col 18}{res}{space 2}  .055175{col 30}{space 2}  .164853{col 41}{space 1}    0.33{col 50}{space 3}0.738{col 58}{space 4}-.2683832{col 71}{space 3} .3787331
+{txt}{space 4}religion_any {c |}{col 18}{res}{space 2}-.4125467{col 30}{space 2} .3361917{col 41}{space 1}   -1.23{col 50}{space 3}0.220{col 58}{space 4}-1.072393{col 71}{space 3} .2472992
+{txt}{space 10}degree {c |}{col 18}{res}{space 2}-.0884839{col 30}{space 2} .0705112{col 41}{space 1}   -1.25{col 50}{space 3}0.210{col 58}{space 4}-.2268767{col 71}{space 3}  .049909
+{txt}{space 13}age {c |}{col 18}{res}{space 2}-.0160054{col 30}{space 2} .0071823{col 41}{space 1}   -2.23{col 50}{space 3}0.026{col 58}{space 4}-.0301022{col 71}{space 3}-.0019085
+{txt}que_districtsame {c |}{col 18}{res}{space 2}-.1311479{col 30}{space 2} .1222517{col 41}{space 1}   -1.07{col 50}{space 3}0.284{col 58}{space 4}-.3710922{col 71}{space 3} .1087964
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2} 5.776202{col 30}{space 2}    .3241{col 41}{space 1}   17.82{col 50}{space 3}0.000{col 58}{space 4} 5.140089{col 71}{space 3} 6.412315
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. summarize power_total
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 1}power_total {c |}{res}        875       4.624    1.745637          1         11
+
+{com}. xi: reg power_total centralnominated polit i.prov_id male minority religion degree age que, robust
+{txt}i.prov_id{col 19}_Iprov_id_1-73{col 39}(naturally coded; _Iprov_id_1 omitted)
+
+Linear regression                               Number of obs     = {res}       875
+                                                {txt}F(71, 803)        =  {res}    10.74
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.3596
+                                                {txt}Root MSE          =    {res} 1.4575
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 18}{c |}{col 30}    Robust
+{col 1}     power_total{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      t{col 50}   P>|t|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+centralnominated {c |}{col 18}{res}{space 2}-.9957645{col 30}{space 2} .1466509{col 41}{space 1}   -6.79{col 50}{space 3}0.000{col 58}{space 4}-1.283629{col 71}{space 3}-.7079001
+{txt}{space 7}politburo {c |}{col 18}{res}{space 2}-.8087917{col 30}{space 2} .4711728{col 41}{space 1}   -1.72{col 50}{space 3}0.086{col 58}{space 4}-1.733667{col 71}{space 3}  .116084
+{txt}{space 5}_Iprov_id_2 {c |}{col 18}{res}{space 2}-.4431694{col 30}{space 2} .3661939{col 41}{space 1}   -1.21{col 50}{space 3}0.227{col 58}{space 4} -1.16198{col 71}{space 3}  .275641
+{txt}{space 5}_Iprov_id_3 {c |}{col 18}{res}{space 2} 1.837515{col 30}{space 2} .4216558{col 41}{space 1}    4.36{col 50}{space 3}0.000{col 58}{space 4} 1.009837{col 71}{space 3} 2.665193
+{txt}{space 5}_Iprov_id_4 {c |}{col 18}{res}{space 2}  .199162{col 30}{space 2} .3152253{col 41}{space 1}    0.63{col 50}{space 3}0.528{col 58}{space 4}-.4196008{col 71}{space 3} .8179248
+{txt}{space 5}_Iprov_id_5 {c |}{col 18}{res}{space 2}-.1224343{col 30}{space 2} .4940033{col 41}{space 1}   -0.25{col 50}{space 3}0.804{col 58}{space 4}-1.092125{col 71}{space 3}  .847256
+{txt}{space 5}_Iprov_id_6 {c |}{col 18}{res}{space 2} .2626817{col 30}{space 2} .3785823{col 41}{space 1}    0.69{col 50}{space 3}0.488{col 58}{space 4}-.4804462{col 71}{space 3}  1.00581
+{txt}{space 5}_Iprov_id_7 {c |}{col 18}{res}{space 2} .4259647{col 30}{space 2} .4595302{col 41}{space 1}    0.93{col 50}{space 3}0.354{col 58}{space 4}-.4760576{col 71}{space 3} 1.327987
+{txt}{space 5}_Iprov_id_8 {c |}{col 18}{res}{space 2}-.2446197{col 30}{space 2} .5225875{col 41}{space 1}   -0.47{col 50}{space 3}0.640{col 58}{space 4}-1.270419{col 71}{space 3} .7811792
+{txt}{space 5}_Iprov_id_9 {c |}{col 18}{res}{space 2}-.0243289{col 30}{space 2} .3835149{col 41}{space 1}   -0.06{col 50}{space 3}0.949{col 58}{space 4} -.777139{col 71}{space 3} .7284811
+{txt}{space 4}_Iprov_id_10 {c |}{col 18}{res}{space 2}-.5114987{col 30}{space 2} .6369822{col 41}{space 1}   -0.80{col 50}{space 3}0.422{col 58}{space 4}-1.761846{col 71}{space 3} .7388481
+{txt}{space 4}_Iprov_id_11 {c |}{col 18}{res}{space 2} .2633261{col 30}{space 2}   .48297{col 41}{space 1}    0.55{col 50}{space 3}0.586{col 58}{space 4}-.6847066{col 71}{space 3} 1.211359
+{txt}{space 4}_Iprov_id_12 {c |}{col 18}{res}{space 2}-.4397907{col 30}{space 2} .3446824{col 41}{space 1}   -1.28{col 50}{space 3}0.202{col 58}{space 4}-1.116376{col 71}{space 3} .2367942
+{txt}{space 4}_Iprov_id_13 {c |}{col 18}{res}{space 2}-.9165705{col 30}{space 2} .3604066{col 41}{space 1}   -2.54{col 50}{space 3}0.011{col 58}{space 4}-1.624021{col 71}{space 3}-.2091203
+{txt}{space 4}_Iprov_id_14 {c |}{col 18}{res}{space 2}-1.061339{col 30}{space 2}  .336317{col 41}{space 1}   -3.16{col 50}{space 3}0.002{col 58}{space 4}-1.721503{col 71}{space 3}-.4011746
+{txt}{space 4}_Iprov_id_15 {c |}{col 18}{res}{space 2}   .37361{col 30}{space 2} .4940618{col 41}{space 1}    0.76{col 50}{space 3}0.450{col 58}{space 4} -.596195{col 71}{space 3} 1.343415
+{txt}{space 4}_Iprov_id_16 {c |}{col 18}{res}{space 2}-1.192095{col 30}{space 2} .5514212{col 41}{space 1}   -2.16{col 50}{space 3}0.031{col 58}{space 4}-2.274493{col 71}{space 3}-.1096983
+{txt}{space 4}_Iprov_id_17 {c |}{col 18}{res}{space 2}-.0590798{col 30}{space 2} .7051843{col 41}{space 1}   -0.08{col 50}{space 3}0.933{col 58}{space 4}-1.443302{col 71}{space 3} 1.325142
+{txt}{space 4}_Iprov_id_18 {c |}{col 18}{res}{space 2}-.5331067{col 30}{space 2}  .366806{col 41}{space 1}   -1.45{col 50}{space 3}0.147{col 58}{space 4}-1.253119{col 71}{space 3} .1869051
+{txt}{space 4}_Iprov_id_19 {c |}{col 18}{res}{space 2}-.9283159{col 30}{space 2} .3906022{col 41}{space 1}   -2.38{col 50}{space 3}0.018{col 58}{space 4}-1.695038{col 71}{space 3}-.1615939
+{txt}{space 4}_Iprov_id_20 {c |}{col 18}{res}{space 2}-.1527225{col 30}{space 2} .3879965{col 41}{space 1}   -0.39{col 50}{space 3}0.694{col 58}{space 4}-.9143295{col 71}{space 3} .6088845
+{txt}{space 4}_Iprov_id_21 {c |}{col 18}{res}{space 2}-.4747619{col 30}{space 2} .4017054{col 41}{space 1}   -1.18{col 50}{space 3}0.238{col 58}{space 4}-1.263278{col 71}{space 3} .3137547
+{txt}{space 4}_Iprov_id_22 {c |}{col 18}{res}{space 2}-1.298496{col 30}{space 2} .2975468{col 41}{space 1}   -4.36{col 50}{space 3}0.000{col 58}{space 4}-1.882557{col 71}{space 3}-.7144345
+{txt}{space 4}_Iprov_id_23 {c |}{col 18}{res}{space 2} 1.251728{col 30}{space 2} .7416328{col 41}{space 1}    1.69{col 50}{space 3}0.092{col 58}{space 4}-.2040397{col 71}{space 3} 2.707496
+{txt}{space 4}_Iprov_id_24 {c |}{col 18}{res}{space 2}-.0430534{col 30}{space 2} .7645537{col 41}{space 1}   -0.06{col 50}{space 3}0.955{col 58}{space 4}-1.543813{col 71}{space 3} 1.457706
+{txt}{space 4}_Iprov_id_25 {c |}{col 18}{res}{space 2} -.977204{col 30}{space 2} .4104901{col 41}{space 1}   -2.38{col 50}{space 3}0.018{col 58}{space 4}-1.782964{col 71}{space 3}-.1714436
+{txt}{space 4}_Iprov_id_26 {c |}{col 18}{res}{space 2}-1.051016{col 30}{space 2} .5276193{col 41}{space 1}   -1.99{col 50}{space 3}0.047{col 58}{space 4}-2.086692{col 71}{space 3}-.0153403
+{txt}{space 4}_Iprov_id_27 {c |}{col 18}{res}{space 2} .3466867{col 30}{space 2} .4493295{col 41}{space 1}    0.77{col 50}{space 3}0.441{col 58}{space 4}-.5353123{col 71}{space 3} 1.228686
+{txt}{space 4}_Iprov_id_28 {c |}{col 18}{res}{space 2} .8414504{col 30}{space 2} .3937459{col 41}{space 1}    2.14{col 50}{space 3}0.033{col 58}{space 4} .0685576{col 71}{space 3} 1.614343
+{txt}{space 4}_Iprov_id_29 {c |}{col 18}{res}{space 2} .8162224{col 30}{space 2} .3706894{col 41}{space 1}    2.20{col 50}{space 3}0.028{col 58}{space 4} .0885878{col 71}{space 3} 1.543857
+{txt}{space 4}_Iprov_id_30 {c |}{col 18}{res}{space 2}  .280165{col 30}{space 2} .3478746{col 41}{space 1}    0.81{col 50}{space 3}0.421{col 58}{space 4} -.402686{col 71}{space 3} .9630159
+{txt}{space 4}_Iprov_id_31 {c |}{col 18}{res}{space 2}-1.113254{col 30}{space 2}  .506357{col 41}{space 1}   -2.20{col 50}{space 3}0.028{col 58}{space 4}-2.107193{col 71}{space 3} -.119314
+{txt}{space 4}_Iprov_id_32 {c |}{col 18}{res}{space 2} .5832881{col 30}{space 2} .3946955{col 41}{space 1}    1.48{col 50}{space 3}0.140{col 58}{space 4}-.1914687{col 71}{space 3} 1.358045
+{txt}{space 4}_Iprov_id_33 {c |}{col 18}{res}{space 2}-.4919033{col 30}{space 2} .6521509{col 41}{space 1}   -0.75{col 50}{space 3}0.451{col 58}{space 4}-1.772025{col 71}{space 3} .7882185
+{txt}{space 4}_Iprov_id_34 {c |}{col 18}{res}{space 2}  .763981{col 30}{space 2} .4512195{col 41}{space 1}    1.69{col 50}{space 3}0.091{col 58}{space 4} -.121728{col 71}{space 3}  1.64969
+{txt}{space 4}_Iprov_id_35 {c |}{col 18}{res}{space 2} 1.100407{col 30}{space 2} .6605944{col 41}{space 1}    1.67{col 50}{space 3}0.096{col 58}{space 4}-.1962892{col 71}{space 3} 2.397102
+{txt}{space 4}_Iprov_id_37 {c |}{col 18}{res}{space 2}-1.126009{col 30}{space 2} .4294044{col 41}{space 1}   -2.62{col 50}{space 3}0.009{col 58}{space 4}-1.968897{col 71}{space 3}-.2831219
+{txt}{space 4}_Iprov_id_39 {c |}{col 18}{res}{space 2}-1.276006{col 30}{space 2} .3887108{col 41}{space 1}   -3.28{col 50}{space 3}0.001{col 58}{space 4}-2.039016{col 71}{space 3}-.5129971
+{txt}{space 4}_Iprov_id_40 {c |}{col 18}{res}{space 2}-.5450505{col 30}{space 2} .3980421{col 41}{space 1}   -1.37{col 50}{space 3}0.171{col 58}{space 4}-1.326376{col 71}{space 3} .2362754
+{txt}{space 4}_Iprov_id_42 {c |}{col 18}{res}{space 2} .4868885{col 30}{space 2} .6406803{col 41}{space 1}    0.76{col 50}{space 3}0.448{col 58}{space 4}-.7707174{col 71}{space 3} 1.744494
+{txt}{space 4}_Iprov_id_43 {c |}{col 18}{res}{space 2} .9255515{col 30}{space 2} .7130955{col 41}{space 1}    1.30{col 50}{space 3}0.195{col 58}{space 4}-.4741997{col 71}{space 3} 2.325303
+{txt}{space 4}_Iprov_id_45 {c |}{col 18}{res}{space 2}-1.029602{col 30}{space 2}  .549667{col 41}{space 1}   -1.87{col 50}{space 3}0.061{col 58}{space 4}-2.108556{col 71}{space 3} .0493517
+{txt}{space 4}_Iprov_id_47 {c |}{col 18}{res}{space 2} .5735862{col 30}{space 2} .4598605{col 41}{space 1}    1.25{col 50}{space 3}0.213{col 58}{space 4}-.3290844{col 71}{space 3} 1.476257
+{txt}{space 4}_Iprov_id_48 {c |}{col 18}{res}{space 2} 1.146444{col 30}{space 2} .5388452{col 41}{space 1}    2.13{col 50}{space 3}0.034{col 58}{space 4} .0887328{col 71}{space 3} 2.204156
+{txt}{space 4}_Iprov_id_51 {c |}{col 18}{res}{space 2}-.8062341{col 30}{space 2} .3750275{col 41}{space 1}   -2.15{col 50}{space 3}0.032{col 58}{space 4}-1.542384{col 71}{space 3}-.0700841
+{txt}{space 4}_Iprov_id_53 {c |}{col 18}{res}{space 2} .2116732{col 30}{space 2} .8367855{col 41}{space 1}    0.25{col 50}{space 3}0.800{col 58}{space 4}-1.430872{col 71}{space 3} 1.854218
+{txt}{space 4}_Iprov_id_54 {c |}{col 18}{res}{space 2}-.8361686{col 30}{space 2} .3662742{col 41}{space 1}   -2.28{col 50}{space 3}0.023{col 58}{space 4}-1.555137{col 71}{space 3}-.1172007
+{txt}{space 4}_Iprov_id_55 {c |}{col 18}{res}{space 2}-.1020883{col 30}{space 2} .4562815{col 41}{space 1}   -0.22{col 50}{space 3}0.823{col 58}{space 4}-.9977336{col 71}{space 3} .7935569
+{txt}{space 4}_Iprov_id_56 {c |}{col 18}{res}{space 2} -.700168{col 30}{space 2} .3496283{col 41}{space 1}   -2.00{col 50}{space 3}0.046{col 58}{space 4}-1.386461{col 71}{space 3}-.0138747
+{txt}{space 4}_Iprov_id_57 {c |}{col 18}{res}{space 2} .2423281{col 30}{space 2} .3507983{col 41}{space 1}    0.69{col 50}{space 3}0.490{col 58}{space 4}-.4462618{col 71}{space 3} .9309181
+{txt}{space 4}_Iprov_id_58 {c |}{col 18}{res}{space 2}  .203239{col 30}{space 2} .4428669{col 41}{space 1}    0.46{col 50}{space 3}0.646{col 58}{space 4}-.6660745{col 71}{space 3} 1.072552
+{txt}{space 4}_Iprov_id_59 {c |}{col 18}{res}{space 2} .2844899{col 30}{space 2} .4478922{col 41}{space 1}    0.64{col 50}{space 3}0.525{col 58}{space 4}-.5946878{col 71}{space 3} 1.163668
+{txt}{space 4}_Iprov_id_60 {c |}{col 18}{res}{space 2}-.7554117{col 30}{space 2} .4406312{col 41}{space 1}   -1.71{col 50}{space 3}0.087{col 58}{space 4}-1.620337{col 71}{space 3} .1095133
+{txt}{space 4}_Iprov_id_62 {c |}{col 18}{res}{space 2}-.4436378{col 30}{space 2} .4724179{col 41}{space 1}   -0.94{col 50}{space 3}0.348{col 58}{space 4}-1.370958{col 71}{space 3}  .483682
+{txt}{space 4}_Iprov_id_63 {c |}{col 18}{res}{space 2}   1.1448{col 30}{space 2}  .657742{col 41}{space 1}    1.74{col 50}{space 3}0.082{col 58}{space 4}-.1462961{col 71}{space 3} 2.435897
+{txt}{space 4}_Iprov_id_64 {c |}{col 18}{res}{space 2}-1.682399{col 30}{space 2} .5473188{col 41}{space 1}   -3.07{col 50}{space 3}0.002{col 58}{space 4}-2.756743{col 71}{space 3}-.6080542
+{txt}{space 4}_Iprov_id_65 {c |}{col 18}{res}{space 2}-2.260614{col 30}{space 2} .3354145{col 41}{space 1}   -6.74{col 50}{space 3}0.000{col 58}{space 4}-2.919007{col 71}{space 3}-1.602222
+{txt}{space 4}_Iprov_id_66 {c |}{col 18}{res}{space 2} .8517244{col 30}{space 2} .5854258{col 41}{space 1}    1.45{col 50}{space 3}0.146{col 58}{space 4}-.2974212{col 71}{space 3}  2.00087
+{txt}{space 4}_Iprov_id_67 {c |}{col 18}{res}{space 2} .3896801{col 30}{space 2} .4796705{col 41}{space 1}    0.81{col 50}{space 3}0.417{col 58}{space 4}-.5518759{col 71}{space 3} 1.331236
+{txt}{space 4}_Iprov_id_68 {c |}{col 18}{res}{space 2}-1.121817{col 30}{space 2} .4145562{col 41}{space 1}   -2.71{col 50}{space 3}0.007{col 58}{space 4}-1.935559{col 71}{space 3}-.3080758
+{txt}{space 4}_Iprov_id_69 {c |}{col 18}{res}{space 2} 1.960967{col 30}{space 2}  .409489{col 41}{space 1}    4.79{col 50}{space 3}0.000{col 58}{space 4} 1.157172{col 71}{space 3} 2.764762
+{txt}{space 4}_Iprov_id_70 {c |}{col 18}{res}{space 2}-1.091743{col 30}{space 2}  .442495{col 41}{space 1}   -2.47{col 50}{space 3}0.014{col 58}{space 4}-1.960326{col 71}{space 3}-.2231591
+{txt}{space 4}_Iprov_id_71 {c |}{col 18}{res}{space 2} 1.430123{col 30}{space 2} .5758661{col 41}{space 1}    2.48{col 50}{space 3}0.013{col 58}{space 4}  .299742{col 71}{space 3} 2.560503
+{txt}{space 4}_Iprov_id_72 {c |}{col 18}{res}{space 2} 2.409494{col 30}{space 2} .3767726{col 41}{space 1}    6.40{col 50}{space 3}0.000{col 58}{space 4} 1.669919{col 71}{space 3}  3.14907
+{txt}{space 4}_Iprov_id_73 {c |}{col 18}{res}{space 2} 3.288762{col 30}{space 2} .5958526{col 41}{space 1}    5.52{col 50}{space 3}0.000{col 58}{space 4} 2.119149{col 71}{space 3} 4.458374
+{txt}{space 12}male {c |}{col 18}{res}{space 2}-.0695107{col 30}{space 2} .1160146{col 41}{space 1}   -0.60{col 50}{space 3}0.549{col 58}{space 4}-.2972385{col 71}{space 3}  .158217
+{txt}{space 8}minority {c |}{col 18}{res}{space 2}-.2353529{col 30}{space 2} .1611286{col 41}{space 1}   -1.46{col 50}{space 3}0.145{col 58}{space 4}-.5516359{col 71}{space 3} .0809302
+{txt}{space 4}religion_any {c |}{col 18}{res}{space 2}-.0021441{col 30}{space 2}  .306508{col 41}{space 1}   -0.01{col 50}{space 3}0.994{col 58}{space 4}-.6037956{col 71}{space 3} .5995074
+{txt}{space 10}degree {c |}{col 18}{res}{space 2}-.1388609{col 30}{space 2} .0643309{col 41}{space 1}   -2.16{col 50}{space 3}0.031{col 58}{space 4}-.2651374{col 71}{space 3}-.0125843
+{txt}{space 13}age {c |}{col 18}{res}{space 2}-.0226139{col 30}{space 2} .0065661{col 41}{space 1}   -3.44{col 50}{space 3}0.001{col 58}{space 4}-.0355026{col 71}{space 3}-.0097253
+{txt}que_districtsame {c |}{col 18}{res}{space 2}-.2124041{col 30}{space 2} .1403892{col 41}{space 1}   -1.51{col 50}{space 3}0.131{col 58}{space 4}-.4879772{col 71}{space 3}  .063169
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2} 6.291381{col 30}{space 2} .3823787{col 41}{space 1}   16.45{col 50}{space 3}0.000{col 58}{space 4} 5.540801{col 71}{space 3} 7.041961
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. dprobit result power_total candidates_district, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-541.92564
+{txt}Iteration 2:   log pseudolikelihood = {res}-541.34886
+{txt}Iteration 3:   log pseudolikelihood = {res} -541.3487
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res} 113.63
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res} -541.3487                       {txt}Pseudo R2     ={res} 0.0973
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.1089516   .0107805   -10.13   0.000     4.624  -.130081 -.087822
+{txt}candi~ct*{c |}  {res} .2335521   .0378639     6.02   0.000      .696    .15934  .307764
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .5679211{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. probit result power_total candidates_district, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-599.69697}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-541.35888}  
+Iteration 2:{space 3}log pseudolikelihood = {res: -541.3487}  
+Iteration 3:{space 3}log pseudolikelihood = {res: -541.3487}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}    113.63
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res} -541.3487{txt}{col 49}Pseudo R2{col 67}= {res}    0.0973
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}             result{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}power_total {c |}{col 21}{res}{space 2}-.2771273{col 33}{space 2} .0273619{col 44}{space 1}  -10.13{col 53}{space 3}0.000{col 61}{space 4}-.3307557{col 74}{space 3} -.223499
+{txt}candidates_district {c |}{col 21}{res}{space 2} .5949308{col 33}{space 2} .0987636{col 44}{space 1}    6.02{col 53}{space 3}0.000{col 61}{space 4} .4013577{col 74}{space 3} .7885038
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} 1.038449{col 33}{space 2} .1330096{col 44}{space 1}    7.81{col 53}{space 3}0.000{col 61}{space 4} .7777549{col 74}{space 3} 1.299143
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. dprobit result power_total candidates_district, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-541.92564
+{txt}Iteration 2:   log pseudolikelihood = {res}-541.34886
+{txt}Iteration 3:   log pseudolikelihood = {res} -541.3487
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res} 113.63
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res} -541.3487                       {txt}Pseudo R2     ={res} 0.0973
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.1089516   .0107805   -10.13   0.000     4.624  -.130081 -.087822
+{txt}candi~ct*{c |}  {res} .2335521   .0378639     6.02   0.000      .696    .15934  .307764
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .5679211{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. reg percentage power_total candidates_district male minority religion age degree que_districtsame, robust
+
+{txt}Linear regression                               Number of obs     = {res}       492
+                                                {txt}F(8, 483)         =  {res}    22.41
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.2275
+                                                {txt}Root MSE          =    {res} 9.7372
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}         percentage{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      t{col 53}   P>|t|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}power_total {c |}{col 21}{res}{space 2}-1.393151{col 33}{space 2} .2999753{col 44}{space 1}   -4.64{col 53}{space 3}0.000{col 61}{space 4}-1.982569{col 74}{space 3}-.8037338
+{txt}candidates_district {c |}{col 21}{res}{space 2} 8.111458{col 33}{space 2} 1.079253{col 44}{space 1}    7.52{col 53}{space 3}0.000{col 61}{space 4} 5.990847{col 74}{space 3} 10.23207
+{txt}{space 15}male {c |}{col 21}{res}{space 2} 2.982699{col 33}{space 2} 1.147998{col 44}{space 1}    2.60{col 53}{space 3}0.010{col 61}{space 4} .7270115{col 74}{space 3} 5.238386
+{txt}{space 11}minority {c |}{col 21}{res}{space 2} 3.671924{col 33}{space 2} 1.260976{col 44}{space 1}    2.91{col 53}{space 3}0.004{col 61}{space 4} 1.194247{col 74}{space 3}   6.1496
+{txt}{space 7}religion_any {c |}{col 21}{res}{space 2}-8.728385{col 33}{space 2} 2.057679{col 44}{space 1}   -4.24{col 53}{space 3}0.000{col 61}{space 4}-12.77149{col 74}{space 3}-4.685277
+{txt}{space 16}age {c |}{col 21}{res}{space 2} .2353605{col 33}{space 2} .0596199{col 44}{space 1}    3.95{col 53}{space 3}0.000{col 61}{space 4} .1182141{col 74}{space 3}  .352507
+{txt}{space 13}degree {c |}{col 21}{res}{space 2} .3274402{col 33}{space 2} .5373834{col 44}{space 1}    0.61{col 53}{space 3}0.543{col 61}{space 4}-.7284579{col 74}{space 3} 1.383338
+{txt}{space 3}que_districtsame {c |}{col 21}{res}{space 2} 3.356924{col 33}{space 2}  .973852{col 44}{space 1}    3.45{col 53}{space 3}0.001{col 61}{space 4} 1.443415{col 74}{space 3} 5.270434
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} 57.07888{col 33}{space 2} 3.190584{col 44}{space 1}   17.89{col 53}{space 3}0.000{col 61}{space 4} 50.80974{col 74}{space 3} 63.34802
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. reg percentage power_total candidates_district, robust
+
+{txt}Linear regression                               Number of obs     = {res}       492
+                                                {txt}F(2, 489)         =  {res}    42.36
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.1419
+                                                {txt}Root MSE          =    {res} 10.199
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}         percentage{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      t{col 53}   P>|t|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}power_total {c |}{col 21}{res}{space 2}-1.592525{col 33}{space 2} .3064176{col 44}{space 1}   -5.20{col 53}{space 3}0.000{col 61}{space 4}-2.194583{col 74}{space 3}-.9904678
+{txt}candidates_district {c |}{col 21}{res}{space 2} 9.261439{col 33}{space 2} 1.072001{col 44}{space 1}    8.64{col 53}{space 3}0.000{col 61}{space 4} 7.155142{col 74}{space 3} 11.36774
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} 73.18839{col 33}{space 2} 1.367594{col 44}{space 1}   53.52{col 53}{space 3}0.000{col 61}{space 4} 70.50131{col 74}{space 3} 75.87548
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. dprobit result power_total candidates_district, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-541.92564
+{txt}Iteration 2:   log pseudolikelihood = {res}-541.34886
+{txt}Iteration 3:   log pseudolikelihood = {res} -541.3487
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res} 113.63
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res} -541.3487                       {txt}Pseudo R2     ={res} 0.0973
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.1089516   .0107805   -10.13   0.000     4.624  -.130081 -.087822
+{txt}candi~ct*{c |}  {res} .2335521   .0378639     6.02   0.000      .696    .15934  .307764
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .5679211{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. probit result power_total candidates_district, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-599.69697}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-541.35888}  
+Iteration 2:{space 3}log pseudolikelihood = {res: -541.3487}  
+Iteration 3:{space 3}log pseudolikelihood = {res: -541.3487}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}       875
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}    113.63
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res} -541.3487{txt}{col 49}Pseudo R2{col 67}= {res}    0.0973
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}             result{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      z{col 53}   P>|z|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}power_total {c |}{col 21}{res}{space 2}-.2771273{col 33}{space 2} .0273619{col 44}{space 1}  -10.13{col 53}{space 3}0.000{col 61}{space 4}-.3307557{col 74}{space 3} -.223499
+{txt}candidates_district {c |}{col 21}{res}{space 2} .5949308{col 33}{space 2} .0987636{col 44}{space 1}    6.02{col 53}{space 3}0.000{col 61}{space 4} .4013577{col 74}{space 3} .7885038
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} 1.038449{col 33}{space 2} .1330096{col 44}{space 1}    7.81{col 53}{space 3}0.000{col 61}{space 4} .7777549{col 74}{space 3} 1.299143
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. dprobit result power_total candidates_district, robust cluster(prov_id)
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-541.92564
+{txt}Iteration 2:   log pseudolikelihood = {res}-541.34886
+{txt}Iteration 3:   log pseudolikelihood = {res} -541.3487
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res} 204.30
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res} -541.3487                       {txt}Pseudo R2     ={res} 0.0973
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:64} clusters in prov_id)}
+{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.1089516    .009267   -11.86   0.000     4.624  -.127115 -.090789
+{txt}candi~ct*{c |}  {res} .2335521   .0223368    10.18   0.000      .696   .189773  .277331
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .5679211{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. dprobit result power_total candidates_district, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-541.92564
+{txt}Iteration 2:   log pseudolikelihood = {res}-541.34886
+{txt}Iteration 3:   log pseudolikelihood = {res} -541.3487
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}2{txt})  ={res} 113.63
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res} -541.3487                       {txt}Pseudo R2     ={res} 0.0973
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.1089516   .0107805   -10.13   0.000     4.624  -.130081 -.087822
+{txt}candi~ct*{c |}  {res} .2335521   .0378639     6.02   0.000      .696    .15934  .307764
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .5679211{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. dprobit result power_total candidates_district male minority religion age degree que_districtsame, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res} -489.6202
+{txt}Iteration 2:   log pseudolikelihood = {res}-485.58986
+{txt}Iteration 3:   log pseudolikelihood = {res}-485.56934
+{txt}Iteration 4:   log pseudolikelihood = {res}-485.56933
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}8{txt})  ={res} 189.87
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res}-485.56933                       {txt}Pseudo R2     ={res} 0.1903
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.0958772    .011311    -8.50   0.000     4.624  -.118046 -.073708
+{txt}candi~ct*{c |}  {res} .2495839    .039679     6.14   0.000      .696   .171815  .327353
+    {txt}male*{c |}  {res}  .047368   .0407569     1.16   0.244   .646857  -.032514   .12725
+{txt}minority*{c |}  {res} .0913426   .0471974     1.89   0.059      .192  -.001163  .183848
+{txt}religi~y*{c |}  {res}-.1898297   .1061558    -1.75   0.081   .033143  -.397891  .018232
+     {txt}age {c |}  {res} .0158931   .0024198     6.55   0.000    44.952    .01115  .020636
+  {txt}degree {c |}  {res} .1496375   .0272087     5.46   0.000   1.31886   .096309  .202966
+{txt}que_di~e*{c |}  {res} .0429194   .0388688     1.11   0.269   .594286  -.033262  .119101
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .5814629{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. dprobit result power_total candidates_district male minority religion age degree que_districtsame, robust cluster(prov_id)
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res} -489.6202
+{txt}Iteration 2:   log pseudolikelihood = {res}-485.58986
+{txt}Iteration 3:   log pseudolikelihood = {res}-485.56934
+{txt}Iteration 4:   log pseudolikelihood = {res}-485.56933
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}8{txt})  ={res} 328.07
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res}-485.56933                       {txt}Pseudo R2     ={res} 0.1903
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:64} clusters in prov_id)}
+{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.0958772   .0087758   -11.28   0.000     4.624  -.113077 -.078677
+{txt}candi~ct*{c |}  {res} .2495839   .0245797     9.91   0.000      .696   .201409  .297759
+    {txt}male*{c |}  {res}  .047368   .0361315     1.31   0.189   .646857  -.023448  .118184
+{txt}minority*{c |}  {res} .0913426    .047045     1.88   0.060      .192  -.000864  .183549
+{txt}religi~y*{c |}  {res}-.1898297   .1032455    -1.80   0.073   .033143  -.392187  .012528
+     {txt}age {c |}  {res} .0158931   .0028644     5.46   0.000    44.952   .010279  .021507
+  {txt}degree {c |}  {res} .1496375   .0338402     4.35   0.000   1.31886   .083312  .215963
+{txt}que_di~e*{c |}  {res} .0429194   .0339496     1.26   0.206   .594286  -.023621  .109459
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .5814629{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. reg percentage power_total candidates_district male minority religion age degree que_districtsame, robust
+
+{txt}Linear regression                               Number of obs     = {res}       492
+                                                {txt}F(8, 483)         =  {res}    22.41
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.2275
+                                                {txt}Root MSE          =    {res} 9.7372
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}         percentage{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      t{col 53}   P>|t|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}power_total {c |}{col 21}{res}{space 2}-1.393151{col 33}{space 2} .2999753{col 44}{space 1}   -4.64{col 53}{space 3}0.000{col 61}{space 4}-1.982569{col 74}{space 3}-.8037338
+{txt}candidates_district {c |}{col 21}{res}{space 2} 8.111458{col 33}{space 2} 1.079253{col 44}{space 1}    7.52{col 53}{space 3}0.000{col 61}{space 4} 5.990847{col 74}{space 3} 10.23207
+{txt}{space 15}male {c |}{col 21}{res}{space 2} 2.982699{col 33}{space 2} 1.147998{col 44}{space 1}    2.60{col 53}{space 3}0.010{col 61}{space 4} .7270115{col 74}{space 3} 5.238386
+{txt}{space 11}minority {c |}{col 21}{res}{space 2} 3.671924{col 33}{space 2} 1.260976{col 44}{space 1}    2.91{col 53}{space 3}0.004{col 61}{space 4} 1.194247{col 74}{space 3}   6.1496
+{txt}{space 7}religion_any {c |}{col 21}{res}{space 2}-8.728385{col 33}{space 2} 2.057679{col 44}{space 1}   -4.24{col 53}{space 3}0.000{col 61}{space 4}-12.77149{col 74}{space 3}-4.685277
+{txt}{space 16}age {c |}{col 21}{res}{space 2} .2353605{col 33}{space 2} .0596199{col 44}{space 1}    3.95{col 53}{space 3}0.000{col 61}{space 4} .1182141{col 74}{space 3}  .352507
+{txt}{space 13}degree {c |}{col 21}{res}{space 2} .3274402{col 33}{space 2} .5373834{col 44}{space 1}    0.61{col 53}{space 3}0.543{col 61}{space 4}-.7284579{col 74}{space 3} 1.383338
+{txt}{space 3}que_districtsame {c |}{col 21}{res}{space 2} 3.356924{col 33}{space 2}  .973852{col 44}{space 1}    3.45{col 53}{space 3}0.001{col 61}{space 4} 1.443415{col 74}{space 3} 5.270434
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} 57.07888{col 33}{space 2} 3.190584{col 44}{space 1}   17.89{col 53}{space 3}0.000{col 61}{space 4} 50.80974{col 74}{space 3} 63.34802
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. dprobit result power_total candidates_district male minority religion age degree que_districtsame party  incumbencyterms locallegislature  business, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-446.69322
+{txt}Iteration 2:   log pseudolikelihood = {res}-432.78832
+{txt}Iteration 3:   log pseudolikelihood = {res} -431.9193
+{txt}Iteration 4:   log pseudolikelihood = {res}-431.90933
+{txt}Iteration 5:   log pseudolikelihood = {res}-431.90932
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}12{txt}) ={res} 222.66
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res}-431.90932                       {txt}Pseudo R2     ={res} 0.2798
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.0834983   .0114948    -7.27   0.000     4.624  -.106028 -.060969
+{txt}candi~ct*{c |}  {res} .2565255   .0426368     5.93   0.000      .696   .172959  .340092
+    {txt}male*{c |}  {res} .0390218   .0430501     0.91   0.363   .646857  -.045355  .123399
+{txt}minority*{c |}  {res} .0344405   .0509243     0.67   0.503      .192  -.065369   .13425
+{txt}religi~y*{c |}  {res}-.1147224   .1244149    -0.93   0.350   .033143  -.358571  .129126
+     {txt}age {c |}  {res} .0092566   .0026786     3.44   0.001    44.952   .004007  .014507
+  {txt}degree {c |}  {res} .1400781   .0290697     4.81   0.000   1.31886   .083103  .197054
+{txt}que_di~e*{c |}  {res} .0268669   .0408427     0.66   0.510   .594286  -.053183  .106917
+   {txt}party*{c |}  {res} .0799375   .0640761     1.26   0.206   .834286  -.045649  .205524
+{txt}incumb~s {c |}  {res} .3919973   .0649143     5.78   0.000   .242286   .264768  .519227
+{txt}locall~e*{c |}  {res} .1864601   .0397104     4.37   0.000   .254857   .108629  .264291
+{txt}business*{c |}  {res}-.2537573   .0791295    -3.11   0.002   .078857  -.408848 -.098666
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res}   .61239{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. xi: dprobit result power_total candidates_district male minority religion age degree que_districtsame party  incumbencyterms locallegislature  business, robust
+
+{txt}Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-446.69322
+{txt}Iteration 2:   log pseudolikelihood = {res}-432.78832
+{txt}Iteration 3:   log pseudolikelihood = {res} -431.9193
+{txt}Iteration 4:   log pseudolikelihood = {res}-431.90933
+{txt}Iteration 5:   log pseudolikelihood = {res}-431.90932
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}12{txt}) ={res} 222.66
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res}-431.90932                       {txt}Pseudo R2     ={res} 0.2798
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.0834983   .0114948    -7.27   0.000     4.624  -.106028 -.060969
+{txt}candi~ct*{c |}  {res} .2565255   .0426368     5.93   0.000      .696   .172959  .340092
+    {txt}male*{c |}  {res} .0390218   .0430501     0.91   0.363   .646857  -.045355  .123399
+{txt}minority*{c |}  {res} .0344405   .0509243     0.67   0.503      .192  -.065369   .13425
+{txt}religi~y*{c |}  {res}-.1147224   .1244149    -0.93   0.350   .033143  -.358571  .129126
+     {txt}age {c |}  {res} .0092566   .0026786     3.44   0.001    44.952   .004007  .014507
+  {txt}degree {c |}  {res} .1400781   .0290697     4.81   0.000   1.31886   .083103  .197054
+{txt}que_di~e*{c |}  {res} .0268669   .0408427     0.66   0.510   .594286  -.053183  .106917
+   {txt}party*{c |}  {res} .0799375   .0640761     1.26   0.206   .834286  -.045649  .205524
+{txt}incumb~s {c |}  {res} .3919973   .0649143     5.78   0.000   .242286   .264768  .519227
+{txt}locall~e*{c |}  {res} .1864601   .0397104     4.37   0.000   .254857   .108629  .264291
+{txt}business*{c |}  {res}-.2537573   .0791295    -3.11   0.002   .078857  -.408848 -.098666
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res}   .61239{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. tab pci_id
+
+     {txt}pci_id {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}         37        4.22        4.22
+{txt}          2 {c |}{res}         18        2.05        6.28
+{txt}          3 {c |}{res}         10        1.14        7.42
+{txt}          4 {c |}{res}         51        5.82       13.24
+{txt}          5 {c |}{res}         13        1.48       14.73
+{txt}          6 {c |}{res}         29        3.31       18.04
+{txt}          7 {c |}{res}         25        2.85       20.89
+{txt}          8 {c |}{res}         13        1.48       22.37
+{txt}          9 {c |}{res}         10        1.14       23.52
+{txt}         10 {c |}{res}         10        1.14       24.66
+{txt}         11 {c |}{res}         13        1.48       26.14
+{txt}         12 {c |}{res}         14        1.60       27.74
+{txt}         13 {c |}{res}         13        1.48       29.22
+{txt}         14 {c |}{res}         14        1.60       30.82
+{txt}         15 {c |}{res}         10        1.14       31.96
+{txt}         16 {c |}{res}         13        1.48       33.45
+{txt}         17 {c |}{res}         14        1.60       35.05
+{txt}         18 {c |}{res}         18        2.05       37.10
+{txt}         19 {c |}{res}         15        1.71       38.81
+{txt}         20 {c |}{res}         10        1.14       39.95
+{txt}         21 {c |}{res}         14        1.60       41.55
+{txt}         22 {c |}{res}         14        1.60       43.15
+{txt}         23 {c |}{res}         10        1.14       44.29
+{txt}         24 {c |}{res}         13        1.48       45.78
+{txt}         25 {c |}{res}         10        1.14       46.92
+{txt}         26 {c |}{res}         13        1.48       48.40
+{txt}         27 {c |}{res}         11        1.26       49.66
+{txt}         28 {c |}{res}         11        1.26       50.91
+{txt}         29 {c |}{res}         10        1.14       52.05
+{txt}         30 {c |}{res}         14        1.60       53.65
+{txt}         31 {c |}{res}         13        1.48       55.14
+{txt}         32 {c |}{res}         10        1.14       56.28
+{txt}         33 {c |}{res}         10        1.14       57.42
+{txt}         34 {c |}{res}         10        1.14       58.56
+{txt}         35 {c |}{res}         10        1.14       59.70
+{txt}         37 {c |}{res}         13        1.48       61.19
+{txt}         39 {c |}{res}         18        2.05       63.24
+{txt}         40 {c |}{res}         10        1.14       64.38
+{txt}         42 {c |}{res}         20        2.28       66.67
+{txt}         43 {c |}{res}         15        1.71       68.38
+{txt}         45 {c |}{res}         13        1.48       69.86
+{txt}         47 {c |}{res}         15        1.71       71.58
+{txt}         48 {c |}{res}         10        1.14       72.72
+{txt}         51 {c |}{res}         15        1.71       74.43
+{txt}         53 {c |}{res}         13        1.48       75.91
+{txt}         54 {c |}{res}         10        1.14       77.05
+{txt}         55 {c |}{res}         14        1.60       78.65
+{txt}         56 {c |}{res}         10        1.14       79.79
+{txt}         57 {c |}{res}         15        1.71       81.51
+{txt}         58 {c |}{res}         10        1.14       82.65
+{txt}         59 {c |}{res}         10        1.14       83.79
+{txt}         60 {c |}{res}         13        1.48       85.27
+{txt}         62 {c |}{res}         10        1.14       86.42
+{txt}         63 {c |}{res}         10        1.14       87.56
+{txt}         64 {c |}{res}         10        1.14       88.70
+{txt}         65 {c |}{res}         13        1.48       90.18
+{txt}         66 {c |}{res}         10        1.14       91.32
+{txt}         67 {c |}{res}         10        1.14       92.47
+{txt}         68 {c |}{res}         13        1.48       93.95
+{txt}         69 {c |}{res}         10        1.14       95.09
+{txt}         70 {c |}{res}         13        1.48       96.58
+{txt}         71 {c |}{res}         10        1.14       97.72
+{txt}         72 {c |}{res}         10        1.14       98.86
+{txt}         73 {c |}{res}         10        1.14      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        876      100.00
+
+{com}. dprobit result power_total candidates_district male minority religion age degree que_districtsame party  incumbencyterms locallegislature business i.pci_id, robust
+{err}factor variables and time-series operators not allowed
+{txt}{search r(101):r(101);}
+
+{com}. xi:dprobit result power_total candidates_district male minority religion age degree que_districtsame party  incumbencyterms locallegislature business i.pci_id, robust
+{txt}i.pci_id{col 19}_Ipci_id_1-73{col 39}(naturally coded; _Ipci_id_1 omitted)
+
+Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-441.01856
+{txt}Iteration 2:   log pseudolikelihood = {res}-424.22846
+{txt}Iteration 3:   log pseudolikelihood = {res}-422.84018
+{txt}Iteration 4:   log pseudolikelihood = {res}-422.81565
+{txt}Iteration 5:   log pseudolikelihood = {res}-422.81564
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}75{txt}) ={res} 274.67
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res}-422.81564                       {txt}Pseudo R2     ={res} 0.2950
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.1000414   .0134068    -7.41   0.000     4.624  -.126318 -.073765
+{txt}candi~ct*{c |}  {res} .2306876   .0567231     4.05   0.000      .696   .119512  .341863
+    {txt}male*{c |}  {res}  .035097    .044709     0.79   0.431   .646857  -.052531  .122725
+{txt}minority*{c |}  {res} .0203039   .0662031     0.30   0.760      .192  -.109452   .15006
+{txt}religi~y*{c |}  {res}-.1081356   .1338926    -0.82   0.412   .033143   -.37056  .154289
+     {txt}age {c |}  {res} .0100728   .0028157     3.56   0.000    44.952   .004554  .015592
+  {txt}degree {c |}  {res} .1550922   .0309038     5.02   0.000   1.31886   .094522  .215663
+{txt}que_di~e*{c |}  {res} .0145291   .0488163     0.30   0.766   .594286  -.081149  .110207
+   {txt}party*{c |}  {res} .0911058   .0674779     1.37   0.170   .834286  -.041148   .22336
+{txt}incumb~s {c |}  {res} .3960342   .0666751     5.68   0.000   .242286   .265353  .526715
+{txt}locall~e*{c |}  {res} .1760552   .0419697     3.92   0.000   .254857   .093796  .258314
+{txt}business*{c |}  {res} -.265976   .0816973    -3.15   0.002   .078857    -.4261 -.105852
+{txt}_Ipci~_2*{c |}  {res}-.0704755   .1993172    -0.36   0.719   .020571   -.46113  .320179
+{txt}_Ipci~_3*{c |}  {res} .2083922   .1583347     1.04   0.297   .011429  -.101938  .518723
+{txt}_Ipci~_4*{c |}  {res} -.066955   .1378484    -0.49   0.622   .058286  -.337133  .203223
+{txt}_Ipci~_5*{c |}  {res} .0547118   .1760421     0.30   0.763   .014857  -.290324  .399748
+{txt}_Ipci~_6*{c |}  {res} .0279323   .1400279     0.20   0.844   .033143  -.246517  .302382
+{txt}_Ipci~_7*{c |}  {res} .0313081   .1521474     0.20   0.839   .028571  -.266895  .329512
+{txt}_Ipci~_8*{c |}  {res} .1081649   .1480382     0.68   0.497   .014857  -.181985  .398314
+{txt}_Ipci~_9*{c |}  {res} .0272138   .1788919     0.15   0.881   .011429  -.323408  .377835
+{txt}_Ipci~10*{c |}  {res} .0124473   .2064049     0.06   0.952   .011429  -.392099  .416993
+{txt}_Ipci~11*{c |}  {res}-.1142803   .1765865    -0.66   0.511   .014857  -.460383  .231823
+{txt}_Ipci~12*{c |}  {res} .0238465   .1694568     0.14   0.889      .016  -.308283  .355976
+{txt}_Ipci~13*{c |}  {res} .0408075   .1559761     0.26   0.798   .014857    -.2649  .346515
+{txt}_Ipci~14*{c |}  {res}-.0557855   .1753273    -0.32   0.747      .016  -.399421   .28785
+{txt}_Ipci~15*{c |}  {res}-.0726734   .2167383    -0.34   0.733   .011429  -.497473  .352126
+{txt}_Ipci~16*{c |}  {res}-.1161037   .1895292    -0.62   0.534   .014857  -.487574  .255367
+{txt}_Ipci~17*{c |}  {res} .0659543   .1581202     0.40   0.687      .016  -.243956  .375864
+{txt}_Ipci~18*{c |}  {res}-.0395433   .1590109    -0.25   0.801   .020571  -.351199  .272112
+{txt}_Ipci~19*{c |}  {res}-.0079582   .1812794    -0.04   0.965      .016  -.363259  .347343
+{txt}_Ipci~20*{c |}  {res} .0294386   .1713336     0.17   0.865   .011429  -.306369  .365246
+{txt}_Ipci~21*{c |}  {res}-.0300648   .1895196    -0.16   0.873      .016  -.401516  .341387
+{txt}_Ipci~22*{c |}  {res} -.080693   .1636318    -0.50   0.616      .016  -.401405  .240019
+{txt}_Ipci~23*{c |}  {res} .1369434   .1751059     0.70   0.483   .011429  -.206258  .480145
+{txt}_Ipci~24*{c |}  {res} .0407442   .1642681     0.24   0.808   .014857  -.281215  .362704
+{txt}_Ipci~25*{c |}  {res}-.0310033   .2110981    -0.15   0.882   .011429  -.444748  .382741
+{txt}_Ipci~26*{c |}  {res} .0337888   .1732111     0.19   0.848   .014857  -.305699  .373276
+{txt}_Ipci~27*{c |}  {res} .0194371   .1780315     0.11   0.914   .012571  -.329498  .368372
+{txt}_Ipci~28*{c |}  {res}-.1355004   .2383366    -0.58   0.565   .012571  -.602632  .331631
+{txt}_Ipci~29*{c |}  {res}-.0526872   .2007175    -0.27   0.790   .011429  -.446086  .340712
+{txt}_Ipci~30*{c |}  {res}-.0534326   .2195972    -0.25   0.805      .016  -.483835   .37697
+{txt}_Ipci~31*{c |}  {res} .0772614   .1890614     0.39   0.696   .014857  -.293292  .447815
+{txt}_Ipci~32*{c |}  {res}  .129878   .1479316     0.80   0.426   .011429  -.160063  .419819
+{txt}_Ipci~33*{c |}  {res}-.1535912   .2044011    -0.76   0.448   .011429   -.55421  .247028
+{txt}_Ipci~34*{c |}  {res} .1737573   .1719118     0.86   0.391   .011429  -.163184  .510698
+{txt}_Ipci~35*{c |}  {res} .0265212    .203851     0.13   0.898   .011429  -.373019  .426062
+{txt}_Ipci~37*{c |}  {res}-.0368264   .1672904    -0.22   0.824   .014857  -.364709  .291057
+{txt}_Ipci~39*{c |}  {res}-.1443882    .166796    -0.88   0.381   .020571  -.471302  .182526
+{txt}_Ipci~40*{c |}  {res} .0008632   .2125947     0.00   0.997   .011429  -.415815  .417541
+{txt}_Ipci~42*{c |}  {res} .1399489   .1398798     0.90   0.369   .022857  -.134211  .414108
+{txt}_Ipci~43*{c |}  {res} .1228157    .171359     0.66   0.512   .017143  -.213042  .458673
+{txt}_Ipci~45*{c |}  {res}  .067523   .1761397     0.37   0.712   .014857  -.277704   .41275
+{txt}_Ipci~47*{c |}  {res} .1490476   .1388463     0.95   0.342   .017143  -.123086  .421181
+{txt}_Ipci~48*{c |}  {res} .1923211   .1516918     1.04   0.298   .011429  -.104989  .489632
+{txt}_Ipci~51*{c |}  {res} .0424643   .1675731     0.25   0.804   .017143  -.285973  .370902
+{txt}_Ipci~53*{c |}  {res} .1015007   .1720104     0.55   0.581   .014857  -.235634  .438635
+{txt}_Ipci~54*{c |}  {res}-.0521576   .2110525    -0.25   0.802   .011429  -.465813  .361498
+{txt}_Ipci~55*{c |}  {res} .0090407   .1794863     0.05   0.960      .016  -.342746  .360827
+{txt}_Ipci~56*{c |}  {res}-.0671227   .1953323    -0.35   0.727   .011429  -.449967  .315722
+{txt}_Ipci~57*{c |}  {res} .0496359   .1606216     0.30   0.763   .017143  -.265177  .364448
+{txt}_Ipci~58*{c |}  {res} .0130018   .2115981     0.06   0.951   .011429  -.401723  .427726
+{txt}_Ipci~59*{c |}  {res} .1894497   .1635776     0.96   0.339   .011429  -.131157  .510056
+{txt}_Ipci~60*{c |}  {res} .0893214   .1622146     0.52   0.602   .014857  -.228613  .407256
+{txt}_Ipci~62*{c |}  {res}-.0479053   .2022718    -0.24   0.810   .011429  -.444351   .34854
+{txt}_Ipci~63*{c |}  {res} .1026288   .1754858     0.55   0.585   .011429  -.241317  .446575
+{txt}_Ipci~64*{c |}  {res} .0148213    .191709     0.08   0.939   .011429  -.360921  .390564
+{txt}_Ipci~65*{c |}  {res}-.0565253   .1916922    -0.30   0.765   .014857  -.432235  .319184
+{txt}_Ipci~66*{c |}  {res} .0179014   .1932671     0.09   0.927   .011429  -.360895  .396698
+{txt}_Ipci~67*{c |}  {res} .0541925   .2028961     0.26   0.795   .011429  -.343476  .451861
+{txt}_Ipci~68*{c |}  {res} .0230206   .1732393     0.13   0.895   .014857  -.316522  .362563
+{txt}_Ipci~69*{c |}  {res} .2067318   .1605479     1.02   0.306   .011429  -.107936    .5214
+{txt}_Ipci~70*{c |}  {res} .0764598   .1667591     0.44   0.661   .014857  -.250382  .403302
+{txt}_Ipci~71*{c |}  {res} .1085625   .1857537     0.54   0.588   .011429  -.255508  .472633
+{txt}_Ipci~72*{c |}  {res} .1352141   .1668468     0.73   0.466   .011429    -.1918  .462228
+{txt}_Ipci~73*{c |}  {res} .2198963   .1248393     1.36   0.173   .011429  -.024784  .464577
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .6200298{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. xi:dprobit result power_total candidates_district male minority religion age degree que_districtsame party  incumbencyterms locallegislature business i.prov_id, robust
+{txt}i.prov_id{col 19}_Iprov_id_1-73{col 39}(naturally coded; _Iprov_id_1 omitted)
+
+Iteration 0:   log pseudolikelihood = {res}-599.69697
+{txt}Iteration 1:   log pseudolikelihood = {res}-441.01856
+{txt}Iteration 2:   log pseudolikelihood = {res}-424.22846
+{txt}Iteration 3:   log pseudolikelihood = {res}-422.84018
+{txt}Iteration 4:   log pseudolikelihood = {res}-422.81565
+{txt}Iteration 5:   log pseudolikelihood = {res}-422.81564
+
+{txt}Probit regression, reporting marginal effects           Number of obs ={res}    875
+                                                        {txt}Wald chi2({res}75{txt}) ={res} 274.67
+                                                        {txt}Prob > chi2   ={res} 0.0000
+{txt}Log pseudolikelihood = {res}-422.81564                       {txt}Pseudo R2     ={res} 0.2950
+
+{txt}{hline 9}{c TT}{hline 68}
+{col 10}{c |}{col 26}Robust
+  result {c |}{col 17}dF/dx{col 25}Std. Err.{col 40}z{col 45}P>|z|{col 55}x-bar{col 62}[    95% C.I.   ]
+{hline 9}{c +}{hline 68}
+power_~l {c |}  {res}-.1000414   .0134068    -7.41   0.000     4.624  -.126318 -.073765
+{txt}candi~ct*{c |}  {res} .2306876   .0567231     4.05   0.000      .696   .119512  .341863
+    {txt}male*{c |}  {res}  .035097    .044709     0.79   0.431   .646857  -.052531  .122725
+{txt}minority*{c |}  {res} .0203039   .0662031     0.30   0.760      .192  -.109452   .15006
+{txt}religi~y*{c |}  {res}-.1081356   .1338926    -0.82   0.412   .033143   -.37056  .154289
+     {txt}age {c |}  {res} .0100728   .0028157     3.56   0.000    44.952   .004554  .015592
+  {txt}degree {c |}  {res} .1550922   .0309038     5.02   0.000   1.31886   .094522  .215663
+{txt}que_di~e*{c |}  {res} .0145291   .0488163     0.30   0.766   .594286  -.081149  .110207
+   {txt}party*{c |}  {res} .0911058   .0674779     1.37   0.170   .834286  -.041148   .22336
+{txt}incumb~s {c |}  {res} .3960342   .0666751     5.68   0.000   .242286   .265353  .526715
+{txt}locall~e*{c |}  {res} .1760552   .0419697     3.92   0.000   .254857   .093796  .258314
+{txt}business*{c |}  {res} -.265976   .0816973    -3.15   0.002   .078857    -.4261 -.105852
+{txt}_Ipro~_2*{c |}  {res}-.0704755   .1993172    -0.36   0.719   .020571   -.46113  .320179
+{txt}_Ipro~_3*{c |}  {res} .2083922   .1583347     1.04   0.297   .011429  -.101938  .518723
+{txt}_Ipro~_4*{c |}  {res} -.066955   .1378484    -0.49   0.622   .058286  -.337133  .203223
+{txt}_Ipro~_5*{c |}  {res} .0547118   .1760421     0.30   0.763   .014857  -.290324  .399748
+{txt}_Ipro~_6*{c |}  {res} .0279323   .1400279     0.20   0.844   .033143  -.246517  .302382
+{txt}_Ipro~_7*{c |}  {res} .0313081   .1521474     0.20   0.839   .028571  -.266895  .329512
+{txt}_Ipro~_8*{c |}  {res} .1081649   .1480382     0.68   0.497   .014857  -.181985  .398314
+{txt}_Ipro~_9*{c |}  {res} .0272138   .1788919     0.15   0.881   .011429  -.323408  .377835
+{txt}_Ipro~10*{c |}  {res} .0124473   .2064049     0.06   0.952   .011429  -.392099  .416993
+{txt}_Ipro~11*{c |}  {res}-.1142803   .1765865    -0.66   0.511   .014857  -.460383  .231823
+{txt}_Ipro~12*{c |}  {res} .0238465   .1694568     0.14   0.889      .016  -.308283  .355976
+{txt}_Ipro~13*{c |}  {res} .0408075   .1559761     0.26   0.798   .014857    -.2649  .346515
+{txt}_Ipro~14*{c |}  {res}-.0557855   .1753273    -0.32   0.747      .016  -.399421   .28785
+{txt}_Ipro~15*{c |}  {res}-.0726734   .2167383    -0.34   0.733   .011429  -.497473  .352126
+{txt}_Ipro~16*{c |}  {res}-.1161037   .1895292    -0.62   0.534   .014857  -.487574  .255367
+{txt}_Ipro~17*{c |}  {res} .0659543   .1581202     0.40   0.687      .016  -.243956  .375864
+{txt}_Ipro~18*{c |}  {res}-.0395433   .1590109    -0.25   0.801   .020571  -.351199  .272112
+{txt}_Ipro~19*{c |}  {res}-.0079582   .1812794    -0.04   0.965      .016  -.363259  .347343
+{txt}_Ipro~20*{c |}  {res} .0294386   .1713336     0.17   0.865   .011429  -.306369  .365246
+{txt}_Ipro~21*{c |}  {res}-.0300648   .1895196    -0.16   0.873      .016  -.401516  .341387
+{txt}_Ipro~22*{c |}  {res} -.080693   .1636318    -0.50   0.616      .016  -.401405  .240019
+{txt}_Ipro~23*{c |}  {res} .1369434   .1751059     0.70   0.483   .011429  -.206258  .480145
+{txt}_Ipro~24*{c |}  {res} .0407442   .1642681     0.24   0.808   .014857  -.281215  .362704
+{txt}_Ipro~25*{c |}  {res}-.0310033   .2110981    -0.15   0.882   .011429  -.444748  .382741
+{txt}_Ipro~26*{c |}  {res} .0337888   .1732111     0.19   0.848   .014857  -.305699  .373276
+{txt}_Ipro~27*{c |}  {res} .0194371   .1780315     0.11   0.914   .012571  -.329498  .368372
+{txt}_Ipro~28*{c |}  {res}-.1355004   .2383366    -0.58   0.565   .012571  -.602632  .331631
+{txt}_Ipro~29*{c |}  {res}-.0526872   .2007175    -0.27   0.790   .011429  -.446086  .340712
+{txt}_Ipro~30*{c |}  {res}-.0534326   .2195972    -0.25   0.805      .016  -.483835   .37697
+{txt}_Ipro~31*{c |}  {res} .0772614   .1890614     0.39   0.696   .014857  -.293292  .447815
+{txt}_Ipro~32*{c |}  {res}  .129878   .1479316     0.80   0.426   .011429  -.160063  .419819
+{txt}_Ipro~33*{c |}  {res}-.1535912   .2044011    -0.76   0.448   .011429   -.55421  .247028
+{txt}_Ipro~34*{c |}  {res} .1737573   .1719118     0.86   0.391   .011429  -.163184  .510698
+{txt}_Ipro~35*{c |}  {res} .0265212    .203851     0.13   0.898   .011429  -.373019  .426062
+{txt}_Ipro~37*{c |}  {res}-.0368264   .1672904    -0.22   0.824   .014857  -.364709  .291057
+{txt}_Ipro~39*{c |}  {res}-.1443882    .166796    -0.88   0.381   .020571  -.471302  .182526
+{txt}_Ipro~40*{c |}  {res} .0008632   .2125947     0.00   0.997   .011429  -.415815  .417541
+{txt}_Ipro~42*{c |}  {res} .1399489   .1398798     0.90   0.369   .022857  -.134211  .414108
+{txt}_Ipro~43*{c |}  {res} .1228157    .171359     0.66   0.512   .017143  -.213042  .458673
+{txt}_Ipro~45*{c |}  {res}  .067523   .1761397     0.37   0.712   .014857  -.277704   .41275
+{txt}_Ipro~47*{c |}  {res} .1490476   .1388463     0.95   0.342   .017143  -.123086  .421181
+{txt}_Ipro~48*{c |}  {res} .1923211   .1516918     1.04   0.298   .011429  -.104989  .489632
+{txt}_Ipro~51*{c |}  {res} .0424643   .1675731     0.25   0.804   .017143  -.285973  .370902
+{txt}_Ipro~53*{c |}  {res} .1015007   .1720104     0.55   0.581   .014857  -.235634  .438635
+{txt}_Ipro~54*{c |}  {res}-.0521576   .2110525    -0.25   0.802   .011429  -.465813  .361498
+{txt}_Ipro~55*{c |}  {res} .0090407   .1794863     0.05   0.960      .016  -.342746  .360827
+{txt}_Ipro~56*{c |}  {res}-.0671227   .1953323    -0.35   0.727   .011429  -.449967  .315722
+{txt}_Ipro~57*{c |}  {res} .0496359   .1606216     0.30   0.763   .017143  -.265177  .364448
+{txt}_Ipro~58*{c |}  {res} .0130018   .2115981     0.06   0.951   .011429  -.401723  .427726
+{txt}_Ipro~59*{c |}  {res} .1894497   .1635776     0.96   0.339   .011429  -.131157  .510056
+{txt}_Ipro~60*{c |}  {res} .0893214   .1622146     0.52   0.602   .014857  -.228613  .407256
+{txt}_Ipro~62*{c |}  {res}-.0479053   .2022718    -0.24   0.810   .011429  -.444351   .34854
+{txt}_Ipro~63*{c |}  {res} .1026288   .1754858     0.55   0.585   .011429  -.241317  .446575
+{txt}_Ipro~64*{c |}  {res} .0148213    .191709     0.08   0.939   .011429  -.360921  .390564
+{txt}_Ipro~65*{c |}  {res}-.0565253   .1916922    -0.30   0.765   .014857  -.432235  .319184
+{txt}_Ipro~66*{c |}  {res} .0179014   .1932671     0.09   0.927   .011429  -.360895  .396698
+{txt}_Ipro~67*{c |}  {res} .0541925   .2028961     0.26   0.795   .011429  -.343476  .451861
+{txt}_Ipro~68*{c |}  {res} .0230206   .1732393     0.13   0.895   .014857  -.316522  .362563
+{txt}_Ipro~69*{c |}  {res} .2067318   .1605479     1.02   0.306   .011429  -.107936    .5214
+{txt}_Ipro~70*{c |}  {res} .0764598   .1667591     0.44   0.661   .014857  -.250382  .403302
+{txt}_Ipro~71*{c |}  {res} .1085625   .1857537     0.54   0.588   .011429  -.255508  .472633
+{txt}_Ipro~72*{c |}  {res} .1352141   .1668468     0.73   0.466   .011429    -.1918  .462228
+{txt}_Ipro~73*{c |}  {res} .2198963   .1248393     1.36   0.173   .011429  -.024784  .464577
+{txt}{hline 9}{c +}{hline 68}
+  obs. P {c |}  {res} .5622857
+{txt} pred. P {c |}  {res} .6200298{txt}  (at x-bar)
+{hline 9}{c BT}{hline 68}
+(*) dF/dx is for discrete change of dummy variable from 0 to 1
+{p 4 0 0}z and P>|z| correspond to the test of the underlying coefficient being 0
+
+{com}. corr pci_id prov_id
+{txt}(obs=876)
+
+             {c |}   pci_id  prov_id
+{hline 13}{c +}{hline 18}
+      pci_id {c |}{res}   1.0000
+     {txt}prov_id {c |}{res}   1.0000   1.0000
+
+
+{com}. xi: reg percentage power_total candidates_district male minority religion age degree que_districtsame party  incumbencyterms locallegislature  business i.prov_id, robust
+{txt}i.prov_id{col 19}_Iprov_id_1-73{col 39}(naturally coded; _Iprov_id_1 omitted)
+
+Linear regression                               Number of obs     = {res}       492
+                                                {txt}F(75, 416)        =  {res}    18.82
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.6170
+                                                {txt}Root MSE          =    {res} 7.3878
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}         percentage{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      t{col 53}   P>|t|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}power_total {c |}{col 21}{res}{space 2}-1.525589{col 33}{space 2} .2634316{col 44}{space 1}   -5.79{col 53}{space 3}0.000{col 61}{space 4}-2.043412{col 74}{space 3}-1.007766
+{txt}candidates_district {c |}{col 21}{res}{space 2} 5.216625{col 33}{space 2} 1.156017{col 44}{space 1}    4.51{col 53}{space 3}0.000{col 61}{space 4} 2.944263{col 74}{space 3} 7.488988
+{txt}{space 15}male {c |}{col 21}{res}{space 2} 1.628824{col 33}{space 2} .9205601{col 44}{space 1}    1.77{col 53}{space 3}0.078{col 61}{space 4}-.1807049{col 74}{space 3} 3.438354
+{txt}{space 11}minority {c |}{col 21}{res}{space 2}-2.475085{col 33}{space 2} 1.310909{col 44}{space 1}   -1.89{col 53}{space 3}0.060{col 61}{space 4}-5.051917{col 74}{space 3} .1017468
+{txt}{space 7}religion_any {c |}{col 21}{res}{space 2}-2.465361{col 33}{space 2} 1.970728{col 44}{space 1}   -1.25{col 53}{space 3}0.212{col 61}{space 4}-6.339188{col 74}{space 3} 1.408466
+{txt}{space 16}age {c |}{col 21}{res}{space 2}  .168612{col 33}{space 2} .0505737{col 44}{space 1}    3.33{col 53}{space 3}0.001{col 61}{space 4} .0692002{col 74}{space 3} .2680238
+{txt}{space 13}degree {c |}{col 21}{res}{space 2} .2357346{col 33}{space 2} .4194609{col 44}{space 1}    0.56{col 53}{space 3}0.574{col 61}{space 4}-.5887926{col 74}{space 3} 1.060262
+{txt}{space 3}que_districtsame {c |}{col 21}{res}{space 2} 1.144495{col 33}{space 2} .9771314{col 44}{space 1}    1.17{col 53}{space 3}0.242{col 61}{space 4}-.7762354{col 74}{space 3} 3.065226
+{txt}{space 14}party {c |}{col 21}{res}{space 2} 2.891241{col 33}{space 2} 1.423169{col 44}{space 1}    2.03{col 53}{space 3}0.043{col 61}{space 4}  .093741{col 74}{space 3}  5.68874
+{txt}{space 4}incumbencyterms {c |}{col 21}{res}{space 2}  1.75154{col 33}{space 2} .5215446{col 44}{space 1}    3.36{col 53}{space 3}0.001{col 61}{space 4} .7263486{col 74}{space 3} 2.776731
+{txt}{space 3}locallegislature {c |}{col 21}{res}{space 2} 2.917294{col 33}{space 2} .7424783{col 44}{space 1}    3.93{col 53}{space 3}0.000{col 61}{space 4} 1.457817{col 74}{space 3}  4.37677
+{txt}{space 11}business {c |}{col 21}{res}{space 2}-8.158254{col 33}{space 2} 2.586037{col 44}{space 1}   -3.15{col 53}{space 3}0.002{col 61}{space 4}-13.24158{col 74}{space 3}-3.074924
+{txt}{space 8}_Iprov_id_2 {c |}{col 21}{res}{space 2} 6.598689{col 33}{space 2} 3.110001{col 44}{space 1}    2.12{col 53}{space 3}0.034{col 61}{space 4} .4854141{col 74}{space 3} 12.71196
+{txt}{space 8}_Iprov_id_3 {c |}{col 21}{res}{space 2} 4.107419{col 33}{space 2} 3.964754{col 44}{space 1}    1.04{col 53}{space 3}0.301{col 61}{space 4}-3.686029{col 74}{space 3} 11.90087
+{txt}{space 8}_Iprov_id_4 {c |}{col 21}{res}{space 2}-7.246942{col 33}{space 2} 2.472237{col 44}{space 1}   -2.93{col 53}{space 3}0.004{col 61}{space 4}-12.10658{col 74}{space 3}-2.387307
+{txt}{space 8}_Iprov_id_5 {c |}{col 21}{res}{space 2}-4.219288{col 33}{space 2} 3.281688{col 44}{space 1}   -1.29{col 53}{space 3}0.199{col 61}{space 4}-10.67005{col 74}{space 3} 2.231469
+{txt}{space 8}_Iprov_id_6 {c |}{col 21}{res}{space 2} 8.567785{col 33}{space 2} 2.787502{col 44}{space 1}    3.07{col 53}{space 3}0.002{col 61}{space 4} 3.088439{col 74}{space 3} 14.04713
+{txt}{space 8}_Iprov_id_7 {c |}{col 21}{res}{space 2} 11.11233{col 33}{space 2} 2.543626{col 44}{space 1}    4.37{col 53}{space 3}0.000{col 61}{space 4} 6.112369{col 74}{space 3} 16.11229
+{txt}{space 8}_Iprov_id_8 {c |}{col 21}{res}{space 2} 20.86916{col 33}{space 2}  2.57215{col 44}{space 1}    8.11{col 53}{space 3}0.000{col 61}{space 4} 15.81312{col 74}{space 3} 25.92519
+{txt}{space 8}_Iprov_id_9 {c |}{col 21}{res}{space 2} 12.90625{col 33}{space 2} 3.058514{col 44}{space 1}    4.22{col 53}{space 3}0.000{col 61}{space 4} 6.894182{col 74}{space 3} 18.91832
+{txt}{space 7}_Iprov_id_10 {c |}{col 21}{res}{space 2} 3.947634{col 33}{space 2} 4.155289{col 44}{space 1}    0.95{col 53}{space 3}0.343{col 61}{space 4}-4.220347{col 74}{space 3} 12.11561
+{txt}{space 7}_Iprov_id_11 {c |}{col 21}{res}{space 2} 5.705643{col 33}{space 2} 3.085813{col 44}{space 1}    1.85{col 53}{space 3}0.065{col 61}{space 4}-.3600872{col 74}{space 3} 11.77137
+{txt}{space 7}_Iprov_id_12 {c |}{col 21}{res}{space 2} 5.668317{col 33}{space 2} 3.524393{col 44}{space 1}    1.61{col 53}{space 3}0.109{col 61}{space 4}-1.259523{col 74}{space 3} 12.59616
+{txt}{space 7}_Iprov_id_13 {c |}{col 21}{res}{space 2} 5.628656{col 33}{space 2} 3.413313{col 44}{space 1}    1.65{col 53}{space 3}0.100{col 61}{space 4}-1.080835{col 74}{space 3} 12.33815
+{txt}{space 7}_Iprov_id_14 {c |}{col 21}{res}{space 2} 2.581359{col 33}{space 2} 5.140175{col 44}{space 1}    0.50{col 53}{space 3}0.616{col 61}{space 4}-7.522596{col 74}{space 3} 12.68531
+{txt}{space 7}_Iprov_id_15 {c |}{col 21}{res}{space 2}-3.299013{col 33}{space 2} 3.337005{col 44}{space 1}   -0.99{col 53}{space 3}0.323{col 61}{space 4}-9.858506{col 74}{space 3} 3.260481
+{txt}{space 7}_Iprov_id_16 {c |}{col 21}{res}{space 2}-4.596698{col 33}{space 2} 2.617998{col 44}{space 1}   -1.76{col 53}{space 3}0.080{col 61}{space 4}-9.742851{col 74}{space 3} .5494552
+{txt}{space 7}_Iprov_id_17 {c |}{col 21}{res}{space 2}-5.035259{col 33}{space 2} 2.501647{col 44}{space 1}   -2.01{col 53}{space 3}0.045{col 61}{space 4}-9.952703{col 74}{space 3}-.1178141
+{txt}{space 7}_Iprov_id_18 {c |}{col 21}{res}{space 2}-5.086784{col 33}{space 2} 2.827978{col 44}{space 1}   -1.80{col 53}{space 3}0.073{col 61}{space 4}-10.64569{col 74}{space 3} .4721242
+{txt}{space 7}_Iprov_id_19 {c |}{col 21}{res}{space 2}-2.732695{col 33}{space 2} 2.963578{col 44}{space 1}   -0.92{col 53}{space 3}0.357{col 61}{space 4}-8.558149{col 74}{space 3}  3.09276
+{txt}{space 7}_Iprov_id_20 {c |}{col 21}{res}{space 2}-4.641779{col 33}{space 2} 3.495814{col 44}{space 1}   -1.33{col 53}{space 3}0.185{col 61}{space 4}-11.51344{col 74}{space 3} 2.229882
+{txt}{space 7}_Iprov_id_21 {c |}{col 21}{res}{space 2}-4.619604{col 33}{space 2} 3.516676{col 44}{space 1}   -1.31{col 53}{space 3}0.190{col 61}{space 4}-11.53227{col 74}{space 3} 2.293065
+{txt}{space 7}_Iprov_id_22 {c |}{col 21}{res}{space 2} 5.968028{col 33}{space 2}  3.15115{col 44}{space 1}    1.89{col 53}{space 3}0.059{col 61}{space 4}-.2261339{col 74}{space 3} 12.16219
+{txt}{space 7}_Iprov_id_23 {c |}{col 21}{res}{space 2} 1.497191{col 33}{space 2} 3.491239{col 44}{space 1}    0.43{col 53}{space 3}0.668{col 61}{space 4}-5.365478{col 74}{space 3}  8.35986
+{txt}{space 7}_Iprov_id_24 {c |}{col 21}{res}{space 2} 2.647144{col 33}{space 2} 2.850695{col 44}{space 1}    0.93{col 53}{space 3}0.354{col 61}{space 4}-2.956419{col 74}{space 3} 8.250707
+{txt}{space 7}_Iprov_id_25 {c |}{col 21}{res}{space 2} 3.935067{col 33}{space 2} 2.975452{col 44}{space 1}    1.32{col 53}{space 3}0.187{col 61}{space 4}-1.913728{col 74}{space 3} 9.783862
+{txt}{space 7}_Iprov_id_26 {c |}{col 21}{res}{space 2} .2876513{col 33}{space 2} 4.307381{col 44}{space 1}    0.07{col 53}{space 3}0.947{col 61}{space 4}-8.179294{col 74}{space 3} 8.754597
+{txt}{space 7}_Iprov_id_27 {c |}{col 21}{res}{space 2} .2555212{col 33}{space 2} 4.241007{col 44}{space 1}    0.06{col 53}{space 3}0.952{col 61}{space 4}-8.080953{col 74}{space 3} 8.591995
+{txt}{space 7}_Iprov_id_28 {c |}{col 21}{res}{space 2}-7.024066{col 33}{space 2} 3.673442{col 44}{space 1}   -1.91{col 53}{space 3}0.057{col 61}{space 4}-14.24489{col 74}{space 3} .1967566
+{txt}{space 7}_Iprov_id_29 {c |}{col 21}{res}{space 2}-2.338402{col 33}{space 2}  3.22464{col 44}{space 1}   -0.73{col 53}{space 3}0.469{col 61}{space 4}-8.677022{col 74}{space 3} 4.000219
+{txt}{space 7}_Iprov_id_30 {c |}{col 21}{res}{space 2}-5.857184{col 33}{space 2} 2.727024{col 44}{space 1}   -2.15{col 53}{space 3}0.032{col 61}{space 4}-11.21765{col 74}{space 3}-.4967184
+{txt}{space 7}_Iprov_id_31 {c |}{col 21}{res}{space 2} 4.249651{col 33}{space 2}  3.62903{col 44}{space 1}    1.17{col 53}{space 3}0.242{col 61}{space 4}-2.883872{col 74}{space 3} 11.38317
+{txt}{space 7}_Iprov_id_32 {c |}{col 21}{res}{space 2}-3.528795{col 33}{space 2} 3.265097{col 44}{space 1}   -1.08{col 53}{space 3}0.280{col 61}{space 4}-9.946941{col 74}{space 3} 2.889352
+{txt}{space 7}_Iprov_id_33 {c |}{col 21}{res}{space 2}-3.196956{col 33}{space 2} 2.762729{col 44}{space 1}   -1.16{col 53}{space 3}0.248{col 61}{space 4}-8.627606{col 74}{space 3} 2.233694
+{txt}{space 7}_Iprov_id_34 {c |}{col 21}{res}{space 2} 8.187049{col 33}{space 2} 3.028479{col 44}{space 1}    2.70{col 53}{space 3}0.007{col 61}{space 4}  2.23402{col 74}{space 3} 14.14008
+{txt}{space 7}_Iprov_id_35 {c |}{col 21}{res}{space 2}-.2591372{col 33}{space 2} 3.660978{col 44}{space 1}   -0.07{col 53}{space 3}0.944{col 61}{space 4}-7.455459{col 74}{space 3} 6.937185
+{txt}{space 7}_Iprov_id_37 {c |}{col 21}{res}{space 2}-1.107082{col 33}{space 2} 3.487225{col 44}{space 1}   -0.32{col 53}{space 3}0.751{col 61}{space 4} -7.96186{col 74}{space 3} 5.747696
+{txt}{space 7}_Iprov_id_39 {c |}{col 21}{res}{space 2}-4.278221{col 33}{space 2} 2.657328{col 44}{space 1}   -1.61{col 53}{space 3}0.108{col 61}{space 4}-9.501686{col 74}{space 3} .9452432
+{txt}{space 7}_Iprov_id_40 {c |}{col 21}{res}{space 2} 8.208328{col 33}{space 2}  2.30136{col 44}{space 1}    3.57{col 53}{space 3}0.000{col 61}{space 4} 3.684584{col 74}{space 3} 12.73207
+{txt}{space 7}_Iprov_id_42 {c |}{col 21}{res}{space 2} 7.148503{col 33}{space 2} 2.365269{col 44}{space 1}    3.02{col 53}{space 3}0.003{col 61}{space 4} 2.499134{col 74}{space 3} 11.79787
+{txt}{space 7}_Iprov_id_43 {c |}{col 21}{res}{space 2} 9.252534{col 33}{space 2} 3.377054{col 44}{space 1}    2.74{col 53}{space 3}0.006{col 61}{space 4} 2.614316{col 74}{space 3} 15.89075
+{txt}{space 7}_Iprov_id_45 {c |}{col 21}{res}{space 2} 12.27383{col 33}{space 2} 2.724642{col 44}{space 1}    4.50{col 53}{space 3}0.000{col 61}{space 4} 6.918043{col 74}{space 3} 17.62961
+{txt}{space 7}_Iprov_id_47 {c |}{col 21}{res}{space 2} 8.275599{col 33}{space 2}  3.60571{col 44}{space 1}    2.30{col 53}{space 3}0.022{col 61}{space 4} 1.187916{col 74}{space 3} 15.36328
+{txt}{space 7}_Iprov_id_48 {c |}{col 21}{res}{space 2} 14.91823{col 33}{space 2} 3.233873{col 44}{space 1}    4.61{col 53}{space 3}0.000{col 61}{space 4} 8.561462{col 74}{space 3}   21.275
+{txt}{space 7}_Iprov_id_51 {c |}{col 21}{res}{space 2} 2.802593{col 33}{space 2} 4.011005{col 44}{space 1}    0.70{col 53}{space 3}0.485{col 61}{space 4} -5.08177{col 74}{space 3} 10.68696
+{txt}{space 7}_Iprov_id_53 {c |}{col 21}{res}{space 2} 9.596031{col 33}{space 2} 3.333151{col 44}{space 1}    2.88{col 53}{space 3}0.004{col 61}{space 4} 3.044112{col 74}{space 3} 16.14795
+{txt}{space 7}_Iprov_id_54 {c |}{col 21}{res}{space 2}-1.077292{col 33}{space 2} 4.476117{col 44}{space 1}   -0.24{col 53}{space 3}0.810{col 61}{space 4}-9.875918{col 74}{space 3} 7.721335
+{txt}{space 7}_Iprov_id_55 {c |}{col 21}{res}{space 2}-1.681197{col 33}{space 2} 3.602203{col 44}{space 1}   -0.47{col 53}{space 3}0.641{col 61}{space 4}-8.761986{col 74}{space 3} 5.399592
+{txt}{space 7}_Iprov_id_56 {c |}{col 21}{res}{space 2} 5.725327{col 33}{space 2} 2.974636{col 44}{space 1}    1.92{col 53}{space 3}0.055{col 61}{space 4}-.1218639{col 74}{space 3} 11.57252
+{txt}{space 7}_Iprov_id_57 {c |}{col 21}{res}{space 2} 8.138528{col 33}{space 2} 2.598204{col 44}{space 1}    3.13{col 53}{space 3}0.002{col 61}{space 4} 3.031283{col 74}{space 3} 13.24577
+{txt}{space 7}_Iprov_id_58 {c |}{col 21}{res}{space 2} 12.79438{col 33}{space 2}  2.24828{col 44}{space 1}    5.69{col 53}{space 3}0.000{col 61}{space 4}  8.37497{col 74}{space 3} 17.21378
+{txt}{space 7}_Iprov_id_59 {c |}{col 21}{res}{space 2} 20.23616{col 33}{space 2} 2.093535{col 44}{space 1}    9.67{col 53}{space 3}0.000{col 61}{space 4} 16.12094{col 74}{space 3} 24.35139
+{txt}{space 7}_Iprov_id_60 {c |}{col 21}{res}{space 2} 9.339599{col 33}{space 2} 2.985122{col 44}{space 1}    3.13{col 53}{space 3}0.002{col 61}{space 4} 3.471796{col 74}{space 3}  15.2074
+{txt}{space 7}_Iprov_id_62 {c |}{col 21}{res}{space 2}  7.69711{col 33}{space 2} 6.706747{col 44}{space 1}    1.15{col 53}{space 3}0.252{col 61}{space 4}-5.486228{col 74}{space 3} 20.88045
+{txt}{space 7}_Iprov_id_63 {c |}{col 21}{res}{space 2} 12.15616{col 33}{space 2} 3.352779{col 44}{space 1}    3.63{col 53}{space 3}0.000{col 61}{space 4} 5.565664{col 74}{space 3} 18.74666
+{txt}{space 7}_Iprov_id_64 {c |}{col 21}{res}{space 2} 16.16551{col 33}{space 2}   2.2993{col 44}{space 1}    7.03{col 53}{space 3}0.000{col 61}{space 4} 11.64581{col 74}{space 3}  20.6852
+{txt}{space 7}_Iprov_id_65 {c |}{col 21}{res}{space 2} 4.882676{col 33}{space 2} 3.399304{col 44}{space 1}    1.44{col 53}{space 3}0.152{col 61}{space 4}-1.799278{col 74}{space 3} 11.56463
+{txt}{space 7}_Iprov_id_66 {c |}{col 21}{res}{space 2} 4.556266{col 33}{space 2}   5.1038{col 44}{space 1}    0.89{col 53}{space 3}0.373{col 61}{space 4}-5.476186{col 74}{space 3} 14.58872
+{txt}{space 7}_Iprov_id_67 {c |}{col 21}{res}{space 2} 14.94931{col 33}{space 2} 2.501423{col 44}{space 1}    5.98{col 53}{space 3}0.000{col 61}{space 4} 10.03231{col 74}{space 3} 19.86631
+{txt}{space 7}_Iprov_id_68 {c |}{col 21}{res}{space 2} 5.126725{col 33}{space 2} 3.571637{col 44}{space 1}    1.44{col 53}{space 3}0.152{col 61}{space 4} -1.89398{col 74}{space 3} 12.14743
+{txt}{space 7}_Iprov_id_69 {c |}{col 21}{res}{space 2} 12.30483{col 33}{space 2} 6.140426{col 44}{space 1}    2.00{col 53}{space 3}0.046{col 61}{space 4} .2346964{col 74}{space 3} 24.37496
+{txt}{space 7}_Iprov_id_70 {c |}{col 21}{res}{space 2}-.0804684{col 33}{space 2} 3.084902{col 44}{space 1}   -0.03{col 53}{space 3}0.979{col 61}{space 4}-6.144407{col 74}{space 3}  5.98347
+{txt}{space 7}_Iprov_id_71 {c |}{col 21}{res}{space 2}  1.73244{col 33}{space 2} 2.690809{col 44}{space 1}    0.64{col 53}{space 3}0.520{col 61}{space 4}-3.556837{col 74}{space 3} 7.021717
+{txt}{space 7}_Iprov_id_72 {c |}{col 21}{res}{space 2} 14.86081{col 33}{space 2} 3.153324{col 44}{space 1}    4.71{col 53}{space 3}0.000{col 61}{space 4} 8.662379{col 74}{space 3} 21.05925
+{txt}{space 7}_Iprov_id_73 {c |}{col 21}{res}{space 2} 22.74143{col 33}{space 2} 3.381678{col 44}{space 1}    6.72{col 53}{space 3}0.000{col 61}{space 4} 16.09412{col 74}{space 3} 29.38873
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} 58.12314{col 33}{space 2} 3.633171{col 44}{space 1}   16.00{col 53}{space 3}0.000{col 61}{space 4} 50.98148{col 74}{space 3}  65.2648
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. xi: reg percentage power_total candidates_district male minority religion age degree que_districtsame party  incumbencyterms locallegislature  business politburo centralcomm centralnom i.prov_id, robust
+{txt}i.prov_id{col 19}_Iprov_id_1-73{col 39}(naturally coded; _Iprov_id_1 omitted)
+
+Linear regression                               Number of obs     = {res}       492
+                                                {txt}F(78, 413)        =  {res}    16.11
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.6481
+                                                {txt}Root MSE          =    {res} 7.1074
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 21}{c |}{col 33}    Robust
+{col 1}         percentage{col 21}{c |}      Coef.{col 33}   Std. Err.{col 45}      t{col 53}   P>|t|{col 61}     [95% Con{col 74}f. Interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}power_total {c |}{col 21}{res}{space 2}-1.167232{col 33}{space 2} .2468274{col 44}{space 1}   -4.73{col 53}{space 3}0.000{col 61}{space 4}-1.652427{col 74}{space 3}-.6820377
+{txt}candidates_district {c |}{col 21}{res}{space 2} 4.824098{col 33}{space 2} 1.077242{col 44}{space 1}    4.48{col 53}{space 3}0.000{col 61}{space 4} 2.706538{col 74}{space 3} 6.941658
+{txt}{space 15}male {c |}{col 21}{res}{space 2} 1.241231{col 33}{space 2} .9004948{col 44}{space 1}    1.38{col 53}{space 3}0.169{col 61}{space 4}-.5288938{col 74}{space 3} 3.011356
+{txt}{space 11}minority {c |}{col 21}{res}{space 2}-2.790384{col 33}{space 2} 1.271043{col 44}{space 1}   -2.20{col 53}{space 3}0.029{col 61}{space 4}-5.288905{col 74}{space 3}-.2918637
+{txt}{space 7}religion_any {c |}{col 21}{res}{space 2}-1.635061{col 33}{space 2} 2.052991{col 44}{space 1}   -0.80{col 53}{space 3}0.426{col 61}{space 4}-5.670675{col 74}{space 3} 2.400553
+{txt}{space 16}age {c |}{col 21}{res}{space 2} .1157788{col 33}{space 2} .0476439{col 44}{space 1}    2.43{col 53}{space 3}0.016{col 61}{space 4} .0221241{col 74}{space 3} .2094336
+{txt}{space 13}degree {c |}{col 21}{res}{space 2}-.3243001{col 33}{space 2} .4132619{col 44}{space 1}   -0.78{col 53}{space 3}0.433{col 61}{space 4}-1.136659{col 74}{space 3} .4880588
+{txt}{space 3}que_districtsame {c |}{col 21}{res}{space 2} 2.754822{col 33}{space 2} .9869658{col 44}{space 1}    2.79{col 53}{space 3}0.005{col 61}{space 4} .8147193{col 74}{space 3} 4.694925
+{txt}{space 14}party {c |}{col 21}{res}{space 2} 2.715705{col 33}{space 2} 1.439533{col 44}{space 1}    1.89{col 53}{space 3}0.060{col 61}{space 4} -.114021{col 74}{space 3} 5.545431
+{txt}{space 4}incumbencyterms {c |}{col 21}{res}{space 2} .6526608{col 33}{space 2}  .513969{col 44}{space 1}    1.27{col 53}{space 3}0.205{col 61}{space 4}-.3576606{col 74}{space 3} 1.662982
+{txt}{space 3}locallegislature {c |}{col 21}{res}{space 2} 3.938316{col 33}{space 2} .7632496{col 44}{space 1}    5.16{col 53}{space 3}0.000{col 61}{space 4} 2.437978{col 74}{space 3} 5.438655
+{txt}{space 11}business {c |}{col 21}{res}{space 2}-7.235287{col 33}{space 2} 2.631722{col 44}{space 1}   -2.75{col 53}{space 3}0.006{col 61}{space 4}-12.40853{col 74}{space 3}-2.062046
+{txt}{space 10}politburo {c |}{col 21}{res}{space 2} 6.987727{col 33}{space 2} 2.347923{col 44}{space 1}    2.98{col 53}{space 3}0.003{col 61}{space 4} 2.372358{col 74}{space 3}  11.6031
+{txt}{space 3}centralcommittee {c |}{col 21}{res}{space 2} 2.966313{col 33}{space 2} .9993085{col 44}{space 1}    2.97{col 53}{space 3}0.003{col 61}{space 4} 1.001948{col 74}{space 3} 4.930678
+{txt}{space 3}centralnominated {c |}{col 21}{res}{space 2} 3.338259{col 33}{space 2} .9940879{col 44}{space 1}    3.36{col 53}{space 3}0.001{col 61}{space 4} 1.384156{col 74}{space 3} 5.292362
+{txt}{space 8}_Iprov_id_2 {c |}{col 21}{res}{space 2} 5.135764{col 33}{space 2} 2.317541{col 44}{space 1}    2.22{col 53}{space 3}0.027{col 61}{space 4} .5801169{col 74}{space 3} 9.691411
+{txt}{space 8}_Iprov_id_3 {c |}{col 21}{res}{space 2} 1.665005{col 33}{space 2} 3.033967{col 44}{space 1}    0.55{col 53}{space 3}0.583{col 61}{space 4}-4.298939{col 74}{space 3} 7.628948
+{txt}{space 8}_Iprov_id_4 {c |}{col 21}{res}{space 2}-6.832001{col 33}{space 2} 2.209117{col 44}{space 1}   -3.09{col 53}{space 3}0.002{col 61}{space 4}-11.17452{col 74}{space 3}-2.489484
+{txt}{space 8}_Iprov_id_5 {c |}{col 21}{res}{space 2}-4.960373{col 33}{space 2}  2.89461{col 44}{space 1}   -1.71{col 53}{space 3}0.087{col 61}{space 4}-10.65038{col 74}{space 3} .7296334
+{txt}{space 8}_Iprov_id_6 {c |}{col 21}{res}{space 2} 7.585121{col 33}{space 2} 2.583907{col 44}{space 1}    2.94{col 53}{space 3}0.004{col 61}{space 4} 2.505872{col 74}{space 3} 12.66437
+{txt}{space 8}_Iprov_id_7 {c |}{col 21}{res}{space 2} 9.578747{col 33}{space 2} 2.405414{col 44}{space 1}    3.98{col 53}{space 3}0.000{col 61}{space 4} 4.850366{col 74}{space 3} 14.30713
+{txt}{space 8}_Iprov_id_8 {c |}{col 21}{res}{space 2} 18.72418{col 33}{space 2} 2.561596{col 44}{space 1}    7.31{col 53}{space 3}0.000{col 61}{space 4} 13.68879{col 74}{space 3} 23.75958
+{txt}{space 8}_Iprov_id_9 {c |}{col 21}{res}{space 2} 12.33079{col 33}{space 2} 2.664922{col 44}{space 1}    4.63{col 53}{space 3}0.000{col 61}{space 4} 7.092285{col 74}{space 3} 17.56929
+{txt}{space 7}_Iprov_id_10 {c |}{col 21}{res}{space 2} 2.933313{col 33}{space 2}   4.2494{col 44}{space 1}    0.69{col 53}{space 3}0.490{col 61}{space 4}-5.419836{col 74}{space 3} 11.28646
+{txt}{space 7}_Iprov_id_11 {c |}{col 21}{res}{space 2} 5.155777{col 33}{space 2} 2.827437{col 44}{space 1}    1.82{col 53}{space 3}0.069{col 61}{space 4}-.4021857{col 74}{space 3} 10.71374
+{txt}{space 7}_Iprov_id_12 {c |}{col 21}{res}{space 2} 5.099995{col 33}{space 2} 3.421208{col 44}{space 1}    1.49{col 53}{space 3}0.137{col 61}{space 4}-1.625159{col 74}{space 3} 11.82515
+{txt}{space 7}_Iprov_id_13 {c |}{col 21}{res}{space 2} 5.625956{col 33}{space 2} 3.301078{col 44}{space 1}    1.70{col 53}{space 3}0.089{col 61}{space 4}-.8630535{col 74}{space 3} 12.11497
+{txt}{space 7}_Iprov_id_14 {c |}{col 21}{res}{space 2} 2.144244{col 33}{space 2} 5.039656{col 44}{space 1}    0.43{col 53}{space 3}0.671{col 61}{space 4}-7.762331{col 74}{space 3} 12.05082
+{txt}{space 7}_Iprov_id_15 {c |}{col 21}{res}{space 2}-4.134044{col 33}{space 2} 3.290511{col 44}{space 1}   -1.26{col 53}{space 3}0.210{col 61}{space 4}-10.60228{col 74}{space 3} 2.334195
+{txt}{space 7}_Iprov_id_16 {c |}{col 21}{res}{space 2} -4.30402{col 33}{space 2} 2.395108{col 44}{space 1}   -1.80{col 53}{space 3}0.073{col 61}{space 4}-9.012143{col 74}{space 3} .4041036
+{txt}{space 7}_Iprov_id_17 {c |}{col 21}{res}{space 2}-5.523538{col 33}{space 2} 2.647071{col 44}{space 1}   -2.09{col 53}{space 3}0.038{col 61}{space 4}-10.72695{col 74}{space 3}-.3201246
+{txt}{space 7}_Iprov_id_18 {c |}{col 21}{res}{space 2}-5.688082{col 33}{space 2} 2.741911{col 44}{space 1}   -2.07{col 53}{space 3}0.039{col 61}{space 4}-11.07792{col 74}{space 3}-.2982392
+{txt}{space 7}_Iprov_id_19 {c |}{col 21}{res}{space 2}-3.458682{col 33}{space 2}  3.01166{col 44}{space 1}   -1.15{col 53}{space 3}0.251{col 61}{space 4}-9.378776{col 74}{space 3} 2.461412
+{txt}{space 7}_Iprov_id_20 {c |}{col 21}{res}{space 2}-5.875351{col 33}{space 2}  3.18814{col 44}{space 1}   -1.84{col 53}{space 3}0.066{col 61}{space 4}-12.14236{col 74}{space 3} .3916538
+{txt}{space 7}_Iprov_id_21 {c |}{col 21}{res}{space 2}-6.310056{col 33}{space 2} 3.343325{col 44}{space 1}   -1.89{col 53}{space 3}0.060{col 61}{space 4}-12.88211{col 74}{space 3} .2619998
+{txt}{space 7}_Iprov_id_22 {c |}{col 21}{res}{space 2} 5.774378{col 33}{space 2} 3.113712{col 44}{space 1}    1.85{col 53}{space 3}0.064{col 61}{space 4}-.3463229{col 74}{space 3} 11.89508
+{txt}{space 7}_Iprov_id_23 {c |}{col 21}{res}{space 2}-.2487907{col 33}{space 2} 3.281758{col 44}{space 1}   -0.08{col 53}{space 3}0.940{col 61}{space 4}-6.699822{col 74}{space 3} 6.202241
+{txt}{space 7}_Iprov_id_24 {c |}{col 21}{res}{space 2} .9146841{col 33}{space 2} 2.870317{col 44}{space 1}    0.32{col 53}{space 3}0.750{col 61}{space 4}-4.727568{col 74}{space 3} 6.556936
+{txt}{space 7}_Iprov_id_25 {c |}{col 21}{res}{space 2} 3.605106{col 33}{space 2} 3.097999{col 44}{space 1}    1.16{col 53}{space 3}0.245{col 61}{space 4}-2.484707{col 74}{space 3} 9.694918
+{txt}{space 7}_Iprov_id_26 {c |}{col 21}{res}{space 2} .2178649{col 33}{space 2} 4.270104{col 44}{space 1}    0.05{col 53}{space 3}0.959{col 61}{space 4}-8.175983{col 74}{space 3} 8.611713
+{txt}{space 7}_Iprov_id_27 {c |}{col 21}{res}{space 2}-.1471731{col 33}{space 2} 4.048268{col 44}{space 1}   -0.04{col 53}{space 3}0.971{col 61}{space 4}-8.104953{col 74}{space 3} 7.810606
+{txt}{space 7}_Iprov_id_28 {c |}{col 21}{res}{space 2}-7.630596{col 33}{space 2} 3.870866{col 44}{space 1}   -1.97{col 53}{space 3}0.049{col 61}{space 4}-15.23965{col 74}{space 3}-.0215399
+{txt}{space 7}_Iprov_id_29 {c |}{col 21}{res}{space 2} -2.73881{col 33}{space 2}  2.88431{col 44}{space 1}   -0.95{col 53}{space 3}0.343{col 61}{space 4} -8.40857{col 74}{space 3} 2.930949
+{txt}{space 7}_Iprov_id_30 {c |}{col 21}{res}{space 2}-7.076718{col 33}{space 2} 2.796295{col 44}{space 1}   -2.53{col 53}{space 3}0.012{col 61}{space 4}-12.57346{col 74}{space 3}-1.579972
+{txt}{space 7}_Iprov_id_31 {c |}{col 21}{res}{space 2} 3.998583{col 33}{space 2} 3.222418{col 44}{space 1}    1.24{col 53}{space 3}0.215{col 61}{space 4}-2.335803{col 74}{space 3} 10.33297
+{txt}{space 7}_Iprov_id_32 {c |}{col 21}{res}{space 2}-4.364694{col 33}{space 2} 3.616195{col 44}{space 1}   -1.21{col 53}{space 3}0.228{col 61}{space 4}-11.47314{col 74}{space 3} 2.743748
+{txt}{space 7}_Iprov_id_33 {c |}{col 21}{res}{space 2}-2.803765{col 33}{space 2} 2.407187{col 44}{space 1}   -1.16{col 53}{space 3}0.245{col 61}{space 4}-7.535632{col 74}{space 3} 1.928101
+{txt}{space 7}_Iprov_id_34 {c |}{col 21}{res}{space 2} 5.682207{col 33}{space 2} 2.652736{col 44}{space 1}    2.14{col 53}{space 3}0.033{col 61}{space 4} .4676585{col 74}{space 3} 10.89676
+{txt}{space 7}_Iprov_id_35 {c |}{col 21}{res}{space 2} -.500205{col 33}{space 2} 3.232511{col 44}{space 1}   -0.15{col 53}{space 3}0.877{col 61}{space 4}-6.854432{col 74}{space 3} 5.854022
+{txt}{space 7}_Iprov_id_37 {c |}{col 21}{res}{space 2} -1.39354{col 33}{space 2} 3.499684{col 44}{space 1}   -0.40{col 53}{space 3}0.691{col 61}{space 4}-8.272954{col 74}{space 3} 5.485875
+{txt}{space 7}_Iprov_id_39 {c |}{col 21}{res}{space 2}   -4.014{col 33}{space 2} 2.382543{col 44}{space 1}   -1.68{col 53}{space 3}0.093{col 61}{space 4}-8.697423{col 74}{space 3} .6694235
+{txt}{space 7}_Iprov_id_40 {c |}{col 21}{res}{space 2} 7.218546{col 33}{space 2} 2.157683{col 44}{space 1}    3.35{col 53}{space 3}0.001{col 61}{space 4} 2.977134{col 74}{space 3} 11.45996
+{txt}{space 7}_Iprov_id_42 {c |}{col 21}{res}{space 2} 4.869419{col 33}{space 2} 2.386919{col 44}{space 1}    2.04{col 53}{space 3}0.042{col 61}{space 4} .1773937{col 74}{space 3} 9.561444
+{txt}{space 7}_Iprov_id_43 {c |}{col 21}{res}{space 2} 7.951346{col 33}{space 2} 2.690133{col 44}{space 1}    2.96{col 53}{space 3}0.003{col 61}{space 4} 2.663285{col 74}{space 3} 13.23941
+{txt}{space 7}_Iprov_id_45 {c |}{col 21}{res}{space 2} 10.39028{col 33}{space 2} 2.608955{col 44}{space 1}    3.98{col 53}{space 3}0.000{col 61}{space 4} 5.261796{col 74}{space 3} 15.51877
+{txt}{space 7}_Iprov_id_47 {c |}{col 21}{res}{space 2}   6.0891{col 33}{space 2} 3.428362{col 44}{space 1}    1.78{col 53}{space 3}0.076{col 61}{space 4}-.6501156{col 74}{space 3} 12.82832
+{txt}{space 7}_Iprov_id_48 {c |}{col 21}{res}{space 2} 12.05777{col 33}{space 2} 3.373221{col 44}{space 1}    3.57{col 53}{space 3}0.000{col 61}{space 4} 5.426947{col 74}{space 3} 18.68859
+{txt}{space 7}_Iprov_id_51 {c |}{col 21}{res}{space 2} 1.890501{col 33}{space 2} 3.905457{col 44}{space 1}    0.48{col 53}{space 3}0.629{col 61}{space 4}-5.786552{col 74}{space 3} 9.567553
+{txt}{space 7}_Iprov_id_53 {c |}{col 21}{res}{space 2} 7.766705{col 33}{space 2} 2.940245{col 44}{space 1}    2.64{col 53}{space 3}0.009{col 61}{space 4} 1.986994{col 74}{space 3} 13.54642
+{txt}{space 7}_Iprov_id_54 {c |}{col 21}{res}{space 2}-1.118176{col 33}{space 2} 4.312879{col 44}{space 1}   -0.26{col 53}{space 3}0.796{col 61}{space 4}-9.596107{col 74}{space 3} 7.359756
+{txt}{space 7}_Iprov_id_55 {c |}{col 21}{res}{space 2}-2.711589{col 33}{space 2} 3.047702{col 44}{space 1}   -0.89{col 53}{space 3}0.374{col 61}{space 4}-8.702531{col 74}{space 3} 3.279353
+{txt}{space 7}_Iprov_id_56 {c |}{col 21}{res}{space 2} 5.183045{col 33}{space 2} 2.626221{col 44}{space 1}    1.97{col 53}{space 3}0.049{col 61}{space 4} .0206171{col 74}{space 3} 10.34547
+{txt}{space 7}_Iprov_id_57 {c |}{col 21}{res}{space 2}   7.9008{col 33}{space 2} 2.589133{col 44}{space 1}    3.05{col 53}{space 3}0.002{col 61}{space 4} 2.811277{col 74}{space 3} 12.99032
+{txt}{space 7}_Iprov_id_58 {c |}{col 21}{res}{space 2} 12.07662{col 33}{space 2} 2.331974{col 44}{space 1}    5.18{col 53}{space 3}0.000{col 61}{space 4} 7.492603{col 74}{space 3} 16.66064
+{txt}{space 7}_Iprov_id_59 {c |}{col 21}{res}{space 2} 18.54629{col 33}{space 2} 2.420202{col 44}{space 1}    7.66{col 53}{space 3}0.000{col 61}{space 4} 13.78884{col 74}{space 3} 23.30374
+{txt}{space 7}_Iprov_id_60 {c |}{col 21}{res}{space 2} 8.217947{col 33}{space 2} 3.122046{col 44}{space 1}    2.63{col 53}{space 3}0.009{col 61}{space 4} 2.080863{col 74}{space 3} 14.35503
+{txt}{space 7}_Iprov_id_62 {c |}{col 21}{res}{space 2} 6.531142{col 33}{space 2} 6.420503{col 44}{space 1}    1.02{col 53}{space 3}0.310{col 61}{space 4}-6.089799{col 74}{space 3} 19.15208
+{txt}{space 7}_Iprov_id_63 {c |}{col 21}{res}{space 2} 11.63237{col 33}{space 2} 3.184999{col 44}{space 1}    3.65{col 53}{space 3}0.000{col 61}{space 4} 5.371536{col 74}{space 3}  17.8932
+{txt}{space 7}_Iprov_id_64 {c |}{col 21}{res}{space 2} 14.90551{col 33}{space 2} 2.503032{col 44}{space 1}    5.95{col 53}{space 3}0.000{col 61}{space 4} 9.985243{col 74}{space 3} 19.82578
+{txt}{space 7}_Iprov_id_65 {c |}{col 21}{res}{space 2} 6.058787{col 33}{space 2} 3.670896{col 44}{space 1}    1.65{col 53}{space 3}0.100{col 61}{space 4}-1.157184{col 74}{space 3} 13.27476
+{txt}{space 7}_Iprov_id_66 {c |}{col 21}{res}{space 2} 3.785301{col 33}{space 2} 4.852149{col 44}{space 1}    0.78{col 53}{space 3}0.436{col 61}{space 4}-5.752687{col 74}{space 3} 13.32329
+{txt}{space 7}_Iprov_id_67 {c |}{col 21}{res}{space 2} 13.67176{col 33}{space 2} 2.291482{col 44}{space 1}    5.97{col 53}{space 3}0.000{col 61}{space 4} 9.167338{col 74}{space 3} 18.17618
+{txt}{space 7}_Iprov_id_68 {c |}{col 21}{res}{space 2} 4.777544{col 33}{space 2} 3.336925{col 44}{space 1}    1.43{col 53}{space 3}0.153{col 61}{space 4}-1.781931{col 74}{space 3} 11.33702
+{txt}{space 7}_Iprov_id_69 {c |}{col 21}{res}{space 2} 9.986123{col 33}{space 2} 5.918582{col 44}{space 1}    1.69{col 53}{space 3}0.092{col 61}{space 4}-1.648179{col 74}{space 3} 21.62042
+{txt}{space 7}_Iprov_id_70 {c |}{col 21}{res}{space 2}-.3216926{col 33}{space 2}  2.90706{col 44}{space 1}   -0.11{col 53}{space 3}0.912{col 61}{space 4}-6.036171{col 74}{space 3} 5.392786
+{txt}{space 7}_Iprov_id_71 {c |}{col 21}{res}{space 2} .3878124{col 33}{space 2} 2.376741{col 44}{space 1}    0.16{col 53}{space 3}0.870{col 61}{space 4}-4.284205{col 74}{space 3}  5.05983
+{txt}{space 7}_Iprov_id_72 {c |}{col 21}{res}{space 2} 13.34306{col 33}{space 2} 3.115877{col 44}{space 1}    4.28{col 53}{space 3}0.000{col 61}{space 4}   7.2181{col 74}{space 3} 19.46801
+{txt}{space 7}_Iprov_id_73 {c |}{col 21}{res}{space 2} 19.19278{col 33}{space 2} 3.051161{col 44}{space 1}    6.29{col 53}{space 3}0.000{col 61}{space 4} 13.19504{col 74}{space 3} 25.19052
+{txt}{space 14}_cons {c |}{col 21}{res}{space 2} 59.17586{col 33}{space 2} 3.521335{col 44}{space 1}   16.80{col 53}{space 3}0.000{col 61}{space 4} 52.25389{col 74}{space 3} 66.09784
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. br prov trans_rev
+
+. exit, clear

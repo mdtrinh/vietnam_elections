@@ -1,0 +1,28 @@
+variables that can be done with code:
+minority
+religion_any
+degree
+party_years
+party_yearsentrance
+party
+years_party
+incumbencyterms
+locallegislature (note: original var does not make distinction between HDND tinh? and HDND huyen.)
+politburo (note: add Nong Duc Manh)
+partysecratariat (note: Malesky's data misses Ho Duc Viet)
+centralcommittee (maybe...)
+localpartysecretariat (note: make distinction between tinh? uy? and huyen. uy?, Malesky's data looks only at tinh? uy?)
+localpcom (note: Malesky's data seems haphazard - should restrict only to provincial level)
+business (note: Malesky's data includes "quan? doc'" or "cong nhan"
+
+variables that will be calculated
+centralnominated
+
+other variables are deemed irrelevant for now...
+
+
+note: Nguyen Van Tien was added to Tien Giang 2 (? - not included in original list but was elected regardless)
+
+note: for candidates_district, Malesky coded this variable from candidates_seat, which measure the ratio of candidates over *number of elected candidates*. Candidates_seat should actually be candidates over *number of available seats*, since in 2 districts 3 were inteded to win but only 2 did. Malesky's candidates_district variable missed all of this.
+
+note: for power_total, the total in a district seems to be sum(power) + 1 i.e. even after accounting for all the variables, each district total is still larger than calculated total by 1

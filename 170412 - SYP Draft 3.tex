@@ -1,0 +1,447 @@
+\documentclass[12pt]{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+	\ifdim\Gin@nat@width>\linewidth
+	\linewidth
+	\else
+	\Gin@nat@width
+	\fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.7te37,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+	\def\at@end@of@kframe{}%
+	\ifinner\ifhmode%
+	\def\at@end@of@kframe{\end{minipage}}%
+\begin{minipage}{\columnwidth}%
+	\fi\fi%
+	\def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+		\colorbox{shadecolor}{##1}\hskip-\fboxsep
+		% There is no \\@totalrightmargin, so:
+		\hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+	\MakeFramed {\advance\hsize-\width
+		\@totalleftmargin\z@ \linewidth\hsize
+		\@setminipage}}%
+{\par\unskip\endMakeFramed%
+	\at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt} % use larger type; default would be 10pt
+
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{letterpaper} % or letterpaper (US) or a5paper or....
+\geometry{margin=1.2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{setspace}
+\usepackage{pdflscape}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{dcolumn}
+%\usepackage[nolists]{endfloat}
+\usepackage{bbm}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+
+\usepackage{natbib}
+\bibliographystyle{apsr}
+\usepackage{hyperref}
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% Some commands
+\newcommand{\reg}{\texttt{regress} }
+\newcommand{\1}{\mathbbm{1}}
+
+\renewcommand\r{\right}
+\renewcommand\l{\left}
+\newcommand\E{\mathbbm{E}}
+\newcommand\V{\mathbbm{V}}
+\newcommand\Var{\mathbbm{V}}
+\newcommand\avar{{\rm Avar}}
+\newcommand\dist{\buildrel\rm d\over\sim}
+\newcommand\iid{\stackrel{\rm i.i.d.}{\sim}}
+\newcommand\ind{\stackrel{\rm indep.}{\sim}}
+\newcommand\cov{{\rm Cov}}
+\newcommand{\R}{\textbf{R} }
+\newcommand{\Rcmd}[1]{{\large \texttt{#1}}}
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand\Sum{\sum^N_{i=1}}
+\newcommand\Prod{\prod^N_{i=1}}
+\newcommand{\pderiv}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\B}[1]{\boldsymbol{#1}}
+\newcommand{\logit}{\text{logit}}
+
+%opening
+\title{Vietnam's Tea Leaf Elections: \\
+	Inferring Purpose for Authoritarian Elections from Post-election Responses to Local Defeats}
+\author{Minh Trinh}
+
+\begin{document}
+
+\maketitle
+
+\doublespacing
+
+\section{Introduction}
+
+Many authoritarian regimes around the world choose to hold elections despite the risk of election defeat and the cost of holding them. One particular example of these benefits is information, which authoritarian regimes can acquire by studying pattern of electoral returns across constituencies. The literature, however, has arrived at no consensus about what specific information authoritarian regimes seeks to infer from elections. More critically, theories about information flow from authoritarian elections have failed to recognize that election results can be interpreted in multiple ways, and among these multiple interpretations, some may be incompatible with or contradictory to others. How authoritarian leaders choose between competing interpretations of the same election result may shed light on their original intention for holding elections. I focus in particular on the ``geographic distribution'' theory, which suggests that authoritarian leaders use elections to infer the geographic distribution of support for the regime, and the ``local bureaucrats'' theory, which suggests that these leaders use elections to learn about the competence and/or loyalty of local bureaucrats, and seek to find out which of these two apply in a situation when only one could hold true.
+
+I analyze the responses by the Communist Party of Vietnam (CPV) to the defeats of centrally-nominated candidates in three legislative elections in 2007, 2011 and 2016 to identify which of these two theories describes better how the party interprets election results and what its motive for holding elections is. I focus on responses pertaining to public finance, in particular central transfers from the national government to individual provinces. Because central transfers are wholly determined by the country's highest leadership, it is a good proxy to study the regime's decisions. My analysis boils down to identifying the causal effect of election defeats on central transfers to provinces. Faced with a non-random pattern of election results and hence selection bias, I restrict the analysis to a smaller subset of provinces to ensure comparability of treatment and control units, and then rely on linear fixed-effects regressions and the synthetic control method to achieve identification. To compensate for the small sample size resulted from the rarity of election defeats in Vietnam while making use of the sample's finiteness, I employ randomization inference to conduct finite-sample tests of the main hypotheses.
+
+My analysis shows that the ruling party in Vietnam generally responds to electoral upsets by increasing central transfers to the provinces where defeats occurred. This pattern of response would be expected in a regime that uses elections to gather information on the geographic distribution of regime support, and not in a regime that uses elections to learn about local party bureaucrats. Through its empirical findings, this paper contributes to literature by demonstrating an approach to test competing theories of authoritarian elections. It also highlights the potential for discord between these theories, which could easily go unnoticed when theory-building advances too far ahead of theory-testing. 
+
+The paper begins in section \ref{sec:info} by reviewing the literature on the ``information flow'' theories of authoritarianism, which argue that authoritarian regimes use elections to gather information. As part of the review, the paper draws attention to the two potentially contradictory theories, and argues in favor of one over the other. In section \ref{sec:vietnam}, I provide information about the National Assembly election in Vietnam, and suggest how the Vietnam case could be used to test these two theories. Section \ref{sec:methods} then discusses my empirical approaches, and section \ref{sec:results} summarizes the results. Finally, \ref{sec:conclusion} concludes after reviewing potential shortcomings of the paper.
+
+
+\section{Authoritarian Elections as Information}
+\label{sec:info}
+The literature on authoritarian elections have offered numerous explanations for why authoritarian regimes consent to holding elections despite the costs and risks associated with holding them. Part of this literature has drawn attention to the benefits that authoritarian elections can bring to the authoritarian leaders, and suggested that such benefits can be large enough that elections become a rational strategy for authoritarian regimes to pursue. Existing theories have thus portrayed elections as a platform for power-sharing, providing non-violent and non-disruptive means for elites to contest over patronage \citep{LustOkar2006} or for dissidents to express their dissatisfaction \citep{AR2005}. Elections are also said to be a tool to "divide and conquer" the opposition and co-opt some of them into the regime \citep{LustOkar2005}, or as a "show of strength" for the regime to impress upon its opponents the invulnerability of its rule and futility of resistance \citep{Geddes2005}. 
+
+In addition to these explanations, a substantial literature on the ``information flow'' theories of authoritarian institutions\footnote{I owe this term, and the classification of theories of authoritarian institutions, to \cite{Hou2017}} has found that authoritarian regimes use nominally democratic institutions to gather information that would help them rule more efficiently. Elections and the results they generate serve this purpose particularly well. \cite{Geddes2005} for instance suggests that authoritarian regimes can look at election results to know how popular or strong their opposition is. In a similar but more sophisticated argument, \cite{Miller2015} finds that autocratic regimes use elections to estimate citizen dissatisfaction with the regime. The logic is that because autocratic regimes ensure that citizens face significant costs when voting against the ruling party, voters would only dare to do so when they are genuinely dissatisfied. Negative election results, in particular electoral shocks, thus credibly communicate the true level of dissatisfaction, allowing the ruling regimes to alter its policy with an optimal level of responsiveness. An even more nuanced argument suggests that the variation in election results across constituencies shed light not on the general \textit{level}, but on the sub-national \textit{distribution} of regime support or dissatisfaction. Autocratic leaders can then use this information to identify opposition strongholds to suppress \citep{Magaloni2006, Blaydes2008}. Additionally, election results also convey information about individuals both within and outside of the regime machinery, including the party candidates who run in the election \cite{someone} or the bureaucrats tasked with managing them \citep{Magaloni2006, Blaydes2008}. Finally, unexpectedly strong performance by regime outsiders can also alert the regimes to potential threats, or indicate for them which elites should be co-opted into the regime \cite{LustOkar2005}.
+
+\subsection{Local election defeats as high-information events}
+It is possible to extend the ``information flow'' theories to argue that authoritarian elections are the most informative when they result in \textit{some} upsets for the regime. Under authoritarian regimes, electoral upsets are rarely expected but never impossible, even when the ruling regimes possess a ``menu of manipulation'' they can use to ensure favorable results \citep{Schedler2002Menu}. In particular, parliamentary elections under authoritarian regimes do sometimes lead to defeats by regime candidates in local constituencies they run it (henceforth ``local defeats''). These local defeats are often a result of ambitious and innovative strategies by the opposition \citep{BunceWolchik2010} or certain regime weaknesses \citep{LevistkyWay2010}. 
+
+Even in the case of dominant- or single-party regimes where competition is muffled \citep{Schedler2002} and the regime is strong \citep{BunceWolchik2010}, it is still possible for such electoral upsets to happen. This requires acknowledging that competition under dominant- or single-party regimes also takes place along unofficial cleavages like the center-periphery divide. Indeed, even when all the candidates compete under the same party banner, some of them may still represent local interests that run counter to that of the central party leadership. Such conflict of interests exist even in extremely institutionalized single-party regimes like China \citep{Manion2014} or Vietnam \citep{MaleskySchuler2011}. Victories by candidates representing the peripheral interests can be considered the dominant- or single-party regime's version of local defeat.
+	
+Since authoritarian regimes rarely suffer and thus do not expect such unsatisfactory results, any defeat would provide a data point so different from their informational prior that the dictators can tell it contains more signal than noise. Indeed, whereas most variation in vote share can be attributed to random noise, only a true aberration could lead to a regime vote share low enough to produce a defeat. Thus, if a regime is truly using elections as an information gathering tool, it should always pay attention to any instance of local defeat, perhaps more than to vote share per se. Depending on the regimes' interpretation, a local defeat credibly signals either low regime popularity vis-\`{a}-vis the opposition, or unsatisfactory performance by individuals on the ground.
+
+\subsection{Multiple interpretations of local defeats}
+It may be true that local defeats represent high-information events, but it is not straightforward how authoritarian leaders interpret information from them. The most plausible answer is that dictators see in election results the very kind of information they intend to collect through elections. In other words, authoritarian regimes see in election defeats exactly what they look for. The ``information flow'' literature can thus shed light on what they see. For example, if authoritarian regimes use elections to measure their own popularity \citep{Miller2015} or the opposition's strength \citep{Geddes2005}, election defeats would tell the story of a dissatisfied populace or that of a emboldened opposition.\footnote{I cut all mention of how other ``information flow'' theories lead to other interpretations, seeing that I would mention some of them again in the next section. Is this the right decision?}
+
+Even as the ``information flow'' literature lays out various ways authoritarian regimes \textit{may} interpret information from election defeats, it provides no guidance in determining how they actually \textit{do} interpret this information. Existing works have only considered a small subset of theories at once, and have not conducted many comparative evaluation between pairs of theories to identify which theory fits better with empirical evidence. The one-country case studies that dominate this literature \citep{LustOkar2005, Geddes2005, Magaloni2006, Blaydes2008} often devote more effort proposing new theories rather than testing old ones. The result is an abundance of claims about what information authoritarian regimes seek from elections, but no clear conclusion about which claim carries the most weight. This gap in the literature is consequential because these theories are not always perfectly compatible, and thus cannot be all true. For understanding of authoritarian elections to advance, it is necessary to both explore more explicitly the conditions that make some theories more plausible than others, and subject these theories to more rigorous tests under these conditions.
+
+\subsection{''Geographic distribution'' vs. ``local bureaucrats''}
+Among the ``information flow'' theories, two are at risk of diametrically contradicting each other, yet they are advanced in the same works without acknowledgment of potential conflicts. One theory suggests that election results provide information on the geographic distribution of support (henceforth the ``geographic distribution'' theory), whereas the other suggests that election results reveal the competence or loyalty of individual party bureaucrats at the local level (henceforth the ``local bureaucrats'' theory), and both of them are given equal spotlight in the works of \cite{Magaloni2006} and \cite{Blaydes2008}.
+
+Both scholars posit that electoral results provide information about the geographic distribution of support and dissent for the ruling regime. In Mexico, \cite{Magaloni2006} finds that areas where the ruling PRI captured a greater vote share were deemed as centers of government support, whereas areas with low PRI vote shares were considered opposition strongholds. Similarly, for Egypt, \cite{Blaydes2008} remarks that “election results provide the regime with a map of areas of political support for the opposition.” In both cases, the two authoritarian governments were able to know which sub-national units have higher or lower concentration of regime supporters by looking at where they received a higher or lower vote share. In Mexico, the PRI used this information to reward their supporters, whereas in Egypt the regime instituted a “punishment regime” in opposition strongholds by withholding their public goods investment.
+
+In parallel, both \cite{Magaloni2006} and \cite{Blaydes2008} also suggest that election results provide information about the competence and loyalty of lower-level party members. In both countries, the task of mobilizing voters on behalf of the ruling party is delegated to lower-level party bureaucrats, with the national level playing little to no direct role. These bureaucrats are not candidates themselves, but play important role in making sure that the ruling party’s candidates get elected. Election results, reflected through turnout as well as through the ruling party' share of the votes, are then perceived as a function of how well these sub-national party members do their job. \cite{Blaydes2008} notes further that a failure to deliver good results may also be a symptom of disloyalty, for example when a local party member forgoes careerist goals within the ruling party to pursue short-term material gains offered by the local opposition candidates by mobilizing on behalf of the opposition instead.
+
+Although each of these two theories of authoritarian elections make sense on its own, neither \cite{Magaloni2006} nor \cite{Blaydes2008} acknowledge that they can be incompatible. From the perspective of the authoritarian leaders, the level of popular support in a province and the level of competence or loyalty of the party bureaucrats in the same province are two different narratives explaining a same outcome, at the same level of disaggregation. Thus, when explaining an electoral upset in a certain province, the first theory would suggest that the ruling party attributes the defeat to the lack of supporters in this province, but the second would suggest it attributes it to the bureaucrats managing the election there. It may be suggested that both theories hold true and the regime believes in both narratives, but in this case it remains impossible for them to divide blame attribution for the defeat on these distinct causes without putting too much weight on one and too little on the other.\footnote{In political science lingo, the ruling party is unable to point-identify how much each factor contributes to the bad result. To achieve point-identification it may be necessary to hold one factor constant or ignorable, for example by randomly assigning bureaucrats to provinces. But it is unlikely that politicians always see and behave like social scientists.} 
+
+\section{Authoritarian Elections in Vietnam}
+\label{sec:vietnam}
+To test whether leaders in strong authoritarian regimes prefer to use elections to learn about the geographic distribution of regime support or about individual party bureaucrats, this paper will make use of Vietnam as a test case. Vietnam is a single-party state with a strong Communist party, and thus should be an on-the-line case for most theories about single-party states. In addition, the high level of control the Communist Party of Vietnam (CPV) has over elections \citep{MaleskySchuler2011} means that local defeats are rare, and that defeats that did happen are more likely to be signal than noise. I focus my analysis on three consecutive elections in 2006, 2011, and 2016 for the Vietnamese National Assembly (NA), the highest legislative body in the country's political system.
+
+\subsection{Background}
+
+\cite{MaleskySchuler2011}, among others \citep[e.g][]{Gainsborough2005}, have described in details the nomination and election process for the Vietnamese National Assembly (NA). The NA elections in Vietnam follow an absolute-majority voting system with multiple winners, in which each district can have 3 to 6 candidates running for 2 to 4 seats and the voters get to vote for as many candidates as there are seats in the district. District magnitude and number of candidates are determined prior to the election, and follow a fixed formula: a 6-candidate district is allowed 4 seats, a 5-candidate district is allowed 3 seats, and a 4-candidate district is allowed 2 seats. A new type of district with 3 candidates with 2 allowed seats was recently introduced for the 2011 election, but has been discontinued by the 2016 election. In all districts, candidates with the most votes win, as long as their number of votes exceeds 50 percent of registered voters.
+
+The key dynamics of the NA elections, however, take place not on election day, but in the nomination process that precedes it. In this process, before each election the central party leadership in the outgoing NA, which is organized as the NA standing committee (NASC), draws up a structure for what the incoming NA should look like. The structure takes the form of composition along demographic, political, and functional lines; for instance, the planned structure for the 500-delegate NA in the 2007 election called for 150 women, 90 members of ethnic minorities, 160 incumbents, 70 under-40 delegates, and 50 non-party members  \citep[506]{MaleskySchuler2011}. Then, through three rounds of \textit{hiệp thương} (negotiation), the central party leadership and provincial institutions put together a list of candidates to fill the slots, and assign them to districts in ways that would best guarantee that the elected NA follows the planned structure. This is done by first determining quotas breaking down how many candidates of a certain demographic each province (and then each district) should elect, and then ``stuff'' the districts with candidates from this same demographic. For instance, a district expected to elect a lawyer would be contested only by lawyers, a district expected to elect an ethnic minority would include only ethnic minorities, etc. As a result, even though within a district individual candidates may compete against each other to gain votes, the aggregate structure of the NA can be guaranteed. Additionally, the nomination process also acts a filter to ensure that only approved candidates are allowed to run. The CPV bans all other political parties but still allows independent and self-nominated candidates to run, but through the nomination process it can ensure that even these non-party candidates follow closely the party line.
+
+Another feature of this nomination process is the difference between central and local nominees. In short, central nominees are candidates who are nominated in the three \textit{hiệp thương} rounds by central party and government institutions, as well as by the national bodies of semi-governmental ``societal'' organizations. In practice these central nominees are high-ranking party members with important roles in the party or the government, current NA committee members, or national leaders of key ``societal'' organizations. Local nominees, on the other hand, are nominated by provincial level party and government branches as well as by local chapters of ``societal'' organizations. During the \textit{hiệp thương} rounds, central candidates are assigned to individual districts, where they will run against local nominees coming from the local province. Central nominees comprise roughly a third of the planned NA structure, and all of them are expected to win seats in the NA. According to \cite{MaleskySchuler2011}, the CPV ensures this outcome  through deliberate election engineering. In particular, they assign these central nominees not to their home districts or districts they have previously served, but to districts where they can win more easily i.e. districts with the more favorable 5-to-3 candidate-to-seat ratio. In addition,  central nominees generally are not assigned to run against each other. Finally, provincial officials are instructed to support these candidates, both by nominating and assigning  weaker candidates to run against them, as well as by running voter education and mobilization campaigns to encourage voters to vote for them. \footnote{\cite{MaleskySchuler2011} argue that the CPV eschews \textit{ex post} fraud in favor of \textit{ex ante} electioneering, and shows that digit tests on official results from the 2007 election fail to reject the hypothesis of naturally generated numbers. However, this evidence would only rule out fraud at the highest level but fail to detect manipulation at lower level, as aggregates of manipulated numbers would exhibit patterns similar to the natural generation process. Indeed, interviews with neighborhood-level officials in charge of managing the 2016 election suggest that agents at several polling stations tampered with the tabulation of result. There is however no smoking-gun evidence that such tampering is systematic or ordered by higher levels of government.}
+
+\subsection{''Geographic distribution'' and ``local bureaucrats''}
+
+Thanks to this sophisticated arrays of manipulation techniques, the CPV has always managed to maintain a tight control over election results. As \cite{MaleskySchuler2011} show, the party is confident enough in its ability to control election results to set out very specific plans for the structure of the to-be-elected NA, and the near-identity between planned and the actually elected NA shows that its confidence is well warranted. However, the fact that the final result detracts slightly from the plan suggests that the CPV's control is not perfect. Indeed, in all the three elections studied in this paper, there are always central nominees who suffered unexpected defeats. Their defeats were surprising and important enough to be covered by the state-controlled media \citep{somemedia}.
+
+For the central leadership of the CPV, understanding and interpreting the local defeats of their central nominees is not necessarily straightforward. Given the context of the election, both an explanation based on the distribution of support and one based on the performance of individual local bureaucrats seem plausible. First of all, local defeats could reflect the geographic distribution of support for the CPV, in the sense that the party commands lower support in provinces that suffered central nominee defeats. Many scholars have noted that voters in authoritarian regimes use their votes to communicate disapproval of the regime \citep{someone, whoever}. In Vietnam, this is likely to hold true if voters can recognize the central nominees from the ballot and identify them as representatives of the party, and consciously see voting against these nominees as casting a vote of no confidence against the central government. 
+
+Both these conditions are indeed conceivable. The first condition holds because central nominees rarely come from or have worked in the province they run in, and are thus strangers to voters. This contrasts them with local nominees, who most likely would have spent their entire careers in the province. Additionally, as part of the election process in Vietnam, neighborhood-level officials carry out an intense voter education campaign, which included visiting individual households to inform voters of the candidates' profile, as well as conveying ``suggestions'' about which candidates to vote for. This ensures that voters have plenty of cues, if not about which candidates are central nominees, then about which candidates are preferred by the government. 
+
+The second condition -- that voters see the election as a vote of confidence and cross out central nominees' names to express dissatisfaction towards the regime -- cannot be directly verified, but qualitative evidence suggests that many voters exhibit exactly this kind of behavior. In particular, some voters comment that they crossed out the names of whoever the neighborhood official suggests to them, whereas some others voted only for independent candidates. In this sense, door-to-door voter education actually emphasized the link between central nominees and the central government, thus providing voters with targets to direct their disapproval. Furthermore, interviews suggest that voters in Vietnam have high confidence that their ballots are kept secret, but also low confidence that they are tabulated correctly. These two beliefs are not contradictory: on the contrary, voters think their ballots are kept secretly \textit{precisely because} they believe the regime will not even look at them, choosing instead to make up results in the tabulation process. This means that voters see voting as an act of expression, and do so freely without fear of retribution when dissatisfied. In the end, however, voters may have underestimated their efficacy: where voters are more dissatisfied and cast more of such ``protest votes,'' central nominees may end up losing elections despite the biases in their favor.
+
+While it is plausible that local defeats reflect the geographic distribution of support for the CPV, it is no less conceivable that they are the result of weak performance by provincial bureaucrats. This explanation of local defeats emphasizes the capacity of provincial officials to influence election outcomes, as well as a potential conflict of interests between provincial and national leaders. In terms of capacity, it is true that the central party leadership delegates most of the election management power to provincial officials, including the freedom to nominate local candidates to run in their provinces and to allocate the candidates running in their province to electoral districts. Provincial leaders can therefore reduce competition for central nominees by stacking them up against weaker local candidates or by placing them in districts with more favorable candidate-to-seat ratios. This indeed is a common pratice \cite[provided evidence for the 2007 election, which I replicated successfully for the 2011 and 2016 elections]{MaleskySchuler2011}.  Additionally, through the infrastructure of the state, local officials can have significant power to directly influence the vote choice of the voters. The door-to-door voter education program carried out at every neighborhood is a example. If the majority of voters are passive and/or apathetic compliers -- instead of active ``protest voters'' as described above -- then provincial officials can definitely influence election results. Finally, provincial officials can also interfere with the tabulation of results such that the candidates they prefer receive favorable vote shares regardless. 
+
+Even though they have a high capacity to influence election outcomes, provincial officials also face a conflict of interests when doing so. On one hand, the central party leadership expects provincial officials to deliver election results that follow the planned structure and that give seats to all central nominees. On the other hand, the provinces also have vested interest in ensuring as many of their candidates as possible make it to the NA, since these local nominees are either provincial leaders themselves, or representatives of local interests such as businesses or ``societal'' organizations. Center-periphery divide arises because each elected central nominee takes one seat away from local candidates. Occasionally, strong central nominees can cost the province even more than one seat. In particular, when some candidates secure too many of the district' votes, the chance that some candidates may not make it pass the 50 percent threshold increases. When this happens, the district may not be able to elect as many candidates as there are seats alloted for them. As the result, even when the province genuinely wishes to promote the central nominees, doing so too enthusiastically may hurt its own interest. This means that local officials operate within the boundary of divergent preferences: while the center prefers provinces to devote as much resource as \textit{possible} to the promotion of central nominees, provincial leaders only seek to do so as much as \textit{necessary} to avoid hurting their own candidates. In the ideal scenario, this produces a result acceptable to the center, but when the local officials are too eager to support their own candidates, or too incompetent to exercise their power effectively, central nominees are at risk of losing to local candidates.
+
+\subsection{''Placate'' and ``Punish''}
+\label{sec:vs}
+Without further evidence, both explanations for local defeats seem equally plausible: provinces where central nominees lost could be those where the CPV enjoys lower popularity, or those where provincial leaders did a worse job in managing the elections. Objectively, the real cause for local defeats could either be weak local support or weak performance by provincial leaders, but it could also be a combination of them both. The incompatibility between the ``geographic distribution'' and ``local bureaucrats'' theory stems from the fact that it is not possible for the CPV to act on both interpretations at the same time. As previously argued, each theory of authoritarian elections posits a different intention for holding elections, which determines the interpretation the regime settles on to explain the defeats, and then post-election responses it carry out after. Seeing elections as generating multiple kinds of information means that the regime has to consider multiple interpretations of the defeat and contemplate multiple course of actions, with no way to correctly allocate priority between them.  In this way, the two explanations for local defeat, and hence the two theories of authoritarian elections, are incompatible not in an objective sense, but only due to the decision-making boundaries of the regime. In the case of Vietnam, this constraint is even more limiting, as each theory would predict a diametrically opposite post-election course of action.
+
+If the ``geographic distribution'' theory holds, the regime would see local defeats as indicators for provinces with faltering public support. The appropriate post-action response would be to  \textit{increase} central transfers to these provinces to \textit{placate} the public. In Vietnam, because most provinces spend more money than it can generate through taxes, central transfers are indispensable for public goods provision. Increasing central transfers thus enables increased spending on public goods and other popular programs, which is the most straightforward way to bolster support for the regime. In some ways, this outcome leads to partial fulfillment of ``bottom-up accountability,'' in which citizens hold government accountable for the provision of public goods through their votes, even in the authoritarian context.
+
+Note that increasing central transfers to provinces that suffered defeats is opposite to what \cite{Magaloni2006} and \cite{Blaydes2008} would expect an authoritarian regime seeking to learn about the geographic distribution of support to do. In both their narratives, the regime punishes, not compensates, provinces with lower ruling party vote share. The opposite prediction in Vietnam does not go against their theory, however. The reason is that Vietnam differs from both Mexico and Egypt in important aspects. Firstly, there is no organized opposition, and so a low vote share would only reflect dissatisfaction towards the CPV, not affinity to any particular opposition party. Secondly, despite the negative result, general support for (or at least ambivalence about) the party is still high, and very few people would count as dissidents. In this context, a ``punishment regime'' would hurt regime supporters more than it would punish dissidents. A  buying-off strategy, on the other hand, would soothes dissatisfaction without incurring resentment.\footnote{A possible concern is that this strategy would create perverse incentive for voters to vote against the regime in future elections. In Vietnam, however, the CPV could avoid this by not publicly draw connection between public finance policy and election results. Since elections happen only every 5-6 years, it will not be easy for voters to notice that voting down central nominees can increase central transfers to their provinces. Additionally, discussions about budget decisions are kept confidential from the public.} Indeed, this logic consistent with cross-national evidence that authoritarian regimes increase spending on public goods in response to weak electoral performance \citep{Miller2015}.
+
+If the ``local bureaucrats'' theory holds instead, the regime would commit to the opposite course of action and \textit{decrease} central transfers to provinces with local defeats. This is because the regime attributes the defeats to the incompetence or disloyalty of local party bureaucrats, and seeks to \textit{punish} them for their bad performance. Multiple options for punishment exist, but cutting central transfers is particularly effective since it reduces the officials' opportunity for corruption. In a tightly controlled authoritarian regime like Vietnam, corruption is often allowed as a means for the central government to compensate lower level officials \citep{Darden2008}. For these local officials, not only is graft an important source of income, but the ability to distribute rent further downwards is also the source of their political power. Cutting down central transfers reduces room for both, and thus is an effective method of punishment.
+
+A possible concern is that cutting transfers may reduce the resources available to local bureaucrats, making it harder for them to successfully deliver the next election. This makes the next election's results less informative, since defeats could now happen despite the province's best efforts. In the Vietnam case, however, this concern can be left to rest. Firstly, provinces in Vietnam receive dedicated funding for election management during election years. Secondly, provincial officials often get promoted or moved to a different province just before the election. Together, these two characteristics of the Vietnam means that public finance punishment in one election would not handicap or advantage individual bureaucrats in the next.
+
+The cycle of leadership overhaul in Vietnam also rules out withholding promotion as a method of punishment. In particular, the major overhaul of leadership positions in Vietnam only happens around election years, and always takes place shortly before the election.\footnote{More precisely, both leadership overhaul and legislative elections are scheduled to coincide with the National Party Congress, which happens every five years. During the Party Congress, the CPV's top leaders and delegates from all over the country meet to decide on the party's leadership for next five-year term. The Congress decides who would fill the top three leadership positions -- Prime Minister, President and General Secretary of the CPV -- and consider the promotion of lower level party members into higher positions within the party hierarchy. All provincial officials, as well as most central nominees for the legislative election, are then drawn from this pool of high-level party officials.} An official therefore will not experience the impact of promotion withholding until the next election, thus rendering the efficacy of this method as a punishment much lower. Additionally, demotion or firing is almost never an option except for very serious transgressions, because such punishment would shatter the image of infallibility that the regime tries to create and draw attention to disunity within the party leadership. Finally, promotion decision in Vietnam is already determined by other factors beyond election performance, such as FDI promotion \citep{JensenMalesky2015}. As a result, cutting opportunity for graft through lowering central transfers remains as the most plausible punishment for local defeats, conditioning on the regime’s believing that election results are primarily determined by party bureaucrats. This logic of punishing lower-level party cadres for failing to perform a target set by national leadership can be said as describing “top-down accountability.”
+
+It is also worth noting that evidence of punishment through cutting central transfers would conclusively rule out the ``geographic distribution'' theory. Indeed, had this theory held, reducing transfer, would render the regime even more unpopular through its negative impact on public goods, thus hurting it in the next election. In this sense, a regime that chooses to cut central transfers to provinces it suffered defeats in must be one that does not believe it is unpopular in these provinces, or that any unpopularity is going to be expressed in the ballot.
+
+
+Because the two theories of authoritarian elections predict contradictory public finance implications in Vietnam, it is straightforward to use public finance outcomes to test these theories. In particular, by finding out whether central transfers to a province increases or decreases following the defeat of central nominees in that province, it is possible to know whether elections in Vietnam function as a source of information on the geographic distribution of support or on individual party bureaucrats. The absence of an effect, on the other hand, would suggest elections serve neither of these two roles. Figure \ref{fig:Theory} lists out other main roles that authoritarian elections may play, which constitutes possible null hypotheses
+
+\begin{landscape}
+	\begin{figure}[h]
+		\begin{centering}
+				\includegraphics[height=\textwidth]{Hypotheses_Table.pdf}
+		\end{centering}
+		\caption{Table summarizing key theories of authoritarian elections and their prediction about how regime leaders perceive and respond to local defeats}
+		\label{fig:Theory}
+	\end{figure}
+\end{landscape}
+
+\section{Methods and Data}
+\label{sec:methods}
+
+This paper seeks to adjudicate between two ``information flow'' theories of authoritarian elections by looking at post-election changes in central transfers as the result of local defeats. At the core of this approach is a causal inference problem, in which the ``treatment'' is central nominee defeats and the outcome is central transfers to individual provinces. Because central transfers decisions are made by the top party leadership, this outcome is as direct a measurement as possible of the regime's intentions. For many reasons that will be discussed later, point estimates for this effect may not be completely unbiased, but their signs alone are informative enough: a positive causal effect would corroborate the ``geographic distribution'' theory, whereas a negative causal effect would corroborate the ``local bureaucrats'' theory.
+
+Estimating the true causal effect of local defeats is no simple task, primarily because local defeats are never assigned at random or even as-if random. Provinces that suffered local defeats may differ from those that did not in several ways. \cite{MaleskySchuler2011} show that these provinces differ in the level of political independence, as measured by dependence on central transfers and by distance from Hanoi. Since such difference could easily render central nominee defeats more or less likely, estimates based on simple differences in post-election central transfers between the provinces may suffer from severe omitted variable bias. As a result, causal identification must rely on appropriate choice of comparison groups and statistical adjustment,\footnote{The early econometric debate on the effect of job training programs highlight the importance of achieving comparability between treated and control units in non-experimental settings. Indeed, popular statistical approaches such as regression, matching, or weighting are all means to achieve this ends \citep{Ashenfelter1978, AshenfelterCard1985, Lalonde1986, DehejiaWahba1999}.}. This section lays out the approaches I take to maximize causal identification from available data.
+
+\subsection{Subsetting data to improve comparability}
+
+As a first step to ensure comparability between the treatment and control groups, I restrict my analysis to only provinces where central nominees did lose or had a realistic chance of losing.  Practically, this means comparing provinces that suffered local defeats with those where central nominees barely won. Candidates are said to barely win when the margin between them and the nearest local nominee loser is less than 10 percentage points, or when their vote shares is below 60 per cent, or 10 percentage points above the 50-percent cut-off.\footnote{This bandwidth was selected based on two main reasons. Firstly, 60 per cent is officially considered a low winning threshold by the CPV – winning candidates with vote shares below it are required to self-criticize. Secondly, the bandwidth leads to an equal number of candidates on both sides of the boundary. Changing the bandwidth to 55 or 65 does not significantly affect any result.} I also drop from the sample the capital Ha Noi and the second biggest city Ho Chi Minh City since they are different from other provinces in almost every relevant dimension. Repeating this procedure for each election years yields three sets of control units.\footnote{Pooled regressions, to be explained further in section \ref{sec:FE}, make use the union of these control sets} Many of the control provinces in one election actually experienced central nominee defeat in the following election, which validates the logic of this procedure.
+
+The rationale behind this restriction is similar to that behind matching, in the sense that dropping control observations with zero probability of being treated helps produce a comparison group more similar to the treated group. Because the match is done on the basis of the vote margin, which determines treatment, it achieves the same objective as matching on covariates without the need to fully observe every relevant covariates. In this way, the restriction is analogous to coarsened matching on an (observed) proxy of the (unobserved) propensity score. Like in matching, the procedure restricts our causal estimand of interest to the average effect on the treated (ATT).
+
+It is also possible to connect this approach to the Regression-Discontinuity (RD) design, in which causal identification leverages control units that are very close to being treated and treated units that are very close to being in control. However, unlike a canonical RD design, the threshold is not exogenously given, and the running variable is not fully observed, as vote shares for defeated central nominees are not made public. On the flip side, whereas the canonical RD design is restricted to estimating only the effect on units close to the threshold, in this paper I make the assumption that all local defeats are close, allowing the local average treatment effect on the treated (LATT) to be interpreted as ATT. This assumption is defensible given the biases in favor of central nominees, which would make heavy defeats for them unlikely.\footnote{Indeed, for the 2016 election when vote shares for defeated candidates are made available, all but one of the defeated central nominees had vote shares that fall within the 10-percentage point boundary. }
+
+\subsection{Linear Fixed Effects Regressions to control for time-invariant confounders}
+\label{sec:FE}
+
+After excluding non-comparable control units, I leverage the panel structure of the data and employ linear fixed effects regression to control for potential time-invariant confounders. I do so by fitting the following model:
+\begin{equation}
+\Delta Y_{it} = \lambda_i + \delta_t + \beta D_{it} + \gamma X_{it} + \epsilon_{it} \tag{FE}\label{eq:FE}
+\end{equation}
+where $\Delta Y_{it}$ is the log of the first difference in net-transfer for unit $i$ at time $t$ i.e. $\Delta Y_{it} = \log(Y_{it} - Y_{i, t-1})$, $D_{it}$ is treatment status which takes value of 1 if province $i$ loses a central nominee in the \textit{previous} year $t-1$, and $X_{it}$ is a vector of time-varying covariates. The first-differenced outcome helps purge  effects, whereas the ``lagged'' treatment indicator accounts for the fact that effect of each election on budget allocation will only begin to manifest in the year after the election. Here, $\lambda_i$ is the unit fixed effects, formally defined as $\lambda_i= h(\mathbf{U}_i)$, where $\mathbf{U}_i$ is a vector of all unobserved time-invariant confounders and $h(\cdot)$ is an arbitrary function. In this sense, the fixed effects capture all the time-invariant characteristics, both observed and unobserved, for each province, and helps zero out selection bias due to time-invariant confounders. The time fixed effects $\delta_t = g(\mathbf{V}_t)$ helps capture all unobserved time-varying common shocks $\mathbf{V}_t$. Given this setup and under a number of causal assumptions, is possible to identify $\beta$ as the average treatment effect \textit{among those units with variation in the treatment status}. In effect, however, this applies to almost every province that has ever experienced local defeats,\footnote{Except for Ha Noi, Ho Chi Minh City and Can Tho, but the first two are excluded from the analysis anyway} so $\beta$ is effectively equivalent to the ATT.
+
+I estimate six versions of the linear unit fixed effects regressions. In the first version, I fit three separate regressions corresponding to three election years. Each regression uses a separate panel consisting of provinces in the relevant election's matched dataset, and from every year up to and including the treatment year (the year after the election). Since the post-treatment period is only one year these regressions estimate the contemporaneous treatment effect in the treated year for each individual election. Because the data only goes back to 2006, this estimate for the 2006 regression is equivalent to what would be achieved under a before-and-after design. 
+
+In the second version, I also fit three separate regressions on three separate panels, but each panel now includes also the years up to the year before the next election. Additionally, I use an alternative version of the treatment indicator vector $\mathbf{D}$ in which treated provinces are scored 1 not only on the immediate post-election year, but also for the years after. This extends the post-treatment period to the entire period between one election and the next, allowing the regressions to estimate the persistent treatment effect for each election.
+
+The third version is one single regression run over a pooled panel of all the provinces in the three matched datasets and every available year. This regression estimates the contemporaneous treatment effect averaged across the three elections. The fourth version also uses a single pooled panel, but uses the treatment vector in the second version to estimate the persistent treatment effect, also averaged across the three elections.
+
+Finally, to relax the linearity assumption, the fifth and sixth versions of the linear fixed effects regressions mimic the third and fourth versions, but use instead the weighted fixed effects estimator in \cite{ImaiKim2012}. As argued by \cite{ImaiKim2012}, this weighted fixed effects estimator can be understood as a non-parametric matching procedure that allows for flexible conditioning of fixed effects and time-variant covariates.
+
+In all the models, I condition on three sets of control. The first set include measurements for the competitiveness of the race in each province, including number of candidates, number of seats, and number of central nominees. As argued by \cite{MaleskySchuler2011}, these variables reflect the tactics used by the CPV to support the election of central nominees. They are therefore determinants of treatment, and should always be conditioned on. To account for the non-linear effect of these variables -- a race with 5 seats is easier than both a race with 4 and a race with 6 seats, for instance -- I factor all these variables into dummies. Additionally, I also control for the log of lagged total revenue as a measure of the province's public finance health, which helps account for the possibility that poorer provinces may be easier for central nominees to run in and thus less likely to see defeats. Finally, as measures of treatment histories, I include indicators of treatment status in past elections and (for separate panels only) running counts of past defeats, so as to partially account for the possibility that past defeats may influence the likelihood of future defeats.
+
+\subsection{Adjustments to satisfy causal assumptions of Linear Fixed Effects Regression }
+
+\subsection{Linearity}
+For estimates of $\beta$ from the linear fixed effects regressions to be causally meaningful, a number of causal assumptions must be met. Often well-appreciated by applied researchers is the \textit{linearity} assumption, which is implicit in equation \ref{eq:FE}. This assumption, however, is not always necessary for causal identification, and can be relaxed through a non-linear weighted fixed effects framework as done above in the fifth and sixth versions of the regressions. 
+
+\subsection{Strict exogeneity conditional on unobserved effects/Parallel Trends}
+The equally well-appreciated assumption of \textit{strict exogeneity conditional on unobserved effects} i.e. $\E[\epsilon_{it} | \mathbf{D}_i, \mathbf{X}_i, \mathbf{U}_i, \mathbf{V}_t ] = 0$, on the other hand, cannot be easily relaxed.\footnote{Although only mean independence i.e. $\E[\epsilon_{it} | \mathbf{X}_i, \lambda_i, \delta_t] = 0$ is actually necessary for causal identification} It is convenient to note, however, that fixed effect regressions are a generalization of the difference-in-difference method, and that strict exogeneity conditional on ubobserved effect and the linear and additive functional form of \ref{eq:FE} implies a generalized version of the conditional parallel trends assumption:
+\begin{align*}
+	E[Y_{i,t+1}(0) - Y_{i,t}(0) | D_{i,t+1} = 1, D_{i,t} = 0, \mathbf{X}_i, \mathbf{U}_i, \mathbf{V}_t] \\
+	= E[Y_{i,t+1}(0) - Y_{i,t}(0) |  D_{i,t+1} = D_{i,t} = 0, \mathbf{X}_i, \mathbf{U}_i, \mathbf{V}_t]
+\end{align*} 
+As a result, it is possible to improve the plausibility of strict exogeneity by employing methods that improve the plausibility of parallel trends. Conditioning on covariates, especially covariates that influence treatment status, is one approach. Another is to use an analogue of triple differences (or ``difference in differences in differences'') by estimating a placebo difference-in-difference between the same units but when no units can be exposed to treatment, and consider only the effect on top of this difference-in-difference. Under common parallel trends, the placebo difference-in-difference would be zero, but when parallel trends are violated, it captures each unit's own trend, and so triple differences may help eliminate difference in trend. I estimate triple differences through the use of first difference or change score $\Delta Y_{it}$ as the outcome in equation \ref{eq:FE} and the inclusion of non-election years to serve as placebo periods when no units can plausible lose elections.
+
+\subsection{No dynamic causality}
+Finally, \citep{ImaiKim2012} shows that causal identification using linear fixed effects regressions also depends on the assumption of \textit{no dynamic causality}. Dynamic causal relationship occurs in a time series when past treatments can affect current outcomes, when past outcomes can affect current treatment, or when past outcomes can affect current outcomes. Because central transfers may have long lasting impact and because provinces may learn from past elections, it is very likely that central transfers and election results exhibit dynamic causal relationship, thus violating this assumption.
+
+The problem with linear fixed effect regressions is that it is not easy to adjust for dynamic causal relationships and time-invariant confounders $\mathbf{U}_i$ concurrently. Indeed, non-parametric adjustment for $\mathbf{U}_i$ requires identification to be done within the same unit across different time periods, but adjustment for dynamic causal relationships requires comparisons across units within the same time period, since no two observations within the same unit can share the same treatment history. In this paper, I employ the parametric approach of controlling for past treatments to partially account for dynamic causality, but absent a concrete understanding of the exact dynamic causal relationships even these controls may be insufficient. 
+
+Another way to account for dynamic causality is to use the synthetic control method \citep{Abadie2010, Abadie2015}. The idea behind this approach is to use pre-treatment values of outcomes $Y_{i,t-1},Y_{i, t-2},\dots$ and time-varying covariates $X_{i,t-1},X_{i, t-2},\dots$ to generate a ``synthetic control'' in the form of a weighted average of control units that closely match with each treated unit in terms of these covariates. The weights for the average is obtained by minimizing
+$$
+	\sum_{m=1}^{k}v_m(Z_{im} - Z_{i*m}W)^2
+$$
+where $Z_{im}$ is the value of the $m$-th (out of $k$) pre-treatment characteristics of the treated unit, and $Z_{i*m}$ is a matrix containing the values of the same characteristics for all the control units, and $v_m$ is the weight reflecting the importance of each characteristic when measuring the discrepancy between unit $i$ and the synthetic control to be generated. Here I allow $\mathbf{Z}$ to contain all the pre-treatment covariates as in the linear fixed effects regressions, as well as pretreatment values of the outcome and a history of past treatment assignment. Following \citep{Abadie2010, Abadie2015}, I use only observations from the control set pertaining to the treated unit's treatment year to ensure that the generated synthetic control is comparable and generalizable.
+
+If present outcomes are determined by these pre-treatment characteristics, the synthetic control is assumed to have potential outcomes at present identical to those of the treated unit it is matched with. Indeed, the outcome variable for the synthetic control should closely follows that of the treated unit it is matched with. This implies similarity in terms of both observed and unobserved characteristics, which lends confidence to the equal potential outcomes assumption. Then, for post-treatment period $t$, individual treatment effect on each treated unit $i$ can be estimated by taking the difference between the outcome of each treated unit and the outcome for the synthetic control:
+$$
+	\tau_i = Y_{it} - \sum_{j:D_{jt}=0}w_j^*Y_{jt}
+$$
+where $w_j*$ is the weight corresponding to control unit $j$. 
+
+. The ATT can then be calculated by averaging these effects:
+\begin{align*}
+	\tau_{t, ATT} = \frac{\sum_{i: D_{it}=1} \tau_i}{\sum_{i=1}^{N}D_{it}}  && i = 1,\dots,N; t \in \{2006, 2011, 2017\}
+\end{align*}
+
+Because the synthetic control match the entire treatment and outcome history of the treated unit, it is identical in regard to any effect of dynamic causality, allowing causal estimates to be unaffected by dynamic causal relationship. However, because it can only rely on observable characteristics, the synthetic control method is still vulnerable to unobserved time-invariant confounders. As a result, it does not completely improve upon linear fixed effects regressions. More specifically, linear fixed effects regressions and synthetic control represents two sides of an unavoidable trade-off facing non-experimental causal inference. Either the researcher can control for ubobserved time-invariant confounders with fixed effects and makes a hard-to-defend assumption about the absence of dynamic causal relationship, or she adjusts for dynamic causality and assumes away time-invariant confounders. In the context of this paper, neither position is desirable. In light of this trade-off, I implement the synthetic control method not to replace linear fixed effects regressions, but simply as a robustness check to gauge the sensitivity of the results to causal assumptions violation.
+
+\subsection{Randomization Inference}
+The final methodological component of this paper's analysis is the use of Randomization Inference (RI) in drawing inference and testing the main hypotheses. RI is particularly suited for this paper because the sample size is very small -- the matched dataset for 2016 contains as few as 12 provinces -- so standard large-sample approximations may be imprecise. Normality assumptions also do not hold when the sample is too small for the Central Limit Theorem to take effect. At the same time, however, the sample is small because there are only so many provinces in Vietnam that have suffered local defeats of central nominees. Indeed, with the justifiable exceptions of Ha Noi and Ho Chi Minh City, the treated group in this sample contains every province that has suffered defeats. It is thus the \textit{population}, not a \textit{sample}. And because it is the population, exact finite-sample inference such as RI turns out to be the right approach. 
+
+%Randomization inference generates the null distribution by randomly drawing a large number of permutations of the treatment vector, and then calculating hypothetical treatment effects under each of the drawn vector. Under the sharp null hypothesis, the causal effect is exactly zero for every single unit, and so the treatment effects generated under any two treatment vectors would only differ by chance. This hypothesis would thus be rejected if the actual observed treatment vector produces an outcome very extreme compare to the null distribution.
+
+In this paper, I applied randomization inference for all my estimates. For linear unit fixed effect regressions, I follow the procedures by \cite{BowersPanagopoulous2011}: I first purge the outcome variable of covariate-based noise by regressing the outcome variable on covariates, then regress the residuals from the above model on permutations of the treatment vector to generate the null distribution. For synthetic control estimates, I simply permute the treatment vector, then repeat the synthetic control procedure on each of the new treated units. In both cases, I permute the treatment vectors in election-year blocks to preserve the number of treated and control units for each election. 
+
+\section{Results and Discussion}
+\label{sec:results}
+
+\subsection{Main results}
+
+Figure \ref{fig:FE} shows in red the estimated treatment effects for each of the linear unit fixed effect regressions in section \ref{sec:FE}, overlaid against the randomization distribution obtained by randomization inference. With only one exception, every estimate is positive, and among these positive estimates all but one  lie far enough to the tail of the distribution for me to reject the sharp null hypothesis. 
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{figure/SYP_FE.png}
+	\captionsetup{singlelinecheck=off}
+	\caption[Estimated treatment effects for linear unit fixed effects models]{Estimated treatment effects (red) and randomization distribution for linear unit fixed effects models.}
+		\label{fig:FE}
+	\end{figure}
+
+Among the results, the FE and WFE pooled panel estimates carry the most weight, since they make full use of the panel structure of the data. These estimates suggest a positive and statistically significant treatment effect. In other words, they show that, on average, provinces that suffered local defeats received increases in central transfers. This evidence is supportive of the theory that the CPV uses election to gather information on the geographic distribution of regime support, and interprets local defeats to be a symptom of declining support that necessitates placation.
+
+Estimates for the contemporaneous and for persistent effects are very close to each other (with the exception of those for the 2007 election, which uses only one pre-treatment period), suggesting that the increase in central transfers is quite stable. This pattern is also consistent with the ``geographic distribution'' theory. Indeed, if the regime uses elections to know about the level of support in individual provinces, the only way for it to know if the buying off strategy works is to wait until the next election; until then the regime must maintain a steady flow of transfers to the province.  If instead the regime uses elections to learn about individual bureaucrats' performance, the information from elections would soon be diluted by other sources of info that the regime has, including future interactions between provincial leaders and central leadership. The bureaucrats would also have opportunity to redeem themselves. This would result in a decreasing need for the regime to maintain its initial policy, which will show up in the analysis as a smaller persistent effect compared to the contemporaneous effect.
+
+On the other hand, estimates using separate panels vary greatly from one panel to another. This suggests that the treatment effect may vary across elections, with local defeats in later elections inviting much more intense response from the CPV. There is concern that the pooled estimates may be driven by the very large estimates for 2016, but it remains true that estimates for 2007 and 2011 are also mostly positive.
+
+\subsection{Robustness checks and Placebo tests}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{figure/SYP_FE_PLACE.png}
+	\captionsetup{singlelinecheck=off}
+	\caption[Estimated effects of future treatment]{Estimated treatment effect (red) and randomization distribution for linear fixed effect models using local defeats in the next election as treatment.}
+	\label{fig:Place}
+\end{figure}
+
+I conduct several placebo tests to verify the validity of this paper's research design. Figure \ref{fig:Place} shows one such tests, done by analyzing the effect of the \text{future} election on present. In the absence of dynamic causality, the few significant results in Figure \ref{fig:Place} would imply serious flaws in the design, since it is not possible for a treatment in the future to impact outcomes in the present. However, in the context of this paper, they are likely indicators of dynamic causal relationships; most probably they show that present outcomes may influence future treatments, or that present treatments may influence future treatments through present outcomes. Another placebo test looking at the effect of present treatment on past outcomes in non-election years (not shown) show similar results. In both tests, the problem seems to be more serious for estimates of contemporaneous effects than they are for persistent effects.
+
+The apparent presence of dynamic causality necessitates the synthetic control method. Figure \ref{fig:Synth} shows the estimated treatment effects for the synthetic control estimate for the 2016 election, along with two placebo tests that look at difference in outcomes one and two year prior to treatment -- as if the election took place in 2015 and 2014 instead. The effect of the true treatment is positive and lies far enough to the tail of the randomization distribution, which is consistent with results from the linear fixed effects regressions. Even more assuring, the placebo tests show estimates that are much closer to zero and lies further inside the randomization distribution, suggesting that the synthetic control method does indeed mitigate the problem of dynamic causality.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{figure/SYP_Synth.png}
+	\captionsetup{singlelinecheck=off}
+	\caption[Estimated treatment effects for Synthetic Control]{Estimated treatment effect (red) and randomization distribution for synthetic control estimate for the 2016 election.}
+	\label{fig:Synth}
+\end{figure}
+
+It is necessary to point out that, for the 2016 election alone,\footnote{This is the only election for which the pre-treatment period is long enough.} the point estimate using the synthetic control method differs from both the equivalent fixed effects estimates. The difference in magnitude is roughly 12 points on the log scale, roughly .6 of the fixed effects estimates. This discrepancy highlights potential violation of the causal assumptions, either on the part of the fixed effects model or the synthetic control method, a problem I noted earlier. Considering, however, that both estimates are strongly positive and significant, it is unlikely that violation of either causal assumptions would invalidate the main conclusion of this analysis.
+
+\subsection{Mechanism}
+
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{figure/SYP_FE_MECH.png}
+	\captionsetup{singlelinecheck=off}
+	\caption[Estimated effects of future treatment]{Estimated treatment effect (red) and randomization distribution for linear fixed effect models using local defeats in the next election as treatment.}
+	\label{fig:Mech}
+\end{figure}
+
+The main results from the linear fixed effects regressions have found that the CPV increases central transfers to provinces that witnessed local defeats of central nominees. According to the ``geographic distribution'' theory of authoritarian elections, such increased transfers would be use towards public projects that would placate the local publics, as opposed to being used as a source of graft. Figure \ref{fig:Mech} tests exactly this for the subset of regressions for which data is available.\footnote{Province-level budget data is not available for 2016, and has high incidence of missingness for earlier years} It shows the treatment effects of local defeats on two components of province-level expenditures. The first row shows the treatment effect on investment in developmental projects, and the second row shows the treatment effect on administrative expenditures. Although this analysis is marred by lack of available data and thus far from conclusive, it shows some suggestive evidence that local defeats lead to increase in investment in developmental projects and zero to negative increase in administrative expenditures, which is consistent with the ``geographic distribution'' theory.
+
+
+\subsection{Alternative Explanations}
+
+\subsubsection{Both theories may hold}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{figure/SYP_RI_LEAD.png}
+	\caption[Estimated effects of on promotion]{Estimated treatment effect (red) of local defeats on promotion prospects and randomization distribution for comparison-of-means estimates }
+	\label{fig:Lead}
+\end{figure}
+
+Even with the evidence that local defeats lead to increased transfers, it is still possible to defend the ``local bureaucrats'' theory by arguing that the regime sees election defeats as providing \textit{both} type of information, but uses different response tools to act on each information. In section \ref{sec:vs} I have argued that this is not likely, because the regime does not have many other options to respond options other than through the budget channel. Even the most straightforward option -- directly sanctioning bureaucrats by firing, demoting, or delaying promotion -- is not appropriate given the leadership shuffling schedule and the need of the party to project an image of unity. I verify this argument with data on career of provincial bureaucrats by \cite{MaleskyPhan}. The data shows that, between 2005 and 2015, with only extremely rare exceptions, there have been virtually no firing or demotion happened to provincial leaders. The evidence on delayed promotion is similarly thin. Figure \ref{fig:Lead} shows that the impact of local defeats on the promotion of provincial leaders between the year after one election and before the next, as estimated by a simple comparison of means between treated and control units within the subset sample,\footnote{Since the data is collapsed into cross-sections rather than panels, there are not sufficient degrees of freedom to control for covariates.} is close to zero and lies far inside the randomization distribution. The same results hold for both the number of promotions in the period, as well as for whether \text{any} promotion occurred. This implies that officials in provinces that suffered local defeats do not suffer delayed promotion when compared to their peers in other provinces.
+
+\subsubsection{Both theories may be wrong}
+
+The evidence so far may also be consistent with a theory that rejects both the ``geographic distribution'' and ``local bureaucrats'' theories such as that by \cite{Geddes2005}, which posits that authoritarian regimes hold elections only so that it could secure and boast about landslide wins. As implied by this theory, the central government increase central transfers to provinces with defeats only ensure it can manage better the next election. If this explanation is true, we should also expect other forms of electoral manipulation at the highest levels. Because the heavy-handed manipulations needed to ensure such landslide wins may obfuscate the signal from the election results, this explanation, if true, would go against all ``information flow'' theories in general.  To test this conjecture, I use data on turnout for the 2011 election and perform a digit test based on Benford's Law, and find no clear evidence of manipulation.\footnote{I am still working on graphics for this part} Although the absence of implicating evidence does not completely exonerate the CPV, it suggests that either the CPV does not manipulate election results, or that all the manipulation that occurred only did so at lower levels, perhaps without knowledge of the highest leaders. In either case, the evidence contradicts with \cite{Geddes2005}'s theory: the CPV leadership does not seem to focus only on winning elections.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this paper, I analyze changes in central transfers between the national government and provinces in Vietnam following three legislative elections in 2007, 2011, and 2016. Using various estimation methods to achieve causal identification, I found significant and robust evidence that the defeat of one or more central nominee(s) in a province lead to an increase in central transfers to that province. This pattern of response to local defeats is consistent with the ``geographic distribution'' theory of authoritarian election, according to which authoritarian regimes use elections to gather information about subnational variation in support for the regime, and thus corroborates this theory.
+
+This paper, however, is not without shortcomings. To begin with, I make no pretense that its results and conclusions are generalizable to every other authoritarian regimes. What I have shown, however, is a process to identify among the many theories of authoritarian elections ones that are most applicable to each individual context. The findings of this paper may be specific to its scope conditions -- strong institutionalized single-party regimes such as Vietnam -- but the framework can be generalizable to other contexts, as long as backward induction can identify observable regime responses that are uniquely predicted by one theory but not another. 
+
+In terms of empirics, as the analysis in this paper shows, causal inference using non-experimental is no simple task. Even with careful measures in place, this paper still needs to rely on significant but unsubstantiated causal assumptions which have been found to be violated. However, the various adjustments and robustness checks do lend some confidence, if not to the point estimates, then to the general directions of the findings.
+
+Ultimately, given the modest goals it seeks to achieve, this paper does make some contribution to the larger literature. It contributes to the ``information flow'' literature of authoritarian institutions by attempting to specify the exact kind of information that authoritarian regimes collect through elections. In doing so, I evaluate two theories with potentially contradictory implications, and develop a procedure to test their validity as applied to a specific context. Throughout this paper, I conceive of authoritarian leaders as imperfect optimizers who consciously seek information to update their beliefs and modify behaviors accordingly, but are biased to interpret the information they receive in certain ways. This perspective could contribute to the broader literature on authoritarianism, which has mostly portrayed regime leaders as rational actors \citep[e.g.][]{AR2001}, by bridging it with the recent literature on political behavior which has begun to highlight the imperfect psychology of individual citizens \citep[e.g.][]{AchenBartels2016}
+
+\bibliography{Literature/library_syp}
+
+\newpage
+\appendix
+
+\section{Linear fixed effects regression using first-differenced outcomes as triple-differences}
+
+Let $T_{it}$ be an indicator of treatment status in every period such that $T_{it} = 1$ for treated provinces and for every year, $E_{it}$ be indicator for sample, such that $E_{it} = 1 $ for unit-year that may be exposed to treatment and $E_{it} = 0$ for placebo units, $G_{it}$ be indicator for post-treatment periods,, the normal difference-in-difference is given by:
+	\begin{align*}
+		& \l[\E[Y_{i,t} | T_{it}=1, G_{it}=1, E_{it}=1] - \E[Y_{i,t} | T_{it}=1, G_{it}=0, E_{it}=1]\r] \\
+		&\phantom{=} - \l[\E[Y_{i,t} | T_{it}=0, G_{it}=1, E_{it}=1] - \E[Y_{i,t} | T_{it}=0, G_{it}=0, E_{it}=1]\r]
+	\end{align*}
+The placebo difference-in-difference is given by:
+	\begin{align*}
+		&\l[\E[Y_{i,t} | T_{it}=1, G_{it}=1, E_{it}=0] - \E[Y_{i,t-1} | T_{it}=1, G_{it}=1, E_{it}=0]\r] \\
+		&\phantom{=} - \l[\E[Y_{i,t} | T_{it}=0, G_{it}=0, E_{it}=0] - \E[Y_{i,t-1} | T_{it}=0, G_{it}=0, E_{it}=0]\r]
+	\end{align*}
+When estimated separately, each difference-in-difference can be estimated using fixed effects regression with the outcomes $Y_{i,t}$ in the left hand side.
+
+Now assuming that treatment takes place in year $t$, so the normal difference-in-difference becomes:
+	\begin{align*}
+		& \l[\E[Y_{i,t} | T_{it}=1, E_{it}=1] - \E[Y_{i,t-1} | T_{it}=1, E_{it}=1]\r] \\
+		&\phantom{=} - \l[\E[Y_{i,t} | T_{it}=0, E_{it}=1] - \E[Y_{i,t-1} | T_{it}=0, E_{it}=1]\r]
+	\end{align*}
+The placebo difference-in-difference is then 
+	\begin{align*}
+		& \l[\E[Y_{i,t'} | T_{it'}=1, E_{it'}=0] - \E[Y_{i,t'-1} | T_{it'}=1, E_{it'}=0]\r] \\
+		&\phantom{=} - \l[\E[Y_{i,t'} | T_{it'}=0, E_{it'}=0] - \E[Y_{i,t'-1} | T_{it'}=0, E_{it'}=0]\r]
+	\end{align*}
+with $t'$ being any year outside of the election cycle.
+
+The difference-in-differences-in-differences will then be:
+	\begin{align*}
+		&\phantom{=}\bigg[\l[\E[Y_{i,t} | T_{it}=1, E_{it}=1] - \E[Y_{i,t-1} | T_{it}=1, E_{it}=1]\r] \\
+		&\phantom{=} - \l[\E[Y_{i,t} | T_{it}=0, E_{it}=1] - \E[Y_{i,t-1} | T_{it}=0, E_{it}=1]\r]\bigg] \\
+		&- \bigg[\l[\E[Y_{i,t'} | T_{it'}=1, E_{it'}=0] - \E[Y_{i,t'-1} | T_{it'}=1, E_{it'}=0]\r] \\
+		&\phantom{=} - \l[\E[Y_{i,t'} | T_{it'}=0, E_{it'}=0] - \E[Y_{i,t'-1} | T_{it'}=0, E_{it}=0]\r]\bigg] \\
+		& = \l[\E[\Delta Y_{i,t} | T_{it}=1, E_{it}=1] - \E[\Delta Y_{i,t} | T_{it}=0, E_{it}=1]\r] \\
+		&\phantom{=} - \l[\E[\Delta Y_{i,t'} | T_{it'}=1, E_{it'}=0] - \E[\Delta Y_{i,t'} | T_{it'}=0, E_{it'}=0]\r]
+	\end{align*}	
+which is a difference-in-differences using first difference and change scores.
+
+\end{document}

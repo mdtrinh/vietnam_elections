@@ -1,0 +1,191 @@
+\begin{figure}[H]
+
+\centering
+\begin{tikzpicture}
+[node distance = 1cm, auto,font=\footnotesize,
+% STYLES
+every node/.style={node distance=3cm},
+% The title style is used to draw the main title
+title/.style={rectangle, draw, fill=black!10, inner sep=5pt, text width=4cm, text badly centered, minimum height=1.2cm, font=\bfseries\footnotesize\sffamily},
+% The subtitle style is used to draw the title below main title
+subtitle/.style={rectangle, inner sep= 5pt, minimum height=.7cm, node distance=0.25cm, text width=3.5cm, text badly centered, font=\scriptsize\sffamily},
+% The theory style is used to draw nodes for each theory
+theory/.style={rectangle, rounded corners, draw, minimum height=1.4cm, inner sep= 5pt, text width=3.5cm, node distance=0.25cm, text badly centered, font=\scriptsize\sffamily}]
+
+%%%% Top nodes %%%%
+\node [title] (interpretation) {Interpretation\\of localized defeats};
+\node [title, left=1cm of interpretation] (intention) {Intention\\for elections};
+\node [title, right=1cm of interpretation] (response) {Response\\to localized defeats};
+
+%% Top nodes subtitle
+
+% Intention
+%\node [subtitle, below=0.2cm of intention] (sub-intention) {for\\
+%	authoritarian elections};
+
+% Interpretation
+%\node [subtitle, below=0.2cm of interpretation] (sub-interpretation) {of\\
+%	localized defeats};
+
+% Response
+%\node [subtitle, below=0.2cm of response] (sub-response) {to\\
+%	localized defeats};
+
+%%%% Theory nodes %%%%
+% B1
+\node [theory, below=0.5cm of intention] (B1-intention) {Collect info about general regime popularity};
+\node [subtitle, below=0.1cm of B1-intention] (B1-sub-intention) {\citep{Miller2015}};
+
+\node [theory, below=0.5cm of interpretation] (B1-interpretation) {Regime is generally unpopular, nation-wide};
+\node [subtitle, below=0.1cm of B1-interpretation] (B1-sub-interpretation) {};
+
+\node [theory, below=0.5cm of response] (B1-response) {Placate the public/suppress opposition \textsl{nationally}};
+\node [subtitle, below=0.1cm of B1-response] (B1-sub-response) {};
+
+% B2
+\node [theory, below=0.8cm of B1-intention] (B2-intention) {Collect info about general opposition strength};
+\node [subtitle, below=0.1cm of B2-intention] (B2-sub-intention) {\citep{Geddes2005}};
+
+\node [theory, below=0.8cm of B1-interpretation] (B2-interpretation) {Opposition is generally strong};
+\node [subtitle, below=0.1cm of B2-interpretation] (B2-sub-interpretation) {(not relevant in Vietnam)};
+
+\node [theory, below=0.8cm of B1-response] (B2-response) {Suppress opposition \textsl{nationally}};
+\node [subtitle, below=0.1cm of B2-response] (B2-sub-response) {};
+
+% B3
+\node [theory, below=0.8cm of B2-intention, ultra thick] (B3-intention) {Collect info about geographic distribution of regime support};
+\node [subtitle, below=0.1cm of B3-intention] (B3-sub-intention) {\citep{Magaloni2006,Blaydes2008}};
+
+\node [theory, below=0.8cm of B2-interpretation, ultra thick] (B3-interpretation) {Regime is unpopular \textsl{in some constituencies}};
+\node [subtitle, below=0.1cm of B3-interpretation] (B3-sub-interpretation) {};
+
+\node [theory, below=0.8cm of B2-response, ultra thick] (B3-response) {Placate the public/suppress opposition \textsl{in constituencies with defeats}};
+\node [subtitle, below=0.1cm of B3-response] (B3-sub-response) {};
+
+% B4
+\node [theory, below=1.1cm of B3-intention, ultra thick] (B4-intention) {Collect info about competence or loyalty of localized bureaucrats};
+\node [subtitle, below=0.1cm of B4-intention] (B4-sub-intention) {\citep{Magaloni2006,Blaydes2008}};
+
+\node [theory, below=1.1cm of B3-interpretation, ultra thick] (B4-interpretation) {Bureaucrats \textsl{in some constituencies} are incompetent or disloyal};
+\node [subtitle, below=0.1cm of B4-interpretation] (B4-sub-interpretation) {};
+
+\node [theory, below=1.1cm of B3-response, ultra thick] (B4-response) {Punish bureaucrats \textsl{in constituencies with defeats}};
+\node [subtitle, below=0.1cm of B4-response] (B4-sub-response) {};
+
+% A1
+\node [theory, below=1.1cm of B4-intention] (A1-intention) {Platform for opposition to compete non-violently};
+\node [subtitle, below=0.1cm of A1-intention] (A1-sub-intention) {\citep{AR2005,Cox2009}};
+
+\node [theory, below=1.1cm of B4-interpretation] (A1-interpretation) {Opposition competing just as intended};
+\node [subtitle, below=0.1cm of A1-interpretation] (A1-sub-interpretation) {};
+
+\node [theory, below=1.1cm of B4-response] (A1-response) {No action needed};
+\node [subtitle, below=0.1cm of A1-response] (A1-sub-response) {};
+
+% A2
+\node [theory, below=1.1cm of A1-intention] (A2-intention) {Platform for elites to contest over patronage};
+\node [subtitle, below=0.1cm of A2-intention] (A2-sub-intention) {\citep{LustOkar2006}};
+
+\node [theory, below=1.1cm of A1-interpretation] (A2-interpretation) {Elites contesting just as intended};
+\node [subtitle, below=0.1cm of A2-interpretation] (A2-sub-interpretation) {};
+
+\node [theory, below=1.1cm of A1-response] (A2-response) {No action needed};
+\node [subtitle, below=0.1cm of A2-response] (A2-sub-response) {};
+
+% C1
+\node [theory, below=0.8cm of A2-intention] (C1-intention) {Divide and/or co-opt opposition into regime};
+\node [subtitle, below=0.1cm of C1-intention] (C1-sub-intention) {\citep{LustOkar2005}};
+
+\node [theory, below=0.8cm of A2-interpretation] (C1-interpretation) {Opposition candidates \textsl{in some constituencies} are strong};
+\node [subtitle, below=0.1cm of C1-interpretation] (C1-sub-interpretation) {};
+
+\node [theory, below=0.8cm of A2-response] (C1-response) {Co-opt winners \textsl{in constituencies with defeats}};
+\node [subtitle, below=0.1cm of C1-response] (C1-sub-response) {};
+
+% D1
+\node [theory, below=0.8cm of C1-intention] (D1-intention) {Show of strength};
+\node [subtitle, below=0.1cm of D1-intention] (D1-sub-intention) {\citep{Geddes2005,Magaloni2006,Simpser2013}};
+
+\node [theory, below=0.8cm of C1-interpretation] (D1-interpretation) {Regime is exposed as ``weak''};
+\node [subtitle, below=0.1cm of D1-interpretation] (D1-sub-interpretation) {};
+
+\node [theory, below=0.8cm of C1-response] (D1-response) {Alternative ``show of strength'' policies};
+\node [subtitle, below=0.1cm of D1-response] (D1-sub-response) {};
+
+%%%% Side theory category nodes %%%%
+
+% B
+\node [subtitle, left=0.6cm of B1-intention.north west, rotate=90, text width = 9cm] (information) {Information Goals};
+
+\draw [decorate,decoration=brace, line width=1pt] 
+([xshift=-0.2cm, yshift=0.1cm]B4-sub-intention.south west) -- ([xshift=-0.2cm, yshift=-0.1cm]B1-intention.north west);
+
+% A, C and D together
+\node [subtitle, left=0.6cm of A1-intention.north west, rotate=90, text width = 9cm] (non-information) {Non-Information Goals};
+
+\draw [decorate,decoration=brace, line width=1pt] 
+([xshift=-0.2cm, yshift=0.1cm]D1-sub-intention.south west) -- ([xshift=-0.2cm, yshift=-0.1cm]A1-intention.north west);
+
+%% A
+%\node [subtitle, left=0.6cm of A1-intention.north west, rotate=90, text width = 4.4cm] (power-sharing) {``Platform''/``Power-sharing''};
+%
+%\draw [decorate,decoration=brace, line width=1pt] 
+%([xshift=-0.2cm, yshift=0.1cm]A2-sub-intention.south west) -- ([xshift=-0.2cm, yshift=-0.1cm]A1-intention.north west);
+%
+%% C
+%\node [subtitle, left=0.6cm of C1-intention.north west, rotate=90, text width = 1.9cm] (co-optation) {``Co-optation''};
+%
+%\draw [decorate,decoration=brace, line width=1pt] 
+%([xshift=-0.2cm, yshift=0.1cm]C1-sub-intention.south west) -- ([xshift=-0.2cm, yshift=-0.1cm]C1-intention.north west);
+%
+%% D
+%\node [subtitle, left=0.6cm of D1-intention.north west, rotate=90, text width = 2cm] (show-of-strength) {``Demonstration''};
+%
+%\draw [decorate,decoration=brace, line width=1pt] 
+%([xshift=-0.2cm, yshift=0.1cm]D1-sub-intention.south west) -- ([xshift=-0.2cm, yshift=-0.1cm]D1-intention.north west);
+
+
+%%%%%%%%%%%%%%%%
+
+% Draw the links between forces
+\path[->,ultra thick, shorten >=.1cm, shorten <=.1cm] 
+(intention) edge (interpretation)
+(interpretation) edge (response);
+
+\path[->, shorten >=.2cm, shorten <=.2cm] 
+(A1-intention) edge (A1-interpretation)
+(A1-interpretation) edge (A1-response);
+
+\path[->, shorten >=.2cm, shorten <=.2cm] 
+(A2-intention) edge (A2-interpretation)
+(A2-interpretation) edge (A2-response);
+
+\path[->, shorten >=.2cm, shorten <=.2cm] 
+(B1-intention) edge (B1-interpretation)
+(B1-interpretation) edge (B1-response);
+
+\path[->, shorten >=.2cm, shorten <=.2cm] 
+(B2-intention) edge (B2-interpretation)
+(B2-interpretation) edge (B2-response);
+
+\path[->, shorten >=.2cm, shorten <=.2cm] 
+(B3-intention) edge (B3-interpretation)
+(B3-interpretation) edge (B3-response);
+
+\path[->, shorten >=.2cm, shorten <=.2cm] 
+(B4-intention) edge (B4-interpretation)
+(B4-interpretation) edge (B4-response);
+
+\path[->, shorten >=.2cm, shorten <=.2cm] 
+(C1-intention) edge (C1-interpretation)
+(C1-interpretation) edge (C1-response);
+
+\path[->, shorten >=.2cm, shorten <=.2cm] 
+(D1-intention) edge (D1-interpretation)
+(D1-interpretation) edge (D1-response);
+
+
+\end{tikzpicture} 
+\caption{Key theories of authoritarian elections and their prediction about how regime leaders perceive and respond to localized defeats. Two theories most relevant to the Vietnam case are highlighted with bold borders}
+\label{fig:Theory}
+\end{figure}
