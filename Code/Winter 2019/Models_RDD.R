@@ -2,7 +2,7 @@ setwd("/media/minh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working 
 #setwd("D:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("C:/Users/Nga Nguy/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 
-source("../../Code/Spring 2018/Merge_All.R")
+source("../../Code/Winter 2019/Merge_All.R")
 
 ##### RDD-inspired approach #1: Select a window in which assignment of defeat at the candidate-level
 ##### is as-good-as-random (see Cataneo Frandsen Titiunik 2015). Then for candidates who fall within this window,
@@ -81,6 +81,7 @@ candidates2016 %>% filter(centralnominated == 1 & (margin > -10.5 & margin < 7.7
 candidates2016 %>% filter(centralnominated == 1 & (margin > -11.5 & margin < 7.25)) %>% group_by(defeat) %>% summarise(n = n())
 candidates2016 %>% filter(centralnominated == 1 & (margin > -12.0 & margin < 5.75)) %>% group_by(defeat) %>% summarise(n = n())
 
+
 ## Code close defeat and close win at individual levels based on smallest windows
 
 # remove Hanoi and Ho Chi Minh city
@@ -149,7 +150,7 @@ treatment.2016.observed <- treatment_generate(candidates2016rdd)
 
 dat_rdd <- plan %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(year > 2004) %>% # number of provinces were different before 2004
+  filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
   mutate(defeat.2016 = treatment.2016.observed)
 
 # one year effect

@@ -192,8 +192,8 @@ ri_plot <- function(x, title = NULL, xlab = NULL, ylab=NULL, scale=F, xmin, xmax
                            axis.title.y=element_blank(),legend.position="none")
   }
   
-  ggplot2::ggplot(beta.null, aes(x = beta), ...) +
-    ggplot2::stat_bin(aes(y=..count../sum(..count..)), fill = "grey") +
+  ggplot2::ggplot(beta.null, aes(x = beta)) +
+    ggplot2::stat_bin(aes(y=..count../sum(..count..)), fill = "grey", ...) +
     ggplot2::geom_vline(aes(xintercept = beta.actual), colour="red") +
     ggplot2::geom_vline(aes(xintercept = 0), linetype="dashed", colour="black") +
     ggplot2::ggtitle(title) +
@@ -373,8 +373,8 @@ dev.off()
 
 stargazer(lm_dev_2016_1a, lm_dev_2016_1b, lm_dev_2016_1c,
           lm_admin_2016_1a, lm_admin_2016_1b, lm_admin_2016_1c,
-          se = list(sqrt(diag(vcov_dev_2016_1a)), sqrt(diag(vcov_dev_2016_1b)), sqrt(diag(vcov_dev_2016_1c)),
-                    sqrt(diag(vcov_admin_2016_1a)), sqrt(diag(vcov_admin_2016_1b)), sqrt(diag(vcov_admin_2016_1c))),
+          #se = list(sqrt(diag(vcov_dev_2016_1a)), sqrt(diag(vcov_dev_2016_1b)), sqrt(diag(vcov_dev_2016_1c)),
+          #          sqrt(diag(vcov_admin_2016_1a)), sqrt(diag(vcov_admin_2016_1b)), sqrt(diag(vcov_admin_2016_1c))),
           title = "Estimated treatment effects on development and administration expenditures from linear fixed effects models",
           label = "tab:lfe_mech",
           style = "apsr",

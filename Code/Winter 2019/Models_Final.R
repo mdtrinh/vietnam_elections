@@ -56,7 +56,7 @@ coeftest(lm_2016_1c, vcov = vcov_2016_1c)
 
 # 2016 only -- positive effect
 dat_2016_p <- dat_lme %>%
-  mutate(defeat = defeat.2016*(year >= 2017)) %>%
+  mutate(defeat.true = defeat.true.2016*(year >= 2017)) %>%
   filter(year > 2012) %>%
   filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
@@ -702,7 +702,7 @@ panelView(net.trans.change.log ~ defeat, data = dat_synth, index = c("prov", "ye
 ## One year change
 
 dat_2016synth_1 <- dat_synth %>%
-  mutate(treat = defeat.2016*as.numeric(year==2017)) %>%
+  mutate(treat = defeat.true.2016*as.numeric(year==2017)) %>%
   #filter(defeat.2016!=0 | closewin.2016!=0) %>%
   filter(year < 2018) %>%
   drop_na(net.trans.log)
@@ -727,7 +727,7 @@ plot(synth_2016_1, type = "counterfactual")
 ## Persistent change
 
 dat_2016synth_p <- dat_synth %>%
-  mutate(treat = defeat.2016*as.numeric(year>=2017)) %>%
+  mutate(treat = defeat.true.2016*as.numeric(year>=2017)) %>%
   #filter(defeat.2016!=0 | closewin.2016!=0) %>%
   drop_na(net.trans.log)
 panelView(net.trans.change.log ~ defeat, data = dat_2016synth_p, index = c("prov", "year"))
@@ -754,7 +754,7 @@ plot(synth_2016_p, type = "counterfactual", raw = "all")
 # One year change
 
 dat_2016synth_1_placebo2014 <- dat_synth %>%
-  mutate(treat = defeat.2016*as.numeric(year==2014)) %>%
+  mutate(treat = defeat.true.2016*as.numeric(year==2014)) %>%
   #filter(defeat.2016!=0 | closewin.2016!=0) %>%
   filter(year < 2015) %>%
   drop_na(net.trans.log)

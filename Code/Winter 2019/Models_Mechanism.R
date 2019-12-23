@@ -7,7 +7,7 @@ setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/
 #setwd("D:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("C:/Users/Nga Nguy/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 
-source("../../Code/Spring 2018/Merge_All.R")
+source("../../Code/Winter 2019/Merge_All.R")
 
 ## This file builds upon the old Analyze_NewRI_Mechanism file
 ## to use all three primary approaches (linear reg, RI-RDD, 
@@ -63,7 +63,7 @@ coeftest(lm_dev_2016_1c, vcov = vcov_dev_2016_1c)
 ## persistent effect
 
 dat_dev_2016_p <- dat_dev_lme %>%
-  mutate(defeat = defeat.true.2016*(year >= 2017)) %>%
+  mutate(defeat.true = defeat.true.2016*(year >= 2017)) %>%
   filter(year > 2012) %>%
   filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM")
@@ -355,6 +355,7 @@ coeftest(lm_admin_2016_1c, vcov = vcov_admin_2016_1c)
 
 # 2016 only
 dat_admin_2016_p <- dat_admin_lme %>%
+  mutate(defeat.true = defeat.true.2016*(year >= 2017)) %>%
   filter(year > 2012) %>%
   filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM")

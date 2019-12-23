@@ -46,6 +46,28 @@ candidates2007$defeat <- as.numeric(candidates2007$centralnominated==1 &
 candidates2007$closewin <- as.numeric(candidates2007$centralnominated==1 &
                                         candidates2007$percentage < 60)
 
+# For 2011, calculate max and min range for unobserved vote share of defeated candidates
+candidates2007 <- candidates2007 %>%
+  group_by(prov, district) %>%
+  mutate(percentage.winner = ifelse(result == 1, percentage, NA),
+         #percentage.loser = ifelse(result == 0, percentage, NA),
+         #percentage.central = ifelse(centralnominated == 1, percentage, NA),
+         #percentage.local = ifelse(centralnominated == 0, percentage, NA),
+         #share.central.min = min(percentage.central, na.rm=T),
+         #share.loser.max = max(percentage.loser, na.rm=T),
+         #share.winner.min = min(percentage.winner, na.rm=T),
+         num.candidates = as.numeric(max(id)),
+         num.seats = case_when(num.candidates == 3 ~ 2,
+                               num.candidates == 4 ~ 2,
+                               num.candidates == 5 ~ 3,
+                               num.candidates == 6 ~ 3),
+         num.elected = sum(result),
+         percentage.winner.total = sum(percentage.winner, na.rm = TRUE),
+         percentage.loser.total = 100*num.seats - sum(percentage.winner, na.rm = TRUE),
+         # possible to calculate max and min vote share of best-performing losers
+         percentage.toploser.max = min(percentage.winner, na.rm = TRUE),
+         percentage.toploser.min = percentage.loser.total/(num.candidates - num.seats))
+
 ###### 2011 ######
 
 ## Merge Results with Profiles
