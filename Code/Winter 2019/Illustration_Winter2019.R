@@ -14,10 +14,11 @@ setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/
 #setwd("D:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("C:/Users/Nga Nguy/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 
-source("../../Code/Spring 2018/Models_Final.R")
-source("../../Code/Spring 2018/Models_Mechanism.R")
-source("../../Code/Spring 2018/Balance_Final.R")
-source("../../Code/Spring 2018/Models_DigitTests.R")
+source("../../Code/Winter 2019/Models_Final.R")
+source("../../Code/Winter 2019/Models_Mechanism.R")
+source("../../Code/Winter 2019/Balance_Final.R")
+source("../../Code/Winter 2019/Models_DigitTests.R")
+source("../../Code/Winter 2019/Illustration_Functions.R")
 
 #### Some statistics to include in the paper
 
