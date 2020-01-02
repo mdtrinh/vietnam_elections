@@ -9,9 +9,10 @@ library(grid)
 library(gridExtra)
 
 #setwd("/media/dropbox/dropbox/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
-setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
+#setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("D:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("C:/Users/Nga Nguy/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
+setwd("~/vietnam_elections/Data/Working Data")
 
 source("../../Code/Winter 2019/Merge_All.R")
 
@@ -266,17 +267,17 @@ for (x in 1:length(m)) {
 
 # Candidates thresholds:
 # Smallsest: 59.25 
-# Largest possible: 62.75 << most observations, most power
+# Largest possible: 62.5 << most observations, most power
 
 # Sample size for each threshold:
 candidates2011 %>% filter(centralnominated == 1 & (percentage <= 59.25 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
 candidates2011 %>% filter(centralnominated == 1 & (percentage <= 62.25 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
-candidates2011 %>% filter(centralnominated == 1 & (percentage <= 62.75 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
+candidates2011 %>% filter(centralnominated == 1 & (percentage <= 62.5 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
 
 # remove Hanoi and Ho Chi Minh city
 candidates2011rdd <- candidates2011 %>% filter(prov!="Ha Noi" & prov!="TP HCM")
 
-window.final <- 62.75
+window.final <- 62.5
 
 candidates2011rdd$closewin <- as.numeric(candidates2011rdd$centralnominated==1 &
                                            candidates2011rdd$percentage <= window.final &
@@ -761,6 +762,9 @@ balance_rdd <- sapply(list_vars, function(c) {
            p_lm = summary(lm_test)$coefficients["z",4]))
 })
 
+t(balance_lme)
+t(balance_rdd)
+
 #############################
 # SYNTHETIC CONTROL FOR 2011
 #############################
@@ -1172,6 +1176,7 @@ for (x in 1:length(m)) {
 # Sample size for each threshold:
 candidates2007 %>% filter(centralnominated == 1 & (percentage <= 59.5 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
 candidates2007 %>% filter(centralnominated == 1 & (percentage <= 58.5 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
+candidates2007 %>% filter(centralnominated == 1 & (percentage <= 57 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
 
 # remove Hanoi and Ho Chi Minh city
 candidates2007rdd <- candidates2007 %>% filter(prov!="Ha Noi" & prov!="TP HCM") %>% filter(prov!="Ha Tay")

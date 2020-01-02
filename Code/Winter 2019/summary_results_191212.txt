@@ -18,6 +18,10 @@ For 2011
 	    + one out of 3 placebo gives significant results >> at least there's a reason to claim data is bad
 	    + threshold of 58 is achievable if remove Hanoi and HCMC prior to threshold selection
 		  x but doing this kills the 2016 result, so better not do it
+- synth results
+    + Small positive and significant (at .1 level) detected at t+3
+    + placebo gives significant results >> good reason to claim that
+    data is bad
 - balance is good for both lme and rdd samples (even better than for the 2016 results)
     + again, no reason to claim that data is bad...
 - results do not change even after new coding of central nominees
@@ -25,6 +29,7 @@ For 2011
 - plotting graphicaly however there are reasons to say that placebos are not good
     + for lfe, treatment at t-2 is positive not statistically significant but strong
     + for rdd, same thing, but at least one specification is statistically significant
+    + for synth, significant and clear negative placebo difference
 
 
    net.trans.change.log defeat defeat.2011 factor(prov) factor(year)
