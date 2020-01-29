@@ -284,7 +284,6 @@ candidates2011rdd$closewin <- as.numeric(candidates2011rdd$centralnominated==1 &
                                            candidates2011rdd$defeat != 1)
 
 # function to generate province summaries from candidate-level data
-
 treatment_generate_2011 <- function(candidates) {
   provinces <- candidates %>%
     group_by(prov) %>%

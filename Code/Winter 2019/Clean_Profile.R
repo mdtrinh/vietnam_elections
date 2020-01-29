@@ -7,7 +7,7 @@ library(vietnamcode)
 library(vietnamdata)
 
 setwd("../Candidate Profile/")
-source("../../Code/Spring 2018/Functions.R")
+source("../../Code/Winter 2019/Functions.R")
 
 # helper function to identify candidate's last term in office
 lastterm <- function(x) {
@@ -139,7 +139,7 @@ names(profile2011)[1:17] <- c("prov", "district", "id", "name",
 head(profile2011)
 
 ### clean some string variables
-profile2011$name <- str_trim(gsub("\\(.*\\)", "", profile2011$name))
+profile2011$name <- str_trim(gsub("Linh muc ", "", gsub("\\(.*\\)", "", profile2011$name)))
 
 profile2011$prov <- vietnamcode(profile2011$prov, origin = "province_name", destination = "province_name")
 

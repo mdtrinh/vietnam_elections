@@ -62,6 +62,7 @@ candidates2007 <- candidates2007 %>%
                                num.candidates == 5 ~ 3,
                                num.candidates == 6 ~ 3),
          num.elected = sum(result),
+         num.unelected = num.candidates - num.elected,
          percentage.winner.total = sum(percentage.winner, na.rm = TRUE),
          percentage.loser.total = 100*num.seats - sum(percentage.winner, na.rm = TRUE),
          # possible to calculate max and min vote share of best-performing losers
@@ -116,11 +117,13 @@ candidates2011 <- candidates2011 %>%
          num.seats = ifelse(num.candidates == 4 &
                               prov %in% c("Hai Duong", "Lao Cai"), 3, num.seats),
          num.elected = sum(result),
+         num.unelected = num.candidates - num.elected,
          percentage.winner.total = sum(percentage.winner, na.rm = TRUE),
          percentage.loser.total = 100*num.seats - sum(percentage.winner, na.rm = TRUE),
          # possible to calculate max and min vote share of best-performing losers
          percentage.toploser.max = min(percentage.winner, na.rm = TRUE),
-         percentage.toploser.min = percentage.loser.total/(num.candidates - num.seats))
+         percentage.toploser.min = percentage.loser.total/(num.candidates - num.seats)) %>%
+  drop_na(prov)
 
 ###### 2016 ######
 
@@ -162,7 +165,15 @@ candidates2016 <- candidates2016 %>%
                                num.candidates == 4 ~ 2,
                                num.candidates == 5 ~ 3,
                                num.candidates == 6 ~ 3),
-         num.elected = sum(result)) %>%
+         # In Ha Nam districts with 4 candidates actually have 3 seats
+         num.seats = ifelse(num.candidates == 4 &
+                              prov %in% c("Ha Nam"), 3, num.seats),
+         # In Soc Trang 2 districts with 5 candidates have 2 seats
+         num.seats = ifelse(num.candidates == 5 &
+                              prov %in% c("Soc Trang") &
+                              district %in% c(2,3), 2, num.seats),
+         num.elected = sum(result),
+         num.unelected = num.candidates - num.elected) %>%
   # individual margin
   mutate(margin = (1-defeat)*(percentage - pmax(share.loser.max, 50)) +
            (defeat)*ifelse(num.seats > num.elected,
@@ -179,8 +190,6 @@ candidates2016 <- candidates2016 %>%
   mutate(defeat.true = as.numeric(centralnominated == 1 & result == 0 & margin > -10)) %>%
   ungroup
 
-
-
 ##### Summaries #####
 
 #### district-level summaries ####
@@ -190,13 +199,16 @@ districts2007 <- candidates2007 %>%
   group_by(prov, district) %>%
   summarise(num.candidates = as.numeric(max(id)),
             num.elected = sum(result),
+            num.unelected = max(num.unelected),
             num.seats = case_when(num.candidates == 4 ~ 2,
                                   num.candidates == 5 ~ 3,
                                   num.candidates == 6 ~ 3),
             share.winner = sum(percentage * result, na.rm=T),
-            share.loser = num.seats * 100 - share.winner,
             share.central = sum(percentage * centralnominated, na.rm=T),
-            share.local = num.seats * 100 - share.central,
+            share.local = sum(percentage * (1-centralnominated), na.rm=T),
+            percentage.loser.total = max(percentage.loser.total),
+            percentage.toploser.max = max(percentage.toploser.max),
+            percentage.toploser.min = max(percentage.toploser.min),
             num.centralnominees = sum(centralnominated),
             any.centralnominees = max(centralnominated),
             power.central = sum(power*centralnominated, na.rm=T)/sum(centralnominated),
@@ -214,14 +226,14 @@ districts2011 <- candidates2011 %>%
   group_by(prov, district) %>%
   summarise(num.candidates = as.numeric(max(id)),
             num.elected = sum(result),
-            num.seats = case_when(num.candidates == 3 ~ 2,
-                                  num.candidates == 4 ~ 2,
-                                  num.candidates == 5 ~ 3,
-                                  num.candidates == 6 ~ 3),
+            num.unelected = max(num.unelected),
+            num.seats = max(num.seats),
             share.winner = sum(percentage * result, na.rm=T),
-            share.loser = num.seats * 100 - share.winner,
             share.central = sum(percentage * centralnominated, na.rm=T),
-            share.local = num.seats * 100 - share.central,
+            share.local = sum(percentage * (1-centralnominated), na.rm=T),
+            percentage.loser.total = max(percentage.loser.total),
+            percentage.toploser.max = max(percentage.toploser.max),
+            percentage.toploser.min = max(percentage.toploser.min),
             num.centralnominees = sum(centralnominated),
             any.centralnominees = max(centralnominated),
             power.central = sum(power*centralnominated, na.rm=T)/sum(centralnominated),
@@ -239,13 +251,13 @@ districts2016 <- candidates2016 %>%
   group_by(prov, district) %>%
   summarise(num.candidates = as.numeric(max(id)),
             num.elected = sum(result),
-            num.seats = case_when(num.candidates == 4 ~ 2,
-                                  num.candidates == 5 ~ 3,
-                                  num.candidates == 6 ~ 3),
+            num.seats = max(num.seats),
+            num.unelected = max(num.unelected),
             share.winner = sum(percentage * result, na.rm=T),
-            share.loser = num.seats * 100 - share.winner,
+            share.loser = sum(percentage * (1-result), na.rm=T),
+            share.writein = num.seats*100 - (share.winner + share.loser),
             share.central = sum(percentage * centralnominated, na.rm=T),
-            share.local = num.seats * 100 - share.central,
+            share.local = sum(percentage * (1-centralnominated), na.rm=T),
             num.centralnominees = sum(centralnominated),
             any.centralnominees = max(centralnominated),
             power.central = sum(power*centralnominated, na.rm=T)/sum(centralnominated),
