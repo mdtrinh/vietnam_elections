@@ -20,20 +20,28 @@ table(candidates2011$num.unelected)
 
 # Function that uses rejection sampling to get a rdirichlet draw
 # that is constrained by a min and a max
-rdirichlet_constrained <- function(n, alpha, theta_max = 1, theta_min = 0) {
+rdirichlet_constrained <- function(n, alpha, max_max = 1, max_min = 0, min_max = 1, min_min = 0) {
   
-  if(is.null(theta_max) & is.null(theta_max)) {
+  if(is.null(max_max) & is.null(max_min) & is.null(min_max) & is.null(min_min)) {
     return(rdirichlet(n, alpha))
-  } else if(is.null(theta_max)) {
+  } else if(is.null(max_max)) {
     theta_max <- 1
-  } else if(is.null(theta_min)) {
+  } else if(is.null(max_min)) {
+    theta_min <- 0
+  } else if(is.null(min_max)) {
+    theta_min <- 0
+  } else if(is.null(min_min)) {
     theta_min <- 0
   }
+  
   
   draws <- replicate(n, simplify = TRUE, {
     repeat {
       d <- rdirichlet(1, alpha)
-      if(max(d) < theta_max & min(d) > theta_min) {
+      if(max(d) < max_max & 
+         max(d) > max_min &
+         min(d) < min_max &
+         min(d) > min_min) {
         return(d)
         break
       }
@@ -42,27 +50,6 @@ rdirichlet_constrained <- function(n, alpha, theta_max = 1, theta_min = 0) {
   
   return(t(draws))
 }
-
-rdirichlet_constrained(10, c(1,1,1))
-rdirichlet_constrained(10, c(1,1,1), .5, .2)
-rdirichlet(10, c(1,1,1))
-rdirichlet(1, c(1,1,1))[1,1:3]
-
-candidates2011 %>% 
-  group_by(prov, district, result) %>%
-  select(prov, district, name, result, percentage,
-         num.seats, num.elected, num.unelected, 
-         percentage.loser.total, percentage.toploser.max) %>%
-  filter(num.unelected == 3)
-
-
-districts2011_multilosers <- districts2011 %>%
-  group_by(prov, district) %>%
-  filter(num.unelected > 1) %>%
-  select(prov, district, 
-         num.unelected, 
-         percentage.toploser.max,
-         percentage.loser.total)
 
 ## Randomization distribution of candidate-level vote shares
 
@@ -76,12 +63,12 @@ impute_share <- function(district) {
     x <- as.numeric(district[i, c("num.unelected",
                                   "percentage.toploser.max",
                                   "percentage.loser.total")])
-    theta_max <- ifelse(x[2] < x[3], x[2]/x[3], 1)
+    max_max <- ifelse(x[2] < x[3], x[2]/x[3], 1)
     alpha <- rep(1, (x[1]+1))
     
     draw <- rdirichlet_constrained(1, 
                                    alpha,
-                                   theta_max)
+                                   max_max)
     
     impute[[i]] <- draw[1, 1:x[1]]
   }
