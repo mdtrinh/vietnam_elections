@@ -1,0 +1,247 @@
+\documentclass[12pt]{article}
+\usepackage[]{color}
+
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+	\ifdim\Gin@nat@width>\linewidth
+	\linewidth
+	\else
+	\Gin@nat@width
+	\fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.7te37,0.353,0.396}{\textbf{#1}}}%
+
+%\usepackage{framed}
+%\makeatletter
+%\newenvironment{kframe}{%
+%	\def\at@end@of@kframe{}%
+%	\ifinner\ifhmode%
+%	\def\at@end@of@kframe{\end{minipage}}%
+%\begin{minipage}{\columnwidth}%
+%	\fi\fi%
+%	\def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+%		\colorbox{shadecolor}{##1}\hskip-\fboxsep
+%		% There is no \\@totalrightmargin, so:
+%		\hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+%	\MakeFramed {\advance\hsize-\width
+%		\@totalleftmargin\z@ \linewidth\hsize
+%		\@setminipage}}%
+%{\par\unskip\endMakeFramed%
+%	\at@end@of@kframe}
+%\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+%%% FONT AND INPUT
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{letterpaper} % or letterpaper (US) or a5paper or....
+\geometry{margin=1in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subcaption} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{amsmath,newtxtext,newtxmath}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{dcolumn}
+%\usepackage[nolists]{endfloat}
+\usepackage{bbm}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{tikz} 
+\usetikzlibrary{arrows,decorations.pathmorphing,decorations.pathreplacing,backgrounds,fit,positioning,shapes.symbols,chains}
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% CITATION AND BIBLIOGRAPHY
+
+\usepackage[authordate,backend=bibtex8,natbib,sorting=nyt,sortcites,isbn=false,doi=false]{biblatex-chicago}
+%\usepackage{natbib}
+%\bibliographystyle{apsr}
+\bibliography{Literature/library_syp}
+
+% fix problem with \citeyear and \citeyearpar not being highlighted
+\DeclareCiteCommand{\citeyear}
+	{}
+	{\bibhyperref{\printdate}}
+	{\multicitedelim}
+	{}
+
+\DeclareCiteCommand{\citeyearpar}
+	{}
+	{\mkbibparens{\bibhyperref{\printdate}}}
+	{\multicitedelim}
+	{}
+% possessive cite with \citepos
+\newcommand\citepos[1]{\citeauthor{#1}'s\ (\citeyear{#1})}
+
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+%\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% Some commands
+\newcommand{\reg}{\texttt{regress} }
+\newcommand{\1}{\mathbbm{1}}
+
+\renewcommand\r{\right}
+\renewcommand\l{\left}
+\newcommand\E{\mathbbm{E}}
+\newcommand\V{\mathbbm{V}}
+\newcommand\Var{\mathbbm{V}}
+\newcommand\avar{{\rm Avar}}
+\newcommand\dist{\buildrel\rm d\over\sim}
+\newcommand\iid{\stackrel{\rm i.i.d.}{\sim}}
+\newcommand\ind{\stackrel{\rm indep.}{\sim}}
+\newcommand\cov{{\rm Cov}}
+\newcommand{\R}{\textbf{R} }
+\newcommand{\Rcmd}[1]{{\large \texttt{#1}}}
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator*{\argmin}{argmin}
+
+\newcommand\Sum{\sum^N_{i=1}}
+\newcommand\Prod{\prod^N_{i=1}}
+\newcommand{\pderiv}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\B}[1]{\boldsymbol{#1}}
+\newcommand{\logit}{\text{logit}}
+
+%%% texcount
+% Run texcount on tex-file and write results to a sum-file
+\immediate\write18{texcount  \jobname.tex -out=\jobname.sum -incbib -relaxed}
+% Define macro \wordcount for including the counts
+\newcommand\wordcount{\verbatiminput{\jobname.sum}}
+
+
+%opening
+\title{Tea Leaf Elections: \\
+	Inferring Purpose for Authoritarian Elections from Post-election Responses to Defeats \\
+	\vspace{2ex}
+	Online Appendix}
+%\author{Minh Trinh}
+\date{July 31, 2019}
+
+\begin{document}
+	
+%TC:ignore 
+
+\maketitle
+\thispagestyle{empty}
+
+%TC:endignore 
+
+\doublespacing
+
+\newpage
+\pagenumbering{arabic}
+
+\tableofcontents
+\newpage
+
+\appendix
+
+\section{Digit tests showing no evidence of high-level manipulation}
+\label{app:benford}
+To verify that the CPV does not engage in overt \textit{ex-post} manipulation of vote results at the high level (for example by changing the vote tallies), I conduct several digit tests on official results from the 2011 and 2016 elections. 
+
+Digit-based tests have been used widely in the election forensics literature to detect evidence of fraud both in American \citep{Mebane2006} and Comparative Politics \citep{Mebane2009, Beber2012}. Many of these tests are based on Benford's Law, which states that digits in naturally occurring numbers follow certain patterns, and that human interventions in the data generation process can lead to violation of these patterns. Because many numbers produced in an elections such as vote counts or turnout figures are naturally occurring numbers, they can be tested against the patterns to detect suggestive evidence of human tampering \citep{Mebane2006}. Under the null hypothesis, Benford's Law suggests that the probability that the first $m$ digits of a number follow a particular sequence is given by:
+\begin{align*}
+P(D_1=d_1, D_2=d_2, \dots, D_m=d_m) &= \log_{10}\l(1 + \l( \sum_{j=1}^{m}10^{m-j}d_j\r)\r)
+\end{align*}
+where $D_i$ represents the $i$th significant digit, and $d_i$ is a particular realization of that digit. From this, it is possible to calculate the Benford Distribution for the First Digit:
+\begin{align*}
+P(D_1=d_1) = \log_{10}\l(1 + \frac{1}{d_1}\r)
+\end{align*}
+as well as the Benford Distribution for the Second Digit:
+\begin{align*}
+P(D_2=d_2) = \sum_{j=1}^{9}\log_{10}\l(1 + \frac{1}{10j + d_2}\r)
+\end{align*}
+and for the Third Digit:
+\begin{align*}
+P(D_3=d_3) = \sum_{k=1}^{9}\sum_{j=0}^{9}\log_{10}\l(1 + \frac{1}{100k + 10j + d_3}\r)
+\end{align*}
+and so on. Note that as $i$ increases, the distribution converges quickly to uniform.
+
+To test whether the Vietnamese regime has tampered with the final, aggregated results from VNA elections, I conduct digit tests on numbers from the publicly released results following the 2011 and 2016 elections. The hypothesis is that if the CPV has tampered with the results, at least some digits in these numbers would be found to violate Benford's Law. 
+
+The format of the public release change from one election to another. Specifically, in 2011 the official release includes district-level information such as the number of eligible voters, turnout, the number of invalid votes, but lists only the vote shares of winning candidates. In 2016, however, the official release lists out the vote counts and vote shares of every candidate, but omist district-level information. As a result, I choose different sets of numbers to conduct digit tests on: turnout and number of invalid votes for the 2011 election, and candidate vote counts for the 2016 election. Unlike vote shares, which \citet{MaleskySchuler2011} use, these numbers are not bounded above and beyond, are not subjected to rounding, and span multiple orders of magnitude, which are requirements for Benford-like number distributions \citep{Hill1995, Mebane2006, Berger2015}.
+
+Figure \ref{fig:Benford} shows the results, in the form of histograms for the empirical distribution of digit values for each of the first three significant digits of each measure, overlaid with the expected Benford distribution and a 95\% confidence interval. As \citet{Mebane2006} notes, the first digit of vote counts and turnout figures do \textit{not} follow Benford's Law, as they are often constrained by district sizes. No such constraint applies for the first digits of invalid votes, as well as every other digit of all three measures, and so we expect the empirical and expected distributions to be close in all but the upper-left and lower-left graphs in Figure \ref{fig:Benford}. This indeed turns out to be the case except for some few exceptions. Note further that the confidence intervals have not been adjusted for multiple testing, and if this is done all of the bars in Figure \ref{fig:Benford} would fall within these intervals. Finally, I also conduct chi-squared and Kolmogorov-Smirnov tests, and found no significant results even before correcting for multiple testing. Altogether, these tests fail to reject the null hypothesis of no manipulation, at least at the highest levels.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[height=.85\textheight]{figure/190716_digit_test.png}
+	\caption[Digit Test of Election Results]{Empirical distribution (as bars) and expected distribution under Benford's Law (as dashed lines) of first, second, and third digits of district-level voter turnouts in the 2011 election, district-level invalid vote counts in the 2011 election, and district-level vote counts by candidate in the 2016 election. Shaded regions denote 95\% confidence intervals around the expected distributions. The first digits of 2011 Turnout and 2016 Vote counts (highlighted with \textsf{*}) are expected to violate Benford's Law even without tampering.}
+	\label{fig:Benford}
+\end{figure}
+
+\section{Replication for 2007 and 2011 Elections}
+
+
+
+\newpage
+\inputencoding{utf8}
+\printbibliography[heading=bibintoc]
+
+
+\end{document}
+
+
