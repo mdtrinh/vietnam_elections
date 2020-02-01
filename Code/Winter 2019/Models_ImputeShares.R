@@ -19,7 +19,7 @@ candidates2011 %>%
 table(candidates2011$num.unelected)
 
 # Function that uses rejection sampling to get a rdirichlet draw
-# that is constrained by a min and a max
+# with a maximum and a minimum each constrained within a bound
 rdirichlet_constrained <- function(n, alpha, max_max = 1, max_min = 0, min_max = 1, min_min = 0) {
   
   if(is.null(max_max) & is.null(max_min) & is.null(min_max) & is.null(min_min)) {
@@ -51,6 +51,8 @@ rdirichlet_constrained <- function(n, alpha, max_max = 1, max_min = 0, min_max =
   return(t(draws))
 }
 
+d <- rdirichlet_constrained(1, c(99,99,1), max_max = .55, min_max = .1)[1,]
+
 ## Randomization distribution of candidate-level vote shares
 
 # Function to draw a vector of random vote shares among loser candidates 
@@ -64,13 +66,33 @@ impute_share <- function(district) {
                                   "percentage.toploser.max",
                                   "percentage.loser.total")])
     max_max <- ifelse(x[2] < x[3], x[2]/x[3], 1)
+    
+    # flat dirichlet shape parameters -- no assumption
     alpha <- rep(1, (x[1]+1))
+    
+    # POSSIBLE EXTENSION:
+    # non-flat shape parameters -- may use data
+    # from 2016 to construct empirical distribution
+    # and estimate shape parameters
+    
+    # if(x[1] == 1) {
+    #   alpha <- c(99,1)
+    # } else if(x[1] == 2) {
+    #   alpha <- c(53, 43, 4)
+    # } else if(x[1] == 3) {
+    #   alpha <- c(46, 33, 17 ,4)
+    # }
+    
+    min_max <- 10/x[3] # no district shall have more than 10% unallocated shares
     
     draw <- rdirichlet_constrained(1, 
                                    alpha,
-                                   max_max)
+                                   max_max = max_max,
+                                   min_max = min_max)[1,]*x[3]
     
-    impute[[i]] <- draw[1, 1:x[1]]
+    index_min <- which(draw == min(draw))
+    
+    impute[[i]] <- draw[-index_min]
   }
   impute <- unlist(impute)
   
@@ -96,13 +118,23 @@ treatment_impute_2011 <- function(candidates) {
   return(provinces_year_treatment)
 }
 
-# Draw a large number of randomized distribution
-index_losers <- which(candidates2011$result == 0)
+# Draw a large number of randomized distribution for districts that experienced
+# central nominee defeats
+districts2011_central_defeats <- districts2011 %>% filter(defeat == 1)
+
+impute_share(districts2011_central_defeats)
+
+index_losers <- candidates2011 %>%
+  group_by(prov, district) %>%
+  mutate(district_defeat = sum(centralnominated*defeat),
+         losers = (result == 0) & (district_defeat > 0)) %>%
+  pull(losers) %>%
+  which
 
 set.seed(02142)
-nsim <- 1000000
+nsim <- 1000
 candidates.2011.shares.imputed <- replicate(nsim, 
-                                            impute_share(districts2011))*100
+                                            impute_share(districts2011_central_defeats))
 
 ## Create province-year-level treatment vectors
 treatment.2011.imputed <- apply(candidates.2011.shares.imputed, 2, function(t) {
@@ -141,6 +173,16 @@ treatment.2011.imputed <- apply(candidates.2011.shares.imputed, 2, function(t) {
   treatment_impute <- treatment_impute_2011(candidates2011_imputed)
 })
 
+## Frequency at which each province appears in the sample,
+## and frequency at which each province is "treated"
+
+data.frame(prov = plan %>%
+             filter(year > 2004 & year < 2019) %>% 
+             pull(prov), 
+           in_sample = rowMeans(!is.na(treatment.2011.imputed), na.rm = T),
+           treated = rowMeans(treatment.2011.imputed, na.rm = TRUE)) %>% 
+  filter(in_sample > 0) %>% group_by(prov) %>% 
+  summarise(in_sample = max(in_sample), treated = max(treated))
 
 ## One year effect
 impute_2011_1 <- list(beta_1a = rep(NA, ncol(treatment.2011.imputed)),
@@ -155,11 +197,12 @@ for (i in 1:ncol(treatment.2011.imputed)) {
     filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
     mutate(defeat.2011 = treatment)  %>%
     filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+    #filter(prov!="Long An") %>%
     drop_na(net.trans.log, net.trans.lag)
   
   dat_2011_imputed_1 <- dat_2011_imputed %>%
     mutate(defeat = defeat.2011*as.numeric(year==2012)) %>%
-    filter(year < 2013 & year > 2008) %>%
+    filter(year < 2013 & year > 2007) %>%
     drop_na(defeat, net.trans.log) 
   
   # Run model with out covariates
@@ -212,11 +255,12 @@ for (i in 1:ncol(treatment.2011.imputed)) {
     filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
     mutate(defeat.2011 = treatment)  %>%
     filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+    filter(prov!="Long An") %>%
     drop_na(net.trans.log, net.trans.lag)
   
   dat_2011_imputed_p <- dat_2011_imputed %>%
     mutate(defeat = defeat.2011*as.numeric(year>=2012)) %>%
-    filter(year < 2016 & year > 2008) %>%
+    filter(year < 2016 & year > 2007) %>%
     drop_na(defeat, net.trans.log) 
   
   # Run model with out covariates
