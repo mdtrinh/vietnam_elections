@@ -22,16 +22,19 @@ source("../../Code/Winter 2019/Merge_All.R")
 
 #### 2011 Results
 
-dat_lme <- plan
+dat_lme <- plan %>%
+  filter(year > 2008 & year < 2019) %>%
+  mutate(defeat = ifelse(year == 2008, 0, defeat)) %>% 
+  filter(defeat.2011!=0 | closewin.2011!=0) %>%
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Long An") %>%
+  drop_na(net.trans.log, net.trans.lag)
 
 ## one-year change
 
 # 2011 only
 dat_2011_1 <- dat_lme %>%
-  filter(year < 2013 & year > 2008) %>%
-  filter(defeat.2011!=0 | closewin.2011!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  drop_na(net.trans.log, net.trans.lag)
+  filter(year < 2013) 
 
 # without covariates
 lm_2011_1a <- lm(net.trans.change.log ~ defeat + defeat.2011 +
@@ -65,10 +68,7 @@ coeftest(lm_2011_1c, vcov = vcov_2011_1c)
 # 2011 only
 dat_2011_p <- dat_lme %>%
   mutate(defeat = defeat.2011*(year >= 2012)) %>%
-  filter(year > 2008 & year < 2016) %>%
-  filter(defeat.2011!=0 | closewin.2011!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log)) 
+  filter(year < 2016)
 
 # without covariates
 lm_2011_pa <- lm(net.trans.change.log ~ defeat + defeat.2011 +
@@ -96,15 +96,45 @@ summary(lm_2011_pc)
 vcov_2011_pc <- cluster.vcov(lm_2011_pc, cluster = ~ prov)
 coeftest(lm_2011_pc, vcov = vcov_2011_pc)
 
-## placebo 1: one-year change as if election was held in 2009 st outcome is in 2010
+## placebo 1: one-year change as if election was held in 2008 st outcome is in 2009
+
+# 2011 results under placebo 1
+dat_2011_1_placebo2009 <- dat_lme %>%
+  mutate(defeat_placebo2009 = defeat.2011 * as.numeric(year == 2009)) %>%
+  filter(year < 2010)
+
+# without covariates
+lm_2011_1_placebo2009a <- lm(net.trans.change.log ~ defeat_placebo2009 + defeat.2011 +
+                               factor(prov) + factor(year),
+                             data = dat_2011_1_placebo2009) # just lm
+summary(lm_2011_1_placebo2009a)
+vcov_2011_1_placebo2009a <- cluster.vcov(lm_2011_1_placebo2009a, cluster = ~ prov)
+coeftest(lm_2011_1_placebo2009a, vcov = vcov_2011_1_placebo2009a)
+
+# adding time-variant covariate: lagged total revenue
+lm_2011_1_placebo2009b <- lm(net.trans.change.log ~ defeat_placebo2009 + defeat.2011 +
+                               total.rev.log.lag +
+                               factor(prov) + factor(year),
+                             data = dat_2011_1_placebo2009) # just lm
+summary(lm_2011_1_placebo2009b)
+vcov_2011_1_placebo2009b <- cluster.vcov(lm_2011_1_placebo2009b, cluster = ~ prov)
+coeftest(lm_2011_1_placebo2009b, vcov = vcov_2011_1_placebo2009b)
+
+# adding time-invariant covariates instead of prov FEs
+lm_2011_1_placebo2009c <- lm(net.trans.change.log ~ defeat_placebo2009 + defeat.2011 +
+                               num.districts.2011 + num.districts.5.2011 + num.centralnominees.2011 +
+                               factor(year),
+                             data = dat_2011_1_placebo2009) # just lm
+summary(lm_2011_1_placebo2009c)
+vcov_2011_1_placebo2009c <- cluster.vcov(lm_2011_1_placebo2009c, cluster = ~ prov)
+coeftest(lm_2011_1_placebo2009c, vcov = vcov_2011_1_placebo2009c)
+
+## placebo 2: one-year change as if election was held in 2009 st outcome is in 2010
 
 # 2011 results under placebo 1
 dat_2011_1_placebo2010 <- dat_lme %>%
   mutate(defeat_placebo2010 = defeat.2011 * as.numeric(year == 2010)) %>%
-  filter(year < 2011 & year > 2008) %>%
-  filter(defeat.2011!=0 | closewin.2011!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log))
+  filter(year < 2011)
 
 # without covariates
 lm_2011_1_placebo2010a <- lm(net.trans.change.log ~ defeat_placebo2010 + defeat.2011 +
@@ -132,15 +162,12 @@ summary(lm_2011_1_placebo2010c)
 vcov_2011_1_placebo2010c <- cluster.vcov(lm_2011_1_placebo2010c, cluster = ~ prov)
 coeftest(lm_2011_1_placebo2010c, vcov = vcov_2011_1_placebo2010c)
 
-## placebo 2: one-year change as if election was held in 2010 st outcome is in 2011
+## placebo 3: one-year change as if election was held in 2010 st outcome is in 2011
 
 # 2011 results under placebo 2
 dat_2011_1_placebo2011 <- dat_lme %>%
   mutate(defeat_placebo2011 = defeat.2011 * as.numeric(year == 2011)) %>%
-  filter(year < 2012 & year > 2008) %>%
-  filter(defeat.2011!=0 | closewin.2011!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log))
+  filter(year < 2012)
 
 # without covariates
 lm_2011_1_placebo2011a <- lm(net.trans.change.log ~ defeat_placebo2011 + defeat.2011 +
@@ -173,12 +200,14 @@ coeftest(lm_2011_1_placebo2011c, vcov = vcov_2011_1_placebo2011c)
 
 #### Coefficient plot for main regression results + placebo results
 lfe_2011_plot_dat <- data.frame(ATT = sapply(list(lm_2011_1a, lm_2011_1b, lm_2011_1c,
+                                                  #lm_2011_1_placebo2009a, lm_2011_1_placebo2009b, lm_2011_1_placebo2009c,
                                                   lm_2011_1_placebo2010a, lm_2011_1_placebo2010b, lm_2011_1_placebo2010c,
                                                   lm_2011_1_placebo2011a, lm_2011_1_placebo2011b, lm_2011_1_placebo2011c), 
                                              function(mod){
                                                coef(mod)[2]
                                              }),
                                 se = sapply(list(vcov_2011_1a, vcov_2011_1b, vcov_2011_1c,
+                                                 #vcov_2011_1_placebo2009a, vcov_2011_1_placebo2009b, vcov_2011_1_placebo2009c,
                                                  vcov_2011_1_placebo2010a, vcov_2011_1_placebo2010b, vcov_2011_1_placebo2010c,
                                                  vcov_2011_1_placebo2011a, vcov_2011_1_placebo2011b, vcov_2011_1_placebo2011c), 
                                             function(vcov){
@@ -198,6 +227,7 @@ ggplot(lfe_2011_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, 
   ylab("Estimated Treatment Effect") +
   scale_shape_discrete(name="") +
   scale_x_discrete(labels=c("2011" = "Election in 2011\n\nActual Treatment", 
+                            "2008" = "Election in 2008",
                             "2009" = "Election in 2009\n\nPlacebo Treatments",
                             "2010" = "Election in 2010")) +
   facet_grid( ~ placebo, scales="free_x", space="free_x") +
@@ -233,6 +263,7 @@ candidates2011 %>%
 
 windows <- seq(57.5, 65, by = .25)
 
+set.seed(02142)
 pvalues.windows <- sapply(windows, function(w) {
   index <- which(candidates2011$centralnominated == 1 &
                    (candidates2011$percentage < w | candidates2011$result == 0))
@@ -277,7 +308,7 @@ candidates2011 %>% filter(centralnominated == 1 & (percentage <= 62.5 | result =
 # remove Hanoi and Ho Chi Minh city
 candidates2011rdd <- candidates2011 %>% filter(prov!="Ha Noi" & prov!="TP HCM")
 
-window.final <- 62.5
+window.final <- 61.5
 
 candidates2011rdd$closewin <- as.numeric(candidates2011rdd$centralnominated==1 &
                                            candidates2011rdd$percentage <= window.final &
@@ -330,7 +361,7 @@ treatment.2011.observed <- treatment_generate_2011(candidates2011rdd)
 dat_rdd <- plan %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
   filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
-  mutate(defeat.2011 = treatment.2011.observed)
+  mutate(defeat.2011 = treatment.2011.observed) 
 
 ## One year effect
 # should note that adding time-invariant covariates or lagged outcomes don't change results
@@ -348,8 +379,9 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year==2012)) %>%
-    filter(year < 2013 & year > 2008) %>%
-    drop_na(defeat, net.trans.log)
+    filter(year < 2013 & year > 2007) %>%
+    filter(prov!="Long An") %>%
+    drop_na(defeat, net.trans.log) 
   
   # create residual by purging covariate-based noise
   purge.y <- lm(net.trans.change.log ~ defeat.2011 + 
@@ -411,7 +443,8 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year>=2012)) %>%
-    filter(year > 2008 & year < 2016) %>%
+    filter(year > 2007 & year < 2016) %>%
+    filter(prov!="Long An") %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -461,6 +494,123 @@ abline(v = rdd_2011_p$wilcox[1])
 ## placebo 1: one-year change as if election was held in 2009 st outcome is in 2010
 
 # One year effect
+rdd_2011_1_placebo2009 <- list(beta = rep(NA, ncol(treatment.2011.randomized) + 1),
+                               wilcox = rep(NA, ncol(treatment.2011.randomized) +1))
+for (i in 0:ncol(treatment.2011.randomized)) {
+  
+  if(i == 0) {
+    treatment <- treatment.2011.observed  
+  } else {
+    treatment <- treatment.2011.randomized[,i]
+  }
+  
+  
+  dat <- dat_rdd %>%
+    mutate(defeat.2011 = treatment) %>% 
+    mutate(defeat = defeat.2011*as.numeric(year==2009)) %>%
+    filter(year > 2007 & year < 2010) %>%
+    filter(prov!="Long An") %>%
+    drop_na(defeat, net.trans.log)
+  
+  # create residual by purging covariate-based noise
+  purge.y <- lm(net.trans.change.log ~ defeat.2011 +
+                  total.rev.log.lag +
+                  factor(prov) + factor(year),
+                data = dat) # just lm
+  
+  dat$y.tilde <- resid(purge.y)
+  
+  # do the same for treatment variable
+  purge.t <- lm(defeat ~ defeat.2011 +
+                  total.rev.log.lag +
+                  factor(prov) + factor(year),
+                data = dat) # just lm
+  dat$t.tilde <- resid(purge.t)
+  
+  # Difference-in-means statistics
+  fit <- lm(y.tilde ~ t.tilde, data = dat) # just lm
+  rdd_2011_1_placebo2009$beta[i+1] <- coef(fit)["t.tilde"]
+  
+  # Wilcoxon ranksum
+  rdd_2011_1_placebo2009$wilcox[i+1] <- rank(-dat$y.tilde) %*% dat$defeat
+}
+
+
+# Difference in means
+2*min(mean(rdd_2011_1_placebo2009$beta[1] > rdd_2011_1_placebo2009$beta[-1]),
+      mean(rdd_2011_1_placebo2009$beta[1] < rdd_2011_1_placebo2009$beta[-1]))
+
+plot(density(rdd_2011_1_placebo2009$beta))
+abline(v = rdd_2011_1_placebo2009$beta[1])
+
+# Wilcoxon rank sum
+2*min(mean(rdd_2011_1_placebo2009$wilcox[1] > rdd_2011_1_placebo2009$wilcox[-1]),
+      mean(rdd_2011_1_placebo2009$wilcox[1] < rdd_2011_1_placebo2009$wilcox[-1]))
+
+plot(density(rdd_2011_1_placebo2009$wilcox))
+abline(v = rdd_2011_1_placebo2009$wilcox[1])
+
+
+# multiple year effect
+rdd_2011_p_placebo2009 <- list(beta = rep(NA, ncol(treatment.2011.randomized) + 1),
+                               wilcox = rep(NA, ncol(treatment.2011.randomized) +1))
+for (i in 0:ncol(treatment.2011.randomized)) {
+  
+  if(i == 0) {
+    treatment <- treatment.2011.observed  
+  } else {
+    treatment <- treatment.2011.randomized[,i]
+  }
+  
+  
+  dat <- dat_rdd %>%
+    mutate(defeat.2011 = treatment) %>% 
+    mutate(defeat = defeat.2011*as.numeric(year>=2009)) %>%
+    filter(year > 2007 & year < 2016) %>%
+    filter(prov!="Long An") %>%
+    drop_na(defeat, net.trans.log)
+  
+  # create residual by purging covariate-based noise
+  purge.y <- lm(net.trans.change.log ~ defeat.2011 +
+                  total.rev.log.lag +
+                  factor(prov) + factor(year),
+                data = dat) # just lm
+  
+  dat$y.tilde <- resid(purge.y)
+  
+  # do the same for treatment variable
+  purge.t <- lm(defeat ~ defeat.2011 +
+                  total.rev.log.lag +
+                  factor(prov) + factor(year),
+                data = dat) # just lm
+  dat$t.tilde <- resid(purge.t)
+  
+  # Difference-in-means statistics
+  fit <- lm(y.tilde ~ t.tilde, data = dat) # just lm
+  rdd_2011_p_placebo2009$beta[i+1] <- coef(fit)["t.tilde"]
+  
+  # Wilcoxon ranksum
+  rdd_2011_p_placebo2009$wilcox[i+1] <- rank(-dat$y.tilde) %*% dat$defeat
+}
+
+
+# Difference in means
+2*min(mean(rdd_2011_p_placebo2009$beta[1] > rdd_2011_p_placebo2009$beta[-1]),
+      mean(rdd_2011_p_placebo2009$beta[1] < rdd_2011_p_placebo2009$beta[-1]))
+
+plot(density(rdd_2011_p_placebo2009$beta))
+abline(v = rdd_2011_p_placebo2009$beta[1])
+
+# Wilcoxon rank sum
+2*min(mean(rdd_2011_p_placebo2009$wilcox[1] > rdd_2011_p_placebo2009$wilcox[-1]),
+      mean(rdd_2011_p_placebo2009$wilcox[1] < rdd_2011_p_placebo2009$wilcox[-1]))
+
+plot(density(rdd_2011_p_placebo2009$wilcox))
+abline(v = rdd_2011_p_placebo2009$wilcox[1])
+
+## placebo 2: one-year change as if election was held in 2009 st outcome is in 2010
+
+# One year effect
 rdd_2011_1_placebo2010 <- list(beta = rep(NA, ncol(treatment.2011.randomized) + 1),
                                wilcox = rep(NA, ncol(treatment.2011.randomized) +1))
 for (i in 0:ncol(treatment.2011.randomized)) {
@@ -475,7 +625,8 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year==2010)) %>%
-    filter(year > 2008 & year < 2011) %>%
+    filter(year > 2007 & year < 2011) %>%
+    filter(prov!="Long An") %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -532,7 +683,8 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year>=2010)) %>%
-    filter(year > 2008 & year < 2016) %>%
+    filter(year > 2007 & year < 2016) %>%
+    filter(prov!="Long An") %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -573,7 +725,7 @@ abline(v = rdd_2011_p_placebo2010$beta[1])
 plot(density(rdd_2011_p_placebo2010$wilcox))
 abline(v = rdd_2011_p_placebo2010$wilcox[1])
 
-## placebo 2: one-year change as if election was held in 2010 st outcome is in 2011
+## placebo 3: one-year change as if election was held in 2010 st outcome is in 2011
 
 # One year effect
 rdd_2011_1_placebo2011 <- list(beta = rep(NA, ncol(treatment.2011.randomized) + 1),
@@ -590,7 +742,8 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year==2011)) %>%
-    filter(year > 2008 & year < 2012) %>%
+    filter(year > 2007 & year < 2012) %>%
+    filter(prov!="Long An") %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -635,21 +788,23 @@ abline(v = rdd_2011_1_placebo2011$wilcox[1])
 
 #### Randomization inference results for RDD analyses
 
-lay <- rbind(c(NA,1,2,2,NA),
-             c(3:7),
-             c(NA,8,9,10,NA))
+lay <- rbind(c(NA,1,2,2,2,NA),
+             c(3:8),
+             c(NA,9,10,11,12,NA))
 
 rdd_2011_results <- grid.arrange(layout_matrix = lay,
                             heights = c(1,10,2),
-                            widths = c(1,rep(3,3),1),
+                            widths = c(1,rep(3,4),1),
                             textGrob("Actual Treatment"),
                             textGrob("Placebo Treatments"),
                             y_axe(-20,20),
                             ri_plot(rdd_2011_1, scale=F, xmin=-20, xmax=20, title = "Election in 2011"),
+                            ri_plot(rdd_2011_1_placebo2009, scale=F, xmin=-20, xmax=20, title = "Election in 2008"),
                             ri_plot(rdd_2011_1_placebo2010, scale=F, xmin=-20, xmax=20, title = "Election in 2009"),
                             ri_plot(rdd_2011_1_placebo2011, scale=F, xmin=-20, xmax=20, title = "Election in 2010"),
                             y_axe(-20,20) + scale_x_continuous(position = "top"),
                             ri_annotate(rdd_2011_1, show_wilcox = FALSE),
+                            ri_annotate(rdd_2011_1_placebo2009, show_wilcox = FALSE),
                             ri_annotate(rdd_2011_1_placebo2010, show_wilcox = FALSE),
                             ri_annotate(rdd_2011_1_placebo2011, show_wilcox = FALSE))
 
@@ -674,6 +829,7 @@ dat_balance_lme <- plan %>%
   filter(year == 2010) %>%
   filter(defeat.2011!=0 | closewin.2011!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Long An") %>%
   select(prov, total.rev, total.exp,
          num.candidates.2011, num.seats.2011, num.centralnominees.2011, 
          defeat.2011) %>%
@@ -721,6 +877,7 @@ dat_balance_rdd <- plan %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
   filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
   mutate(defeat.2011 = treatment.2011.observed) %>%
+  filter(prov!="Long An") %>%
   filter(year == 2010) %>%
   filter(!is.na(defeat.2011)) %>%
   select(prov, total.rev, total.exp,
@@ -769,9 +926,10 @@ t(balance_rdd)
 #############################
 
 dat_synth <- plan %>%
-  filter(defeat.2007!=0 | closewin.2007!=0 | defeat.2011!=0 | closewin.2011!=0) %>%
+  filter(defeat.2007!=0 | closewin.2007!=0 | defeat.2011!=0 | closewin.2011!=0 | defeat.2016!=0 | closewin.2016!=0 ) %>%
   filter(year < 2016) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM")
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Long An")
 panelView(net.trans.change.log ~ defeat, data = dat_synth, index = c("prov", "year"))
 
 ## One year change
@@ -803,7 +961,8 @@ plot(synth_2011_1, type = "counterfactual")
 
 dat_2011synth_p <- dat_synth %>%
   mutate(treat = defeat.2011*as.numeric(year>=2012)) %>%
-  #filter(defeat.2011!=0 | closewin.2011!=0) %>%
+  mutate(net.trans.cr = net.trans^(1/3)) %>%
+  #filter(prov != "Hau Giang") %>%
   drop_na(net.trans.log)
 panelView(net.trans.change.log ~ treat, data = dat_2011synth_p, index = c("prov", "year"))
 
@@ -815,6 +974,7 @@ system.time(
                          CV = TRUE, r = c(0, 3), 
                          se = TRUE, 
                          inference = "parametric", nboots = 1000,
+                         estimator = "ife",
                          parallel = TRUE, cores = 6,
                          na.rm = TRUE)
 )
@@ -1329,7 +1489,7 @@ for (i in 0:ncol(treatment.2007.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2007 = treatment) %>% 
     mutate(defeat = defeat.2007*as.numeric(year>=2012)) %>%
-    filter(year > 2008 & year < 2016) %>%
+    filter(year > 2007 & year < 2016) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
