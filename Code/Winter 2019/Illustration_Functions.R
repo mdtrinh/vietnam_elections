@@ -40,7 +40,7 @@ ri_plot <- function(x, title = NULL, xlab = NULL, ylab=NULL, scale=F, xmin, xmax
 
 # function to create a textGrob listing p-values
 ri_annotate <- function(x, show_beta = TRUE, show_wilcox = TRUE) {
-  beta.null <- x$beta[-1]
+  beta.null <- na.omit(x$beta[-1])
   beta.actual <- x$beta[1]
   
   p_beta <- 2*min(mean(beta.actual > beta.null),
