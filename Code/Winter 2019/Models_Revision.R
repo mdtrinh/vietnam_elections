@@ -23,7 +23,7 @@ source("../../Code/Winter 2019/Merge_All.R")
 #### 2011 Results
 
 dat_lme <- plan %>%
-  filter(year > 2008 & year < 2019) %>%
+  filter(year > 2007 & year < 2019) %>%
   mutate(defeat = ifelse(year == 2008, 0, defeat)) %>% 
   filter(defeat.2011!=0 | closewin.2011!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
@@ -200,24 +200,24 @@ coeftest(lm_2011_1_placebo2011c, vcov = vcov_2011_1_placebo2011c)
 
 #### Coefficient plot for main regression results + placebo results
 lfe_2011_plot_dat <- data.frame(ATT = sapply(list(lm_2011_1a, lm_2011_1b, lm_2011_1c,
-                                                  #lm_2011_1_placebo2009a, lm_2011_1_placebo2009b, lm_2011_1_placebo2009c,
+                                                  lm_2011_1_placebo2009a, lm_2011_1_placebo2009b, lm_2011_1_placebo2009c,
                                                   lm_2011_1_placebo2010a, lm_2011_1_placebo2010b, lm_2011_1_placebo2010c,
                                                   lm_2011_1_placebo2011a, lm_2011_1_placebo2011b, lm_2011_1_placebo2011c), 
                                              function(mod){
                                                coef(mod)[2]
                                              }),
                                 se = sapply(list(vcov_2011_1a, vcov_2011_1b, vcov_2011_1c,
-                                                 #vcov_2011_1_placebo2009a, vcov_2011_1_placebo2009b, vcov_2011_1_placebo2009c,
+                                                 vcov_2011_1_placebo2009a, vcov_2011_1_placebo2009b, vcov_2011_1_placebo2009c,
                                                  vcov_2011_1_placebo2010a, vcov_2011_1_placebo2010b, vcov_2011_1_placebo2010c,
                                                  vcov_2011_1_placebo2011a, vcov_2011_1_placebo2011b, vcov_2011_1_placebo2011c), 
                                             function(vcov){
                                               sqrt(diag(vcov))[2]
                                             })) %>%
   mutate(lower = ATT - se*1.96, upper = ATT + se*1.96) %>%
-  mutate(spec = rep(c("Province FEs + Year FEs", "Time-variant Covs + Province FEs + Year FEs", "Competitiveness + Year FEs"), 3),
-         treat_year = rep(c(2011, 2009, 2010), each = 3),
-         placebo = c(rep("Estimated Effect", 3), rep("Estimated Effect, Placebo Treatments", 6))) %>%
-  mutate(treat_year = factor(treat_year, levels = c("2011", "2009", "2010")),
+  mutate(spec = rep(c("Province FEs + Year FEs", "Time-variant Covs + Province FEs + Year FEs", "Competitiveness + Year FEs"), 4),
+         treat_year = rep(c(2011, 2008, 2009, 2010), each = 3),
+         placebo = c(rep("Estimated Effect", 3), rep("Estimated Effect, Placebo Treatments", 9))) %>%
+  mutate(treat_year = factor(treat_year, levels = c("2011", "2008", "2009", "2010")),
          spec = factor(spec, levels = c("Province FEs + Year FEs", "Time-variant Covs + Province FEs + Year FEs", "Competitiveness + Year FEs")))
 
 ggplot(lfe_2011_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, ymax = upper, shape = spec)) +
@@ -236,7 +236,7 @@ ggplot(lfe_2011_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, 
         axis.title.x = element_blank(),
         axis.text.x = element_text(size = 10, face = "bold"),
         legend.position="bottom") 
-
+ggsave("../../figure/200202_lfe_placebo_2011.png", width = 8, height = 4)
 
 ##########################
 # RDD RESULTS FOR 2011
@@ -297,16 +297,19 @@ for (x in 1:length(m)) {
 
 
 # Candidates thresholds:
-# Smallsest: 59.25 
+# Smallest: 59.5
+# Most stable: 61.5 
 # Largest possible: 62.5 << most observations, most power
 
 # Sample size for each threshold:
-candidates2011 %>% filter(centralnominated == 1 & (percentage <= 59.25 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
-candidates2011 %>% filter(centralnominated == 1 & (percentage <= 62.25 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
+candidates2011 %>% filter(centralnominated == 1 & (percentage <= 59.5 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
+candidates2011 %>% filter(centralnominated == 1 & (percentage <= 61.5 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
 candidates2011 %>% filter(centralnominated == 1 & (percentage <= 62.5 | result == 0)) %>% group_by(defeat) %>% summarise(n = n())
 
 # remove Hanoi and Ho Chi Minh city
-candidates2011rdd <- candidates2011 %>% filter(prov!="Ha Noi" & prov!="TP HCM")
+candidates2011rdd <- candidates2011 %>% 
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Long An")
 
 window.final <- 61.5
 
@@ -315,7 +318,7 @@ candidates2011rdd$closewin <- as.numeric(candidates2011rdd$centralnominated==1 &
                                            candidates2011rdd$defeat != 1)
 
 # function to generate province summaries from candidate-level data
-treatment_generate_2011 <- function(candidates) {
+treatment_generate_2011 <- function(candidates, years = c(2008:2018)) {
   provinces <- candidates %>%
     group_by(prov) %>%
     summarise(defeat = max(defeat, na.rm = T),
@@ -328,7 +331,7 @@ treatment_generate_2011 <- function(candidates) {
   provinces_treatment[provinces$defeat == 0 & provinces$closewin == 0] <- NA
   
   # province-year vector
-  provinces_year_treatment <- rep(provinces_treatment, each = 13)
+  provinces_year_treatment <- rep(provinces_treatment, each = length(years))
   
   return(provinces_year_treatment)
 }
@@ -359,9 +362,11 @@ treatment.2011.randomized <- apply(candidates2011.defeat.randomized, 2, function
 treatment.2011.observed <- treatment_generate_2011(candidates2011rdd)
 
 dat_rdd <- plan %>%
+  filter(year > 2007 & year < 2019) %>%
+  mutate(defeat = ifelse(year == 2008, 0, defeat)) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
-  mutate(defeat.2011 = treatment.2011.observed) 
+  filter(prov!="Long An") %>%
+  drop_na(net.trans.log, net.trans.lag)
 
 ## One year effect
 # should note that adding time-invariant covariates or lagged outcomes don't change results
@@ -379,8 +384,7 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year==2012)) %>%
-    filter(year < 2013 & year > 2007) %>%
-    filter(prov!="Long An") %>%
+    filter(year < 2013) %>%
     drop_na(defeat, net.trans.log) 
   
   # create residual by purging covariate-based noise
@@ -443,8 +447,7 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year>=2012)) %>%
-    filter(year > 2007 & year < 2016) %>%
-    filter(prov!="Long An") %>%
+    filter(year < 2016) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -508,8 +511,7 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year==2009)) %>%
-    filter(year > 2007 & year < 2010) %>%
-    filter(prov!="Long An") %>%
+    filter(year < 2010) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -566,8 +568,7 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year>=2009)) %>%
-    filter(year > 2007 & year < 2016) %>%
-    filter(prov!="Long An") %>%
+    filter(year < 2016)  %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -625,8 +626,7 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year==2010)) %>%
-    filter(year > 2007 & year < 2011) %>%
-    filter(prov!="Long An") %>%
+    filter(year < 2011) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -683,8 +683,7 @@ for (i in 0:ncol(treatment.2011.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2011 = treatment) %>% 
     mutate(defeat = defeat.2011*as.numeric(year>=2010)) %>%
-    filter(year > 2007 & year < 2016) %>%
-    filter(prov!="Long An") %>%
+    filter(year < 2016) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -807,6 +806,8 @@ rdd_2011_results <- grid.arrange(layout_matrix = lay,
                             ri_annotate(rdd_2011_1_placebo2009, show_wilcox = FALSE),
                             ri_annotate(rdd_2011_1_placebo2010, show_wilcox = FALSE),
                             ri_annotate(rdd_2011_1_placebo2011, show_wilcox = FALSE))
+
+ggsave("../../figure/200202_rdd_results_2011.png", plot = rdd_results, width = 8, height = 4)
 
 ##########################
 # BALANCE TABLE FOR 2011
@@ -961,13 +962,12 @@ plot(synth_2011_1, type = "counterfactual")
 
 dat_2011synth_p <- dat_synth %>%
   mutate(treat = defeat.2011*as.numeric(year>=2012)) %>%
-  mutate(net.trans.cr = net.trans^(1/3)) %>%
   #filter(prov != "Hau Giang") %>%
   drop_na(net.trans.log)
 panelView(net.trans.change.log ~ treat, data = dat_2011synth_p, index = c("prov", "year"))
 
 system.time(
-  synth_2011_p <- gsynth(net.trans.change.log ~ treat + defeat + total.rev.log, 
+  synth_2011_p <- gsynth(net.trans.change.log ~ treat + defeat, 
                          data = dat_2011synth_p, 
                          index = c("prov", "year"), force = "two-way",
                          EM = TRUE,
@@ -982,6 +982,30 @@ system.time(
 print(synth_2011_p)
 plot(synth_2011_p)
 plot(synth_2011_p, type = "counterfactual", raw = "all")
+
+lay <- cbind(c(rep(1,2), NA),
+             c(2:4))
+
+synth_results_table <- grid.arrange(layout_matrix = lay,
+                                    heights= c(2.5,.5,.5),
+                                    widths= c(0.5,8),
+                                    grid.text("Estimated Treatment Effect", rot = 90, draw = FALSE),
+                                    #grid.text("Actual Treatment", draw = FALSE),
+                                    gsynth_plot(synth_2011_p, xmin = -6, xmax = 4, ymin = -10, ymax = 30),
+                                    # slightly hacky solution to align the axis of x_axe with the rest
+                                    # of the graph
+                                    x_axe(-6,4) + 
+                                      scale_x_continuous(labels = function(x) {x + 2011},
+                                                         breaks = c(-6:4)) +
+                                      # set breaks = -10 s.t the axis text takes up exactly as much space
+                                      # as that of the real graphs
+                                      scale_y_continuous(breaks = -10),
+                                    grid.text("Year", draw = FALSE))
+grid.newpage()
+
+png("../../figure/200202_synth_results_2011.png", width = 8, height = 3.5, units="in", res = 96)
+synth_results <- grid.draw(synth_results_table)
+dev.off()
 
 ## Placebo 1: 2010 treatment, as if election is in 2009
 
@@ -1086,16 +1110,17 @@ grid.draw(synth_results_table)
 
 #### 2007 Results
 
-dat_lme <- final
+dat_lme <- plan %>%
+  filter(year > 2003) %>%
+  filter(defeat.2007!=0 | closewin.2007!=0) %>%
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  drop_na(net.trans.log, net.trans.lag)
 
 ## one-year change
 
 # 2007 only
 dat_2007_1 <- dat_lme %>%
-  filter(year > 2003 & year < 2009) %>%
-  filter(defeat.2007!=0 | closewin.2007!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  drop_na(net.trans.log, net.trans.lag)
+  filter(year < 2009)
 
 # without covariates
 lm_2007_1a <- lm(net.trans.log ~ defeat + defeat.2007 +
@@ -1128,11 +1153,8 @@ coeftest(lm_2007_1c, vcov = vcov_2007_1c)
 
 # 2007 only
 dat_2007_p <- dat_lme %>%
-  mutate(defeat = defeat.2007*(year >= 2007)) %>%
-  filter(year > 2003 & year < 2011) %>%
-  filter(defeat.2007!=0 | closewin.2007!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log)) 
+  mutate(defeat = defeat.2007*(year >= 2008)) %>%
+  filter(year < 2011)
 
 # without covariates
 lm_2007_pa <- lm(net.trans.change.log ~ defeat + defeat.2007 +
@@ -1165,10 +1187,7 @@ coeftest(lm_2007_pc, vcov = vcov_2007_pc)
 # 2007 results under placebo 2
 dat_2007_1_placebo2006 <- dat_lme %>%
   mutate(defeat_placebo2006 = defeat.2007 * as.numeric(year == 2006)) %>%
-  filter(year < 2007 & year > 2003) %>%
-  filter(defeat.2007!=0 | closewin.2007!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log))
+  filter(year < 2007)
 
 # without covariates
 lm_2007_1_placebo2006a <- lm(net.trans.change.log ~ defeat_placebo2006 + defeat.2007 +
@@ -1201,10 +1220,7 @@ coeftest(lm_2007_1_placebo2006c, vcov = vcov_2007_1_placebo2006c)
 # 2007 results under placebo 2
 dat_2007_1_placebo2007 <- dat_lme %>%
   mutate(defeat_placebo2007 = defeat.2007 * as.numeric(year == 2007)) %>%
-  filter(year < 2008 & year > 2003) %>%
-  filter(defeat.2007!=0 | closewin.2007!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log))
+  filter(year < 2008)
 
 # without covariates
 lm_2007_1_placebo2007a <- lm(net.trans.change.log ~ defeat_placebo2007 + defeat.2007 +
@@ -1270,6 +1286,7 @@ ggplot(lfe_2007_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, 
         axis.title.x = element_blank(),
         axis.text.x = element_text(size = 10, face = "bold"),
         legend.position="bottom") 
+ggsave("../../figure/200202_lfe_placebo_2007.png", width = 6, height = 4)
 
 ##########################
 # RDD RESULTS FOR 2007
@@ -1287,14 +1304,14 @@ covs <- c("age", "male", "party", "years_party", "degree2", "power", "num.candid
 
 candidates2007$years_party[is.na(candidates2007$years_party)] <- 0
 
-# set minimum threshold to be 56 s.t. there are 4 treated and 12 control
+# set minimum threshold to be 59 s.t. there are 9 treated and 12 control
 # (Cattaneo et al 2013 recommends 10 on both sides but we can start from slightly lower)
 candidates2007 %>% 
   filter(centralnominated == 1 & 
-           (percentage < 56 | result == 0)) %>% 
+           (percentage < 59 | result == 0)) %>% 
   group_by(defeat) %>% summarise(n = n())
 
-windows <- seq(56, 62.5, by = .25)
+windows <- seq(59, 62.5, by = .25)
 
 pvalues.windows <- sapply(windows, function(w) {
   index <- which(candidates2007$centralnominated == 1 &
@@ -1340,7 +1357,7 @@ candidates2007 %>% filter(centralnominated == 1 & (percentage <= 57 | result == 
 # remove Hanoi and Ho Chi Minh city
 candidates2007rdd <- candidates2007 %>% filter(prov!="Ha Noi" & prov!="TP HCM") %>% filter(prov!="Ha Tay")
 
-window.final <- 58.5
+window.final <- 59.5
 
 candidates2007rdd$closewin <- as.numeric(candidates2007rdd$centralnominated==1 &
                                            candidates2007rdd$percentage <= window.final &
@@ -1351,7 +1368,7 @@ candidates2007rdd$closewin <- as.numeric(candidates2007rdd$centralnominated==1 &
 treatment_generate_2007 <- function(candidates, dat_rdd) {
   provinces <- candidates %>%
     group_by(prov) %>%
-    #filter(prov != "Ha Tay") %>%
+    filter(prov != "Ha Tay") %>%
     summarise(defeat = max(defeat, na.rm = T),
               closewin = max(closewin, na.rm=T),
               num.closewin = sum(closewin, na.rm=T))
@@ -1407,8 +1424,6 @@ dat_rdd <- plan %>%
   filter(prov!= "Ha Tay") %>%
   filter(year > 2003 & year < 2019) %>%
   mutate(defeat.2007 = treatment.2007.observed)
-  
-  
 
 ## One year effect
 # should note that adding time-invariant covariates or lagged outcomes don't change results
@@ -1426,8 +1441,8 @@ for (i in 0:ncol(treatment.2007.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2007 = treatment) %>% 
     mutate(defeat = defeat.2007*as.numeric(year==2008)) %>%
-    filter(year < 2009 & year > 2003) %>%
-    drop_na(defeat, net.trans.log)
+    filter(year < 2009) %>%
+    drop_na(defeat, net.trans.log, total.rev.log.lag)
   
   # create residual by purging covariate-based noise
   purge.y <- lm(net.trans.change.log ~ defeat.2007 + 
@@ -1445,7 +1460,9 @@ for (i in 0:ncol(treatment.2007.randomized)) {
   
   # Difference-in-means statistics
   fit <- lm(y.tilde ~ t.tilde, data = dat) # just lm
-  rdd_2007_1$beta[i+1] <- coef(fit)["t.tilde"]
+  rdd_2007_1$beta[i+1] <- ifelse(abs(coef(fit)["t.tilde"]) > 100,
+                                 NA,
+                                 coef(fit)["t.tilde"])
   
   # Wilcoxon ranksum
   rdd_2007_1$wilcox[i+1] <- rank(-dat$y.tilde) %*% dat$defeat
@@ -1488,9 +1505,9 @@ for (i in 0:ncol(treatment.2007.randomized)) {
   
   dat <- dat_rdd %>%
     mutate(defeat.2007 = treatment) %>% 
-    mutate(defeat = defeat.2007*as.numeric(year>=2012)) %>%
-    filter(year > 2007 & year < 2016) %>%
-    drop_na(defeat, net.trans.log)
+    mutate(defeat = defeat.2007*as.numeric(year>=2008)) %>%
+    filter(year < 2011) %>%
+    drop_na(defeat, net.trans.log, total.rev.log.lag)
   
   # create residual by purging covariate-based noise
   purge.y <- lm(net.trans.change.log ~ defeat.2007 +
@@ -1508,7 +1525,9 @@ for (i in 0:ncol(treatment.2007.randomized)) {
   
   # Difference-in-means statistics
   fit <- lm(y.tilde ~ t.tilde, data = dat) # just lm
-  rdd_2007_p$beta[i+1] <- coef(fit)["t.tilde"]
+  rdd_2007_p$beta[i+1] <- ifelse(abs(coef(fit)["t.tilde"]) > 100,
+                                 NA,
+                                 coef(fit)["t.tilde"])
   
   # Wilcoxon ranksum
   rdd_2007_p$wilcox[i+1] <- rank(-dat$y.tilde) %*% dat$defeat
@@ -1549,12 +1568,11 @@ for (i in 0:ncol(treatment.2007.randomized)) {
     treatment <- treatment.2007.randomized[,i]
   }
   
-  
   dat <- dat_rdd %>%
     mutate(defeat.2007 = treatment) %>% 
     mutate(defeat = defeat.2007*as.numeric(year==2006)) %>%
     filter(year > 2003 & year < 2007) %>%
-    drop_na(defeat, net.trans.log)
+    drop_na(defeat, net.trans.log, total.rev.log.lag)
   
   # create residual by purging covariate-based noise
   purge.y <- lm(net.trans.change.log ~ defeat.2007 +
@@ -1573,7 +1591,9 @@ for (i in 0:ncol(treatment.2007.randomized)) {
   
   # Difference-in-means statistics
   fit <- lm(y.tilde ~ t.tilde, data = dat) # just lm
-  rdd_2007_1_placebo2006$beta[i+1] <- coef(fit)["t.tilde"]
+  rdd_2007_1_placebo2006$beta[i+1] <- ifelse(abs(coef(fit)["t.tilde"]) > 100,
+                                             NA,
+                                             coef(fit)["t.tilde"])
   
   # Wilcoxon ranksum
   rdd_2007_1_placebo2006$wilcox[i+1] <- rank(-dat$y.tilde) %*% dat$defeat
@@ -1611,7 +1631,7 @@ for (i in 0:ncol(treatment.2007.randomized)) {
     mutate(defeat.2007 = treatment) %>% 
     mutate(defeat = defeat.2007*as.numeric(year>=2006)) %>%
     filter(year > 2003 & year < 2011) %>%
-    drop_na(defeat, net.trans.log)
+    drop_na(defeat, net.trans.log, total.rev.log.lag)
   
   # create residual by purging covariate-based noise
   purge.y <- lm(net.trans.change.log ~ defeat.2007 +
@@ -1630,7 +1650,9 @@ for (i in 0:ncol(treatment.2007.randomized)) {
   
   # Difference-in-means statistics
   fit <- lm(y.tilde ~ t.tilde, data = dat) # just lm
-  rdd_2007_p_placebo2006$beta[i+1] <- coef(fit)["t.tilde"]
+  rdd_2007_p_placebo2006$beta[i+1] <- ifelse(abs(coef(fit)["t.tilde"]) > 100,
+                                             NA,
+                                             coef(fit)["t.tilde"])
   
   # Wilcoxon ranksum
   rdd_2007_p_placebo2006$wilcox[i+1] <- rank(-dat$y.tilde) %*% dat$defeat
@@ -1669,7 +1691,7 @@ for (i in 0:ncol(treatment.2007.randomized)) {
     mutate(defeat.2007 = treatment) %>% 
     mutate(defeat = defeat.2007*as.numeric(year==2007)) %>%
     filter(year > 2003 & year < 2008) %>%
-    drop_na(defeat, net.trans.log)
+    drop_na(defeat, net.trans.log, total.rev.log.lag)
   
   # create residual by purging covariate-based noise
   purge.y <- lm(net.trans.change.log ~ defeat.2007 +
@@ -1688,7 +1710,9 @@ for (i in 0:ncol(treatment.2007.randomized)) {
   
   # Difference-in-means statistics
   fit <- lm(y.tilde ~ t.tilde, data = dat) # just lm
-  rdd_2007_1_placebo2007$beta[i+1] <- coef(fit)["t.tilde"]
+  rdd_2007_1_placebo2007$beta[i+1] <- ifelse(abs(coef(fit)["t.tilde"]) > 100,
+                                             NA,
+                                             coef(fit)["t.tilde"])
   
   # Wilcoxon ranksum
   rdd_2007_1_placebo2007$wilcox[i+1] <- rank(-dat$y.tilde) %*% dat$defeat
@@ -1730,4 +1754,4 @@ rdd_2007_results <- grid.arrange(layout_matrix = lay,
                                  ri_annotate(rdd_2007_1, show_wilcox = FALSE),
                                  ri_annotate(rdd_2007_1_placebo2006, show_wilcox = FALSE),
                                  ri_annotate(rdd_2007_1_placebo2007, show_wilcox = FALSE))
-
+ggsave("../../figure/200202_rdd_results_2007.png", plot = rdd_results, width = 8, height = 4)
