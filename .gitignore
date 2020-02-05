@@ -4,6 +4,8 @@
 .RData
 .Ruserdata
 ~*.docx
+~*.DOC
+~*.doc
 ~*.tmp
 *.aux
 *.bbl

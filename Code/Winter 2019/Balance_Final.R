@@ -26,10 +26,11 @@ dat_balance_lme <- plan %>%
   filter(year == 2015) %>%
   filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong") %>%
   select(prov, total.rev, total.exp,
          num.candidates.2016, num.seats.2016, num.centralnominees.2016, 
          defeat.2016) %>%
-  inner_join(covs %>% filter(year == 2015), by = "prov") %>%
+  inner_join(covariates %>% filter(year == 2015), by = "prov") %>%
   mutate(total.rev = total.rev/1000,
          total.exp = total.exp/1000)
 
@@ -74,11 +75,12 @@ dat_balance_rdd <- plan %>%
   filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
   mutate(defeat.2016 = treatment.2016.observed) %>%
   filter(year == 2015) %>%
+  filter(prov!="Binh Duong") %>%
   filter(!is.na(defeat.2016)) %>%
   select(prov, total.rev, total.exp,
          num.candidates.2016, num.seats.2016, num.centralnominees.2016, 
          defeat.2016) %>%
-  inner_join(covs %>% filter(year == 2015), by = "prov") %>%
+  inner_join(covariates %>% filter(year == 2015), by = "prov") %>%
   mutate(total.rev = total.rev/1000,
          total.exp = total.exp/1000)
 

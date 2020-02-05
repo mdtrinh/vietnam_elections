@@ -2,12 +2,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A}Digit tests showing no evidence of high-level manipulation}{2}{appendix.A}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Extending main analysis to previous elections}{6}{appendix.B}% 
+\contentsline {section}{\numberline {B}Effect of 2015 State Budget Law}{6}{appendix.B}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.1}Why focus on the 2016 election?}{6}{subsection.B.1}% 
+\contentsline {section}{\numberline {C}Extending main analysis to previous elections}{8}{appendix.C}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.2}Responses to localized defeats in 2011 election}{8}{subsection.B.2}% 
+\contentsline {subsection}{\numberline {C.1}Why focus on the 2016 election?}{8}{subsection.C.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {B.3}Responses to localized defeats in 2007 election}{14}{subsection.B.3}% 
+\contentsline {subsection}{\numberline {C.2}Responses to localized defeats in 2011 election}{10}{subsection.C.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{References}{17}{section*.8}% 
+\contentsline {subsection}{\numberline {C.3}Responses to localized defeats in 2007 election}{16}{subsection.C.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{References}{19}{section*.9}% 

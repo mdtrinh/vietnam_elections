@@ -322,11 +322,11 @@ The two approaches produce two slightly different samples, but both achieve rema
 
 I use the first sample for my linear fixed effects model, and the second for the local randomization regression discontinuity analysis. Because the synthetic control achieves balance on pre-treatment outcomes by design, I construct it from a relaxed version of the first sample, which includes provinces with close victories or defeats in not only the 2016 but also the 2011 and 2007 elections.
 
-\input{figure/190618_table_balance.tex}
+\input{figure/200205_table_balance.tex}
 
 \section{Results}
 \label{sec:results}
-\input{figure/190618_reg_table}
+\input{figure/200205_reg_table}
 
 Table \ref{tab:lfe_main} shows the main results from the linear fixed effects model in Section \ref{sec:methods_estimation} under different model specifications. The treatment effect estimates are positive and significant across specifications, and are relatively stable. Given that the outcome variable is the log of first-differenced net transfers, the effect magnitude would be best understood as a percentage of the average absolute annual change in net transfers between non-election years. For example, if net transfers to a province have been growing at an average rate of $100$ billion VND (approx. 4.3 million USD) per year, then a localized defeat would see the province' net transfers in 2017 increased by an additional $13$ billion VND (approx. $560,000$ USD), as indicated in the first three columns of Table \ref{tab:lfe_main}. When averaged over both 2017 and 2018, the treatment effect is slightly bigger, suggesting that the effect of localized defeats on net transfers accumulates over a long duration rather than going away.\fnote{Among the provinces in the sample, Tien Giang experienced the smallest average change in net transfers -- approximately $56$ billion VND (2.4 million USD) per year, whereas Binh Duong experienced the largest -- approximately $2575$ billion VND (111 million USD) per year. Because Binh Duong contributes more to the national budget than it takes from central transfers, the change actually means that that it gets to keep more of its revenues. The estimated effect translates to roughly $7$ billion VND ($300,000$ USD) for Tien Giang and $335$ billion VND (14.4 million USD) for Binh Duong. For perspective, average total expenditure is $5,500$ billion VND (237 million USD) for Tien Giang and $11,100$ billion VND (479 million USD) for Binh Duong.}
 
@@ -334,7 +334,7 @@ To allay concerns about lack of exogeneity, Figure \ref{fig:lfe_placebo} plots t
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=\textwidth]{figure/190618_lfe_placebo.png}
+	\includegraphics[width=\textwidth]{figure/200205_lfe_placebo.png}
 	\captionsetup{singlelinecheck=off}
 	\caption[Estimated placebo linear fixed effects treatment effects]{Estimates of instantaneous treatment effects using linear fixed effects models. The error bars show 95\% confidence intervals.}
 	\label{fig:lfe_placebo}
@@ -344,7 +344,7 @@ Figure \ref{fig:rdd_placebo} presents the results from an analysis based on the 
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=\textwidth]{figure/190618_rdd_results.png}
+	\includegraphics[width=\textwidth]{figure/200205_rdd_results.png}
 	\captionsetup{singlelinecheck=off}
 	\caption[Estimated RDD treatment effects]{Estimates of instantaneous treatment effects for RDD analyses using the local randomization approach. The red lines show the estimated treatment effects, and the gray bars show their randomization distribution. P-values are presented for the treatment effect estimate.}
 	\label{fig:rdd_placebo}
@@ -354,7 +354,7 @@ The absence of statistically significant placebo effects in Table \ref{tab:lfe_m
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=\textwidth]{figure/190618_synth_results.png}
+	\includegraphics[width=\textwidth]{figure/200205_synth_results.png}
 	\captionsetup{singlelinecheck=off}
 	\caption[Estimated synthetic control treatment effects]{Estimates of treatment effects on net transfers using the generalized synthetic control method. The horizontal dashed line marks the election year.}
 	\label{fig:synth_placebo}
@@ -379,7 +379,7 @@ Specifically, Table \ref{tab:lfe_mech} and Figure \ref{fig:synth_rdd_mech} prese
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=\textwidth]{figure/190618_mech_results.png}
+	\includegraphics[width=\textwidth]{figure/200205_mech_results.png}
 	\captionsetup{singlelinecheck=off}
 	\caption[Estimated RDD and synthetic control treatment effects]{Estimates of treatment effects on development and administrative expenditure using RDD under the local randomization approach and the generalized synthetic control method. Only effects for 2017 are calculated due to lack of 2018 data.}
 	\label{fig:synth_rdd_mech}
@@ -393,7 +393,7 @@ It is possible to rule out this alternative explanation by looking at provinces 
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=\textwidth]{figure/190618_synth_results_2prov.png}
+	\includegraphics[width=\textwidth]{figure/200205_synth_results_2prov.png}
 	\captionsetup{singlelinecheck=off}
 	\caption[Individual synthetic control treatment effects]{Individual estimates of treatment effects on central transfers for Soc Trang and Can Tho, estimated using the generalized synthetic control method similar to Table \ref{fig:synth_placebo}.}
 	\label{fig:synth_mech}

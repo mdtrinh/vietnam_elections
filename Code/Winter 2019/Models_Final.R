@@ -14,16 +14,18 @@ source("../../Code/Winter 2019/Merge_All.R")
 
 #### Linear regressions results for 2016 elections ####
 
-dat_lme <- plan
+dat_lme <- plan %>%
+  filter(year < 2019 & year > 2012) %>%
+  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong") %>%
+  drop_na(net.trans.log, net.trans.lag)
 
 ## one-year change
 
 # 2016 only -- positive and significant effect
-dat_2016_1 <- dat_lme %>%
-  filter(year < 2018 & year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  drop_na(net.trans.log, net.trans.lag)
+dat_2016_1 <- dat_lme  %>%
+  filter(year < 2018)
 
 # without covariates
 lm_2016_1a <- lm(net.trans.change.log ~ defeat.true + defeat.true.2016 +
@@ -56,11 +58,7 @@ coeftest(lm_2016_1c, vcov = vcov_2016_1c)
 
 # 2016 only -- positive effect
 dat_2016_p <- dat_lme %>%
-  mutate(defeat.true = defeat.true.2016*(year >= 2017)) %>%
-  filter(year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log))
+  mutate(defeat.true = defeat.true.2016*(year >= 2017)) 
 
 # without covariates
 lm_2016_pa <- lm(net.trans.change.log ~ defeat.true + defeat.true.2016 +
@@ -93,10 +91,7 @@ coeftest(lm_2016_pc, vcov = vcov_2016_pc)
 # 2016 results under placebo1
 dat_2016_1_placebo2014 <- dat_lme %>%
   mutate(defeat_placebo2014 = defeat.true.2016 * as.numeric(year == 2014)) %>%
-  filter(year < 2015 & year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log))
+  filter(year < 2015)
 
 # without covariates
 lm_2016_1_placebo2014a <- lm(net.trans.change.log ~ defeat_placebo2014 + defeat.true.2016 +
@@ -129,10 +124,7 @@ coeftest(lm_2016_1_placebo2014c, vcov = vcov_2016_1_placebo2014c)
 # 2016 results under placebo 2
 dat_2016_1_placebo2015 <- dat_lme %>%
   mutate(defeat_placebo2015 = defeat.true.2016 * as.numeric(year == 2015)) %>%
-  filter(year < 2016 & year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log))
+  filter(year < 2016)
 
 # without covariates
 lm_2016_1_placebo2015a <- lm(net.trans.change.log ~ defeat_placebo2015 + defeat.true.2016 +
@@ -172,10 +164,7 @@ coeftest(lm_2016_1_placebo2015c, vcov = vcov_2016_1_placebo2015c)
 # 2016 results under placebo 3
 dat_2016_1_placebo2016 <- dat_lme %>%
   mutate(defeat_placebo2016 = defeat.true.2016 * as.numeric(year == 2016)) %>%
-  filter(year < 2017 & year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(!is.na(net.trans.change.log))
+  filter(year < 2017)
 
 # without covariates
 lm_2016_1_placebo2016a <- lm(net.trans.change.log ~ defeat_placebo2016 + defeat.true.2016 +
@@ -211,7 +200,9 @@ coeftest(lm_2016_1_placebo2016c, vcov = vcov_2016_1_placebo2016c)
 # refer to Models_RDD.R for bandwidth selection process
 
 # remove Hanoi and Ho Chi Minh city
-candidates2016rdd <- candidates2016 %>% filter(prov!="Ha Noi" & prov!="TP HCM")
+candidates2016rdd <- candidates2016 %>% 
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong")
 
 lower.final <- -11.5
 upper.final <- 7.25
@@ -270,8 +261,9 @@ treatment.2016.randomized <- apply(candidates2016.closedefeat.randomized, 2, fun
 treatment.2016.observed <- treatment_generate(candidates2016rdd)
 
 dat_rdd <- plan %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
   filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong") %>%
   mutate(defeat.2016 = treatment.2016.observed)
 
 # One year effect
@@ -290,7 +282,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year==2017)) %>%
-    filter(year < 2018 & year > 2012) %>%
+    filter(year < 2018 ) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -417,7 +409,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year==2014)) %>%
-    filter(year > 2012 & year < 2015) %>%
+    filter(year < 2015) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -473,7 +465,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year>=2014)) %>%
-    filter(year > 2012 & year < 2016) %>%
+    filter(year < 2016) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -531,7 +523,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year==2015)) %>%
-    filter(year > 2012 & year < 2016) %>%
+    filter(year < 2016) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -588,7 +580,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year>=2015)) %>%
-    filter(year > 2012 & year < 2017) %>%
+    filter(year < 2017) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -646,7 +638,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year==2016)) %>%
-    filter(year > 2012 & year < 2017) %>%
+    filter(year < 2017) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -696,7 +688,8 @@ abline(v = rdd_2016_1_placebo2016$wilcox[1])
 dat_synth <- plan %>%
   filter(defeat.2007!=0 | closewin.2007!=0 | defeat.2011!=0 | closewin.2011!=0 | defeat.true.2016!=0 | closewin.true.2016!=0) %>%
   filter(year < 2019) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM")
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong")
 panelView(net.trans.change.log ~ defeat, data = dat_synth, index = c("prov", "year"))
 
 ## One year change

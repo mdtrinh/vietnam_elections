@@ -1755,3 +1755,18 @@ rdd_2007_results <- grid.arrange(layout_matrix = lay,
                                  ri_annotate(rdd_2007_1_placebo2006, show_wilcox = FALSE),
                                  ri_annotate(rdd_2007_1_placebo2007, show_wilcox = FALSE))
 ggsave("../../figure/200202_rdd_results_2007.png", plot = rdd_results, width = 8, height = 4)
+
+##########################
+# 2015 STATE BUDGET LAW
+##########################
+
+plan %>% 
+  group_by(prov) %>%
+  arrange(year) %>%
+  mutate(ratio.lag = lag(ratio)) %>%
+  filter(year == 2017) %>%
+  filter(ratio.lag != ratio) %>%
+  ungroup %>%
+  select(prov, ratio.lag, ratio) %>%
+  arrange(ratio.lag, ratio)
+

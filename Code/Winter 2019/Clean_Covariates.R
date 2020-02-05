@@ -59,4 +59,4 @@ gso_covs <- bind_rows(gso_covs_2015, gso_covs_2010, gso_covs_2006) %>%
 
 ## Merge both together
 
-covs <- full_join(grdp, gso_covs, by = c("prov", "year"))
+covariates <- full_join(grdp, gso_covs, by = c("prov", "year"))

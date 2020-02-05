@@ -85,6 +85,8 @@
 \usepackage{bbm}
 \usepackage{pdflscape}
 \usepackage{pdfpages}
+\usepackage{xr} % to use \ref with labels from the main text
+\externaldocument{'200129 - AJPS RnR Draft 1'}
 \usepackage{tikz} 
 \usetikzlibrary{arrows,decorations.pathmorphing,decorations.pathreplacing,backgrounds,fit,positioning,shapes.symbols,chains}
 
@@ -232,6 +234,47 @@ Figure \ref{fig:Benford} shows the results, in the form of histograms for the em
 	\caption[Digit Test of Election Results]{Empirical distribution (as bars) and expected distribution under Benford's Law (as dashed lines) of first, second, and third digits of district-level voter turnouts in the 2011 election, district-level invalid vote counts in the 2011 election, and district-level vote counts by candidate in the 2016 election. Shaded regions denote 95\% confidence intervals around the expected distributions. The first digits of 2011 Turnout and 2016 Vote counts (highlighted with \textsf{*}) are expected to violate Benford's Law even without tampering.}
 	\label{fig:Benford}
 \end{figure}
+
+\clearpage
+
+\section{Effect of 2015 State Budget Law}
+
+In 2015, the Vietnamese government issued a revised Law on the State Budget (hereafter 2015 State Budget Law), which became effective from the 2017 fiscal year. Among other changes, the revised law reiterated the centrality of the central government budget in fiscal governance i.e. fiscal recentralization. Practically, the 2015 State Budget Law led to major adjustments to provincial budgets, particularly through changes in the proportions of the shared revenue that provinces have to remit back to the central government (recall that the revenue generated into each province can be divided into three categories: revenues that belong to the province exclusively, revenues that belong to the central government exclusively, and revenues that must be shared between the provincial and the central government according to a fixed ratio). \autoref{tab:2015_budget_law_changes} lists out provinces that were impacted by these adjustments, along with the proportions they get to keep from the shared revenues before and after the adjustments.
+
+\begin{table}[!htp]
+	\centering
+		\begin{tabular}{@{}lccll@{}}
+			\toprule
+			&
+			\multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}2011-2016\\ proportions\end{tabular}} &
+			\multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}2017-2020\\ proportions\end{tabular}} &
+			\multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Close \\ defeat(s)?\end{tabular}} &
+			\multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Close \\ victor()ies)?\end{tabular}} \\ \midrule
+			Ho Chi Minh City & .23 & .18 & \multicolumn{1}{c}{Y} & \multicolumn{1}{c}{Y} \\
+			Binh Duong       & .40 & .36 & \multicolumn{1}{c}{}  & \multicolumn{1}{c}{Y} \\
+			Ha Noi           & .42 & .35 & \multicolumn{1}{c}{Y} & \multicolumn{1}{c}{Y} \\
+			Ba Ria-Vung Tau  & .44 & .64 &                       &                       \\
+			Dong Nai         & .51 & .47 &                       &                       \\
+			Vinh Phuc        & .60 & .53 &                       &                       \\
+			Quang Ngai       & .61 & .88 &                       &                       \\
+			Quang Ninh       & .70 & .65 &                       &                       \\
+			Khanh Hoa        & .77 & .72 &                       &                       \\
+			Da Nang          & .85 & .68 &                       &                       \\
+			Hai Phong        & .88 & .78 &                       &                       \\
+			Bac Ninh         & .93 & .83 &                       &                       \\
+			Quang Nam        & 1   & .90 &                       &                       \\
+			Hung Yen         & 1   & .93 &                       &                       \\
+			Hai Duong        & 1   & .98 &                       &                       \\ \bottomrule
+		\end{tabular}
+	\caption{Table showing changes to the proportions that individual provinces get to keep out of revenue sources designated as ``shared revenues.'' Sources: adapted from \autocite{BaoViet} with updated data from Ministry of Finance.}
+	\label{tab:2015_budget_law_changes} 
+\end{table}
+
+Because the changes to the proportions became effective in 2017, the same post-election year that budgetary responses to localized defeats are expected to take place, they could potentially confound the results. Specifically, because the changes mostly result in more productive provinces having to surrender a larger share of their revenues to the central government (with the exception of oil-producing Ba Ria-Vung Tau and Quang Ngai), and because \autoref{tab:balance} in the paper indicates these provinces are more likely to experience central candidate defeats (this difference is not statistically significant, nonetheless), the confounding may lead to an upward bias in the effect estimates.
+
+However, the confounding does not compromise any of the main findings because there is little overlap between the provinces affected by the 2015 State Budget Law and those included in the analyses' samples. Columns 4 and 5 of \autoref{tab:2015_budget_law_changes} lists out which of the former group of provinces have encountered close central candidate defeats or victories in the 2016 election. With the exception of Ha Noi and Ho Chi Minh City, which are already excluded from analysis for other reasons, and Can Tho, which experienced no significant adjustment, Binh Duong remains the only province in the main analysis for which the confounding could manifest. Given the large size of the province's economy which makes it a likely influential outlier, prudence suggests that I exclude it from the main analysis.
+
+With Binh Duong excluded from the sample, the main effect estimates should no longer be confounded by budgetary changes following the 2015 State Budget Law. They remain consistently positive and statistically significant, confirming that the findings are not driven by the effect of the 2015 State Budget Law. When compared with an analysis that includes it, the point estimates for the linear fixed effects models are smaller, suggesting that the risk of confounding is indeed non-trivial and the exclusion of Binh Duong indeed leads to more conservative results. Reassuringly, the sample without Binh Duong exhibits better balance, in terms of both pre-treatment covariates and pre-treatment outcomes.
 
 \clearpage
 

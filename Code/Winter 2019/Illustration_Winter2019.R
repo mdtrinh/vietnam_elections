@@ -71,7 +71,7 @@ colnames(balance_table) <- c("Control Mean ($N = 11$)", "Treated Mean ($N = 4$)"
 
 # Experiment with kable()
 
-sink("../../figure/191210_table_balance.tex")
+sink("../../figure/200205_table_balance.tex")
 kable(balance_table[,c(1, 2, 3, 5, 7,
                        8, 9, 10, 12, 14)],
       format = "latex",
@@ -109,7 +109,7 @@ stargazer(lm_2016_1a, lm_2016_1b, lm_2016_1c,
           title = "Estimated treatment effects on central transfers from linear fixed effects models",
           label = "tab:lfe_main",
           style = "apsr",
-          out = "../../figure/191210_reg_table.tex",
+          out = "../../figure/200205_reg_table.tex",
           column.labels = c("Instantaneous Effect", "Persistent Effect"),
           column.separate = c(3,3),
           covariate.labels = c("Treatment Effect"),
@@ -163,7 +163,7 @@ ggplot(lfe_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, ymax 
         axis.title.x = element_blank(),
         axis.text.x = element_text(size = 10, face = "bold"),
         legend.position="bottom") 
-ggsave("../../figure/190618_lfe_placebo.png", width = 8, height = 4)
+ggsave("../../figure/200205_lfe_placebo.png", width = 8, height = 4)
 
 #### Randomization inference results for RDD analyses
 
@@ -186,7 +186,7 @@ rdd_results <- grid.arrange(layout_matrix = lay,
                             ri_annotate(rdd_2016_1_placebo2014, show_wilcox = FALSE),
                             ri_annotate(rdd_2016_1_placebo2015, show_wilcox = FALSE),
                             ri_annotate(rdd_2016_1_placebo2016, show_wilcox = FALSE))
-ggsave("../../figure/190618_rdd_results.png", plot = rdd_results, width = 8, height = 4)
+ggsave("../../figure/200205_rdd_results.png", plot = rdd_results, width = 8, height = 4)
 
 #### Synthetic control ATT plots
 
@@ -213,7 +213,7 @@ synth_results_table <- grid.arrange(layout_matrix = lay,
                                     grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/190618_synth_results.png", width = 8, height = 3.5, units="in", res = 96)
+png("../../figure/200205_synth_results.png", width = 8, height = 3.5, units="in", res = 96)
 synth_results <- grid.draw(synth_results_table)
 dev.off()
 
@@ -226,7 +226,7 @@ stargazer(lm_dev_2016_1a, lm_dev_2016_1b, lm_dev_2016_1c,
           title = "Estimated treatment effects on development and administration expenditures from linear fixed effects models",
           label = "tab:lfe_mech",
           style = "apsr",
-          #out = "../../figure/191210_reg_table_mech.tex",
+          out = "../../figure/200205_reg_table_mech.tex",
           column.labels = c("Development Expenditure", "Administrative Expenditure"),
           column.separate = c(3,3),
           covariate.labels = c("Treatment Effect"),
@@ -275,7 +275,7 @@ mech_results_table <- arrangeGrob(layout_matrix = lay,
                                   grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/190618_mech_results.png", width = 8, height = 8, units="in", res = 96)
+png("../../figure/200205_mech_results.png", width = 8, height = 8, units="in", res = 96)
 mech_results <- grid.draw(mech_results_table)
 dev.off()
 
@@ -334,7 +334,7 @@ print(xtable(promotion_table,
       latex.environments = "center",
       include.colnames = FALSE,
       sanitize.text.function = function(x) {x},
-      file = "../../figure/190618_table_promo.tex")
+      file = "../../figure/200205_table_promo.tex")
 
 #### Synthetic control results specfically for Soc Trang and Can Tho ####
 
@@ -361,7 +361,7 @@ synth_results_table <- arrangeGrob(layout_matrix = lay,
                                    grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/190618_synth_results_2prov.png", width = 8, height = 5.5, units="in", res = 96)
+png("../../figure/200205_synth_results_2prov.png", width = 8, height = 5.5, units="in", res = 96)
 synth_results <- grid.draw(synth_results_table)
 dev.off()
 
