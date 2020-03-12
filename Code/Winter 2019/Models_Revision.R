@@ -1,4 +1,4 @@
-#### THIS FILE CONTAINS ALL THE MODELS THAT ARE DONE IN RESPONSE TO FIRST ROUND OF REVIEW ####
+#### THIS FILE CONTAINS ALL THE MAIN MODELS THAT ARE DONE IN RESPONSE TO FIRST ROUND OF REVIEW ####
 
 library(gsynth)
 library(panelView)
@@ -1770,3 +1770,73 @@ plan %>%
   select(prov, ratio.lag, ratio) %>%
   arrange(ratio.lag, ratio)
 
+###########################
+# TEST FOR REPEATED DEFEAT
+###########################
+
+dat_repeat <- plan %>% 
+  filter(year %in% c(2008, 2012, 2017)) %>%
+  #filter(defeat.2007 | defeat.2011 | defeat.2016) %>% 
+  select(prov, year, defeat.2007, defeat.2011, defeat.2016, defeat, 
+         net.trans.log, net.trans.log.lag, net.trans.change.log) %>%
+  group_by(prov) %>%
+  arrange(prov, year) %>%
+  mutate(election = row_number()) %>%
+  mutate(defeat.lag = lag(defeat, order_by = election)) %>%
+  mutate(net.trans.log.elag = lag(net.trans.log, order_by = election)) %>%
+  mutate(net.trans.change.log.lag = lag(net.trans.change.log, order_by = election)) %>%
+  #mutate(defeat.lag = ifelse(is.na(defeat.lag), 0, defeat.lag)) %>%
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong")
+         
+table(dat_repeat$defeat, dat_repeat$defeat.lag)
+
+lm_repeat_1a <- lm(defeat ~ defeat.lag + factor(prov) + factor(year), data = dat_repeat)
+summary(lm_repeat_1a)
+vcov_repeat_1a <- cluster.vcov(lm_repeat_1a, cluster = ~ prov)
+coeftest(lm_repeat_1a, vcov = vcov_repeat_1a)
+
+lm_repeat_1b <- lm(defeat ~ defeat.lag + net.trans.change.log.lag + factor(prov) + factor(year), data = dat_repeat)
+summary(lm_repeat_1b)
+vcov_repeat_1b <- cluster.vcov(lm_repeat_1b, cluster = ~ prov)
+coeftest(lm_repeat_1b, vcov = vcov_repeat_1b)
+
+lm_repeat_1c <- lm(defeat ~ defeat.lag*net.trans.change.log.lag + factor(prov) + factor(year), data = dat_repeat)
+summary(lm_repeat_1c)
+vcov_repeat_1c <- cluster.vcov(lm_repeat_1c, cluster = ~ prov)
+coeftest(lm_repeat_1c, vcov = vcov_repeat_1c)
+
+# conditional effect
+
+cond_eff <- coef(lm_repeat_1c)["net.trans.change.log.lag"] +
+  coef(lm_repeat_1c)["defeat.lag:net.trans.change.log.lag"] 
+cond_se <- sqrt(vcov_repeat_1c["defeat.lag:net.trans.change.log.lag", "defeat.lag:net.trans.change.log.lag"] +
+  2 * vcov_repeat_1c["defeat.lag:net.trans.change.log.lag", "net.trans.change.log.lag"] +
+  vcov_repeat_1c["net.trans.change.log.lag", "net.trans.change.log.lag"])
+c(cond_eff - 1.96*cond_se, cond_eff + 1.96*cond_se)
+
+## regression table
+stargazer(lm_repeat_1a, 
+          lm_repeat_1b,
+          lm_repeat_1c,
+          se = list(sqrt(diag(vcov_repeat_1a)), 
+                    sqrt(diag(vcov_repeat_1b)),
+                    sqrt(diag(vcov_repeat_1c))),
+          title = "Estimated effects of past central candidate defeat and net transfer changes
+          on probability of defeat from linear fixed effects models",
+          label = "tab:lfe_repeat",
+          style = "apsr",
+          out = "../../figure/200225_reg_table_repeat.tex",
+          #column.labels = c("Instantaneous Effect", "Persistent Effect"),
+          #column.separate = c(2,2),
+          covariate.labels = c("Previous Central Candidate Defeat", 
+                               "(Logged) Net Transfer Change", 
+                               "Previous Central Candidate Defeat $\\times$ \\\\ (Logged) Net Transfer Change"),
+          dep.var.caption = "Any Central Candidate Defeat",
+          dep.var.labels.include = TRUE,
+          digits = 3,
+          keep = c("defeat.lag$", "net.trans.change.log.lag$"),
+          add.lines=list(c("Province FEs", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes"),
+                         c("Year FEs", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes")),
+          keep.stat = c("n", "rsq"),
+          table.layout = "=c#-t-a-s=n")

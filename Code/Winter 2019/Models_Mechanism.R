@@ -26,13 +26,15 @@ source("../../Code/Winter 2019/Merge_All.R")
 
 ## one-year effect
 
-dat_dev_lme <- prov
+dat_dev_lme <- prov %>%
+  filter(year > 2012) %>%
+  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong")
 
 # 2016 only
 dat_dev_2016_1 <- dat_dev_lme %>%
-  filter(year < 2018 & year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM")
+  filter(year < 2018)
 
 # without covariates
 lm_dev_2016_1a <- lm(dev.exp.log ~ defeat.true + defeat.true.2016 +
@@ -63,10 +65,7 @@ coeftest(lm_dev_2016_1c, vcov = vcov_dev_2016_1c)
 ## persistent effect
 
 dat_dev_2016_p <- dat_dev_lme %>%
-  mutate(defeat.true = defeat.true.2016*(year >= 2017)) %>%
-  filter(year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM")
+  mutate(defeat.true = defeat.true.2016*(year >= 2017))
 
 # without covariates
 lm_dev_2016_pa <- lm(dev.exp.log ~ defeat.true + defeat.true.2016 +
@@ -97,7 +96,10 @@ coeftest(lm_dev_2016_pc, vcov = vcov_dev_2016_pc)
 ### RDD
 
 prov_prov <- unique(prov$prov)
-candidates2016rdd_dev <- candidates2016rdd %>% filter(prov %in% prov_prov)
+candidates2016rdd_dev <- candidates2016rdd %>%
+  filter(prov %in% prov_prov) %>% 
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong")
 
 ## Randomization distribution of candidate-level treatment vector
 index <- which(candidates2016rdd_dev$closedefeat == 1 | candidates2016rdd_dev$closewin == 1)
@@ -117,17 +119,17 @@ treatment.2016.randomized <- apply(candidates2016_dev.closedefeat.randomized, 2,
   candidates2016rdd_rand$closewin <- 0
   candidates2016rdd_rand$closewin[index] <- 1-t
   
-  treatment_rand <- treatment_generate(candidates2016rdd_rand)
+  treatment_rand <- treatment_generate_2016(candidates2016rdd_rand)
 })
 
 ## Observed treatment effects
 
-treatment.2016.observed <- treatment_generate(candidates2016rdd_dev)
+treatment.2016.observed <- treatment_generate_2016(candidates2016rdd_dev)
 
 dat_dev_rdd <- prov %>%
+  filter(year > 2012) %>% # number of provinces were different before 2004
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(year > 2004) %>% # number of provinces were different before 2004
-  mutate(defeat.2016 = treatment.2016.observed)
+  filter(prov!="Binh Duong")
 
 # One year effect 
 
@@ -145,7 +147,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_dev_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year==2017)) %>%
-    filter(year < 2018 & year > 2012) %>%
+    filter(year < 2018) %>%
     drop_na(defeat, dev.exp.log)
   
   # create residual by purging covariate-based noise
@@ -208,7 +210,6 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_dev_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year>=2017)) %>%
-    filter(year > 2012) %>%
     drop_na(defeat, dev.exp.log)
   
   # create residual by purging covariate-based noise
@@ -259,7 +260,8 @@ abline(v = rdd_dev_2016_p$wilcox[1])
 
 dat_dev_synth <- prov %>%
   filter(defeat.2007!=0 | closewin.2007!=0 | defeat.2011!=0 | closewin.2011!=0 | defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM")
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong")
 panelView(dev.exp.log ~ defeat, data = dat_dev_synth, index = c("prov", "year"))
 
 ## One year change -- no effect!
@@ -317,13 +319,15 @@ plot(synth_dev_2016_p, type = "counterfactual")
 
 ## one-year effect
 
-dat_admin_lme <- prov
+dat_admin_lme <- prov %>%
+  filter(year > 2012) %>%
+  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong")
 
 # 2016 only
 dat_admin_2016_1 <- dat_admin_lme %>%
-  filter(year < 2018 & year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM")
+  filter(year < 2018) 
 
 # without covariates
 lm_admin_2016_1a <- lm(admin.exp.log ~ defeat.true + defeat.true.2016 +
@@ -356,9 +360,7 @@ coeftest(lm_admin_2016_1c, vcov = vcov_admin_2016_1c)
 # 2016 only
 dat_admin_2016_p <- dat_admin_lme %>%
   mutate(defeat.true = defeat.true.2016*(year >= 2017)) %>%
-  filter(year > 2012) %>%
-  filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM")
+  filter(year > 2012)
 
 # without covariates
 lm_admin_2016_pa <- lm(admin.exp.log ~ defeat.true + defeat.true.2016 +
@@ -389,9 +391,9 @@ coeftest(lm_admin_2016_pc, vcov = vcov_admin_2016_pc)
 ### RDD
 
 dat_admin_rdd <- prov %>%
+  filter(year > 2012) %>% # number of provinces were different before 2004
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(year > 2004) %>% # number of provinces were different before 2004
-  mutate(defeat.2016 = treatment.2016.observed)
+  filter(prov!="Binh Duong")
 
 # One year effect
 
@@ -409,7 +411,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_admin_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year==2017)) %>%
-    filter(year > 2012) %>%
+    filter(year < 2018) %>%
     drop_na(defeat, admin.exp.log)
   
   # create residual by purging covariate-based noise
@@ -472,7 +474,6 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_admin_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year>=2017)) %>%
-    filter(year > 2012) %>%
     drop_na(defeat, admin.exp.log)
   
   # create residual by purging covariate-based noise
@@ -523,7 +524,8 @@ abline(v = rdd_admin_2016_p$wilcox[1])
 
 dat_admin_synth <- prov %>%
   filter(defeat.2007!=0 | closewin.2007!=0 | defeat.2011!=0 | closewin.2011!=0 | defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM")
+  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong")
 panelView(admin.exp.log ~ defeat, data = dat_admin_synth, index = c("prov", "year"))
 
 ## One year change 
@@ -590,6 +592,7 @@ plot(synth_2016_p, type = "counterfactual", id = "Can Tho")
 dat_promo_2006 <- leaders2006 %>%
   filter(defeat!=0 | closewin!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong") %>%
   group_by(prov) %>%
   summarise(promoted.prior = sum(promoted*as.numeric(year==2006)),
             num.leaders.prior = sum(num.leaders*as.numeric(year==2006)),
@@ -623,6 +626,7 @@ fisher.test(x = dat_promo_2006$any.promoted,
 dat_promo_2007 <- leaders2007 %>%
   filter(defeat!=0 | closewin!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  filter(prov!="Binh Duong") %>%
   group_by(prov) %>%
   summarise(promoted.prior = sum(promoted*as.numeric(year==2006)),
             num.leaders.prior = sum(num.leaders*as.numeric(year==2006)),
@@ -655,7 +659,8 @@ fisher.test(x = dat_promo_2007$any.promoted,
 # governing in 2010
 dat_promo_2010 <- leaders2010 %>%
   filter(defeat!=0 | closewin!=0) %>%
-  filter(prov!="Ha Noi" & prov!="Ho Chi Minh City") %>%
+  filter(prov!="Ha Noi" & prov!="Ho Chi Minh City")  %>%
+  filter(prov!="Binh Duong") %>%
   group_by(prov) %>%
   summarise(promoted.prior = sum(promoted*as.numeric(year==2010)),
             num.leaders.prior = sum(num.leaders*as.numeric(year==2010)),
@@ -687,7 +692,8 @@ fisher.test(x = dat_promo_2010$any.promoted,
 # governing in 2011
 dat_promo_2011 <- leaders2011 %>%
   filter(defeat!=0 | closewin!=0) %>%
-  filter(prov!="Ha Noi" & prov!="Ho Chi Minh City") %>%
+  filter(prov!="Ha Noi" & prov!="Ho Chi Minh City")  %>%
+  filter(prov!="Binh Duong") %>%
   group_by(prov) %>%
   summarise(promoted.prior = sum(promoted*as.numeric(year==2010)),
             num.leaders.prior = sum(num.leaders*as.numeric(year==2010)),
@@ -712,4 +718,3 @@ fisher.test(x = dat_promo_2011$num.promoted,
 # any promotion
 summary(lm(any.promoted ~ defeat,
            data = dat_promo_2011))
-
