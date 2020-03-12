@@ -5,7 +5,7 @@ library(multiwayvcov)
 library(lmtest)
 
 #setwd("/media/dropbox/dropbox/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
-setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
+setwd("G:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("D:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("C:/Users/Nga Nguy/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 
@@ -17,8 +17,8 @@ source("../../Code/Winter 2019/Merge_All.R")
 dat_lme <- plan %>%
   filter(year < 2019 & year > 2012) %>%
   filter(defeat.true.2016!=0 | closewin.true.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(prov!="Binh Duong") %>%
+  #filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  #filter(prov!="Binh Duong") %>%
   drop_na(net.trans.log, net.trans.lag)
 
 ## one-year change
@@ -216,7 +216,7 @@ candidates2016rdd$closewin <- as.numeric(candidates2016rdd$centralnominated==1 &
 
 # function to generate province summaries from candidate-level data
 
-treatment_generate <- function(candidates) {
+treatment_generate_2016 <- function(candidates, years = c(2013:2018)) {
   provinces <- candidates %>%
     group_by(prov) %>%
     summarise(closedefeat = max(closedefeat, na.rm = T),
@@ -230,7 +230,7 @@ treatment_generate <- function(candidates) {
   provinces_treatment[provinces$closedefeat == 0 & provinces$closewin == 0] <- NA
   
   # province-year vector
-  provinces_year_treatment <- rep(provinces_treatment, each = 13 )
+  provinces_year_treatment <- rep(provinces_treatment, each = length(years))
   
   return(provinces_year_treatment)
 }
@@ -253,18 +253,18 @@ treatment.2016.randomized <- apply(candidates2016.closedefeat.randomized, 2, fun
   candidates2016rdd_rand$closewin <- 0
   candidates2016rdd_rand$closewin[index] <- 1-t
   
-  treatment_rand <- treatment_generate(candidates2016rdd_rand)
+  treatment_rand <- treatment_generate_2016(candidates2016rdd_rand)
 })
 
 ## Observed treatment effects
 
-treatment.2016.observed <- treatment_generate(candidates2016rdd)
+treatment.2016.observed <- treatment_generate_2016(candidates2016rdd)
 
 dat_rdd <- plan %>%
-  filter(year > 2004 & year < 2019) %>% # number of provinces were different before 2004
+  filter(year > 2012 & year < 2019) %>% # number of provinces were different before 2004
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
   filter(prov!="Binh Duong") %>%
-  mutate(defeat.2016 = treatment.2016.observed)
+  drop_na(net.trans.log, net.trans.lag)
 
 # One year effect
 # should note that adding time-invariant covariates or lagged outcomes don't change results
@@ -282,7 +282,7 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year==2017)) %>%
-    filter(year < 2018 ) %>%
+    filter(year < 2018) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -345,7 +345,6 @@ for (i in 0:ncol(treatment.2016.randomized)) {
   dat <- dat_rdd %>%
     mutate(defeat.2016 = treatment) %>% 
     mutate(defeat = defeat.2016*as.numeric(year>=2017)) %>%
-    filter(year > 2012) %>%
     drop_na(defeat, net.trans.log)
   
   # create residual by purging covariate-based noise
@@ -723,8 +722,7 @@ dat_2016synth_p <- dat_synth %>%
   mutate(treat = defeat.true.2016*as.numeric(year>=2017)) %>%
   #filter(defeat.2016!=0 | closewin.2016!=0) %>%
   drop_na(net.trans.log)
-panelView(net.trans.change.log ~ defeat, data = dat_2016synth_p, index = c("prov", "year"))
-panelView(net.trans.change.log ~ defeat, data = dat_2016synth_p, index = c("prov", "year"), type = "raw")
+panelView(net.trans.change.log ~ treat, data = dat_2016synth_p, index = c("prov", "year"))
 
 system.time(
   synth_2016_p <- gsynth(net.trans.change.log ~ treat + defeat + total.rev.log, 

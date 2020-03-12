@@ -2,14 +2,24 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A}Digit tests showing no evidence of high-level manipulation}{2}{appendix.A}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B}Effect of 2015 State Budget Law}{6}{appendix.B}% 
+\contentsline {section}{\numberline {B}Effect of 2015 State Budget Law}{5}{appendix.B}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C}Extending main analysis to previous elections}{8}{appendix.C}% 
+\contentsline {section}{\numberline {C}Extending main analysis to previous elections}{7}{appendix.C}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.1}Why focus on the 2016 election?}{8}{subsection.C.1}% 
+\contentsline {subsection}{\numberline {C.1}Why focus on the 2016 election?}{7}{subsection.C.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.2}Responses to localized defeats in 2011 election}{10}{subsection.C.2}% 
+\contentsline {subsection}{\numberline {C.2}Response to localized defeats in 2011 election}{9}{subsection.C.2}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {C.3}Responses to localized defeats in 2007 election}{16}{subsection.C.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{References}{19}{section*.9}% 
+\contentsline {section}{\numberline {D}Causal mechanism: effects on development and administrative spending}{18}{appendix.D}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {E}Individual treatment effect for Can Tho}{20}{appendix.E}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {F}Absence of other punishment for leaders in provinces with central defeats, 2007 and 2011}{21}{appendix.F}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {G}Difference in central candidate vote shares as alternative measure}{23}{appendix.G}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {H}Absence of strategic behavior by voters}{25}{appendix.H}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{References}{30}{section*.16}% 
