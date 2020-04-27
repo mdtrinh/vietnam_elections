@@ -14,11 +14,10 @@ setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/
 #setwd("D:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("C:/Users/Nga Nguy/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 
-source("../../Code/Winter 2019/Models_Final.R")
-source("../../Code/Winter 2019/Models_Mechanism.R")
-source("../../Code/Winter 2019/Balance_Final.R")
-source("../../Code/Winter 2019/Models_DigitTests.R")
-source("../../Code/Winter 2019/Illustration_Functions.R")
+source("../../Code/Spring 2018/Models_Final.R")
+source("../../Code/Spring 2018/Models_Mechanism.R")
+source("../../Code/Spring 2018/Balance_Final.R")
+source("../../Code/Spring 2018/Models_DigitTests.R")
 
 #### Some statistics to include in the paper
 
@@ -34,7 +33,6 @@ plan %>%
   filter(year < 2018 & year > 2012) %>%
   filter(defeat.2016!=0 | closewin.2016!=0) %>%
   filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(prov!="Binh Duong") %>%
   drop_na(net.trans.log, net.trans.lag) %>%
   group_by(prov) %>%
   summarise(net.trans.change = mean(net.trans.change, na.rm = T),
@@ -67,12 +65,12 @@ rownames(balance_table) <- c("Budget Revenue (Billions of VND)",
                              "Number of Schools",
                              "Number of Primary Schools")
 
-colnames(balance_table) <- c("Control Mean ($N = 9$)", "Treated Mean ($N = 4$)", "Std. Diff. in Means", "RI Std. Error", "RI p-value", "OLS Std. Error", "OLS p-value",
+colnames(balance_table) <- c("Control Mean ($N = 11$)", "Treated Mean ($N = 4$)", "Std. Diff. in Means", "RI Std. Error", "RI p-value", "OLS Std. Error", "OLS p-value",
                              "Control Mean ($N = 11$)", "Treated Mean ($N = 4$)", "Std. Diff. in Means", "RI Std. Error", "RI p-value", "OLS Std. Error", "OLS p-value")
 
 # Experiment with kable()
 
-sink("../../figure/200205_table_balance.tex")
+sink("../../figure/191210_table_balance.tex")
 kable(balance_table[,c(1, 2, 3, 5, 7,
                        8, 9, 10, 12, 14)],
       format = "latex",
@@ -107,10 +105,10 @@ stargazer(lm_2016_1a, lm_2016_1b, lm_2016_1c,
           lm_2016_pa, lm_2016_pb, lm_2016_pc,
           se = list(sqrt(diag(vcov_2016_1a)), sqrt(diag(vcov_2016_1b)), sqrt(diag(vcov_2016_1c)),
                     sqrt(diag(vcov_2016_pa)), sqrt(diag(vcov_2016_pb)), sqrt(diag(vcov_2016_pc))),
-          title = "Estimated treatment effects of localized defeats on central transfers from linear fixed effects models",
+          title = "Estimated treatment effects on central transfers from linear fixed effects models",
           label = "tab:lfe_main",
           style = "apsr",
-          out = "../../figure/200205_reg_table.tex",
+          out = "../../figure/191210_reg_table.tex",
           column.labels = c("Instantaneous Effect", "Persistent Effect"),
           column.separate = c(3,3),
           covariate.labels = c("Treatment Effect"),
@@ -164,7 +162,7 @@ ggplot(lfe_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, ymax 
         axis.title.x = element_blank(),
         axis.text.x = element_text(size = 10, face = "bold"),
         legend.position="bottom") 
-ggsave("../../figure/200205_lfe_placebo.png", width = 8, height = 4)
+ggsave("../../figure/190618_lfe_placebo.png", width = 8, height = 4)
 
 #### Randomization inference results for RDD analyses
 
@@ -187,7 +185,7 @@ rdd_results <- grid.arrange(layout_matrix = lay,
                             ri_annotate(rdd_2016_1_placebo2014, show_wilcox = FALSE),
                             ri_annotate(rdd_2016_1_placebo2015, show_wilcox = FALSE),
                             ri_annotate(rdd_2016_1_placebo2016, show_wilcox = FALSE))
-ggsave("../../figure/200205_rdd_results.png", plot = rdd_results, width = 8, height = 4)
+ggsave("../../figure/190618_rdd_results.png", plot = rdd_results, width = 8, height = 4)
 
 #### Synthetic control ATT plots
 
@@ -214,7 +212,7 @@ synth_results_table <- grid.arrange(layout_matrix = lay,
                                     grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/200205_synth_results.png", width = 8, height = 3.5, units="in", res = 96)
+png("../../figure/190618_synth_results.png", width = 8, height = 3.5, units="in", res = 96)
 synth_results <- grid.draw(synth_results_table)
 dev.off()
 
@@ -222,12 +220,12 @@ dev.off()
 
 stargazer(lm_dev_2016_1a, lm_dev_2016_1b, lm_dev_2016_1c,
           lm_admin_2016_1a, lm_admin_2016_1b, lm_admin_2016_1c,
-          se = list(sqrt(diag(vcov_dev_2016_1a)), sqrt(diag(vcov_dev_2016_1b)), sqrt(diag(vcov_dev_2016_1c)),
-                    sqrt(diag(vcov_admin_2016_1a)), sqrt(diag(vcov_admin_2016_1b)), sqrt(diag(vcov_admin_2016_1c))),
-          title = "Estimated treatment effects of localized defeats on development and administration expenditures from linear fixed effects models",
+          #se = list(sqrt(diag(vcov_dev_2016_1a)), sqrt(diag(vcov_dev_2016_1b)), sqrt(diag(vcov_dev_2016_1c)),
+          #          sqrt(diag(vcov_admin_2016_1a)), sqrt(diag(vcov_admin_2016_1b)), sqrt(diag(vcov_admin_2016_1c))),
+          title = "Estimated treatment effects on development and administration expenditures from linear fixed effects models",
           label = "tab:lfe_mech",
           style = "apsr",
-          out = "../../figure/200205_reg_table_mech.tex",
+          out = "../../figure/191210_reg_table_mech.tex",
           column.labels = c("Development Expenditure", "Administrative Expenditure"),
           column.separate = c(3,3),
           covariate.labels = c("Treatment Effect"),
@@ -276,11 +274,14 @@ mech_results_table <- arrangeGrob(layout_matrix = lay,
                                   grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/200205_mech_results.png", width = 8, height = 8, units="in", res = 96)
+png("../../figure/190618_mech_results.png", width = 8, height = 8, units="in", res = 96)
 mech_results <- grid.draw(mech_results_table)
 dev.off()
 
 #### Table tabulating promotion outcomes
+
+
+
 promotion_table <- rbind(cbind(rbind(table(promoted = dat_promo_2006$num.promoted,
                                            defeat = dat_promo_2006$defeat), c(0,0)),
                                rbind(table(promoted = dat_promo_2007$num.promoted,
@@ -332,20 +333,20 @@ print(xtable(promotion_table,
       latex.environments = "center",
       include.colnames = FALSE,
       sanitize.text.function = function(x) {x},
-      file = "../../figure/200205_table_promo.tex")
+      file = "../../figure/190618_table_promo.tex")
 
-#### Synthetic control results specfically for Can Tho ####
+#### Synthetic control results specfically for Soc Trang and Can Tho ####
 
-lay <- cbind(c(rep(1,3), NA),
-             c(2:5))
+lay <- cbind(c(rep(1,5), NA),
+             c(2:7))
 # somehow each call to gsynth_plot() causes an entire plot to be created and filled in the backgroud.
 # to get rid of this I have to save the object with arrangeGrob, then call grid.draw() after grid.newpage()
 synth_results_table <- arrangeGrob(layout_matrix = lay,
-                                   heights= c(.5,2.5,.5,.5),
+                                   heights= c(.5,2.5,.5,2.5,.5,.5),
                                    widths= c(0.5,8),
                                    grid.text("Estimated Treatment Effect", rot = 90, draw = FALSE),
-                                   #grid.text("Soc Trang", draw = FALSE),
-                                   #gsynth_plot(synth_2016_p, id = "Soc Trang", xmin = -11, xmax = 2, ymin = -20, ymax = 30),
+                                   grid.text("Soc Trang", draw = FALSE),
+                                   gsynth_plot(synth_2016_p, id = "Soc Trang", xmin = -11, xmax = 2, ymin = -20, ymax = 30),
                                    grid.text("Can Tho", draw = FALSE),
                                    gsynth_plot(synth_2016_p, id = "Can Tho", xmin = -11, xmax = 2, ymin = -20, ymax = 30),
                                    # slightly hacky solution to align the axis of x_axe with the rest
@@ -359,7 +360,7 @@ synth_results_table <- arrangeGrob(layout_matrix = lay,
                                    grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/200205_synth_results_CanTho.png", width = 8, height = 3.5, units="in", res = 96)
+png("../../figure/190618_synth_results_2prov.png", width = 8, height = 5.5, units="in", res = 96)
 synth_results <- grid.draw(synth_results_table)
 dev.off()
 

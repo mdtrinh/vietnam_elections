@@ -10,15 +10,16 @@ library(xtable)
 library(kableExtra)
 
 #setwd("/media/dropbox/dropbox/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
-setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
+setwd("G:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("D:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 #setwd("C:/Users/Nga Nguy/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data/Working Data")
 
-source("../../Code/Winter 2019/Models_Final.R")
-source("../../Code/Winter 2019/Models_Mechanism.R")
-source("../../Code/Winter 2019/Balance_Final.R")
-source("../../Code/Winter 2019/Models_DigitTests.R")
-source("../../Code/Winter 2019/Illustration_Functions.R")
+source("../../Code/Spring 2020/Models_Final.R")
+source("../../Code/Spring 2020/Models_Mechanism.R")
+source("../../Code/Spring 2020/Balance_Final.R")
+source("../../Code/Spring 2020/Models_DigitTests.R")
+source("../../Code/Spring 2020/Models_ImputeShares.R")
+source("../../Code/Spring 2020/Illustration_Functions.R")
 
 #### Some statistics to include in the paper
 
@@ -33,8 +34,8 @@ leaders %>%
 plan %>% 
   filter(year < 2018 & year > 2012) %>%
   filter(defeat.2016!=0 | closewin.2016!=0) %>%
-  filter(prov!="Ha Noi" & prov!="TP HCM") %>%
-  filter(prov!="Binh Duong") %>%
+  #filter(prov!="Ha Noi" & prov!="TP HCM") %>%
+  #filter(prov!="Binh Duong") %>%
   drop_na(net.trans.log, net.trans.lag) %>%
   group_by(prov) %>%
   summarise(net.trans.change = mean(net.trans.change, na.rm = T),
@@ -72,7 +73,7 @@ colnames(balance_table) <- c("Control Mean ($N = 9$)", "Treated Mean ($N = 4$)",
 
 # Experiment with kable()
 
-sink("../../figure/200205_table_balance.tex")
+sink("../../figure/200422_table_balance.tex")
 kable(balance_table[,c(1, 2, 3, 5, 7,
                        8, 9, 10, 12, 14)],
       format = "latex",
@@ -110,7 +111,7 @@ stargazer(lm_2016_1a, lm_2016_1b, lm_2016_1c,
           title = "Estimated treatment effects of localized defeats on central transfers from linear fixed effects models",
           label = "tab:lfe_main",
           style = "apsr",
-          out = "../../figure/200205_reg_table.tex",
+          out = "../../figure/200422_reg_table.tex",
           column.labels = c("Instantaneous Effect", "Persistent Effect"),
           column.separate = c(3,3),
           covariate.labels = c("Treatment Effect"),
@@ -164,7 +165,7 @@ ggplot(lfe_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, ymax 
         axis.title.x = element_blank(),
         axis.text.x = element_text(size = 10, face = "bold"),
         legend.position="bottom") 
-ggsave("../../figure/200205_lfe_placebo.png", width = 8, height = 4)
+ggsave("../../figure/200422_lfe_placebo.png", width = 8, height = 4)
 
 #### Randomization inference results for RDD analyses
 
@@ -187,7 +188,7 @@ rdd_results <- grid.arrange(layout_matrix = lay,
                             ri_annotate(rdd_2016_1_placebo2014, show_wilcox = FALSE),
                             ri_annotate(rdd_2016_1_placebo2015, show_wilcox = FALSE),
                             ri_annotate(rdd_2016_1_placebo2016, show_wilcox = FALSE))
-ggsave("../../figure/200205_rdd_results.png", plot = rdd_results, width = 8, height = 4)
+ggsave("../../figure/200422_rdd_results.png", plot = rdd_results, width = 8, height = 4)
 
 #### Synthetic control ATT plots
 
@@ -214,12 +215,13 @@ synth_results_table <- grid.arrange(layout_matrix = lay,
                                     grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/200205_synth_results.png", width = 8, height = 3.5, units="in", res = 96)
+png("../../figure/200422_synth_results.png", width = 8, height = 3.5, units="in", res = 96)
 synth_results <- grid.draw(synth_results_table)
 dev.off()
 
-#### Regression table for dev + admin expenditure results
+#### Appendix: dev + admin expenditure results ####
 
+## linear fixed effects regression table
 stargazer(lm_dev_2016_1a, lm_dev_2016_1b, lm_dev_2016_1c,
           lm_admin_2016_1a, lm_admin_2016_1b, lm_admin_2016_1c,
           se = list(sqrt(diag(vcov_dev_2016_1a)), sqrt(diag(vcov_dev_2016_1b)), sqrt(diag(vcov_dev_2016_1c)),
@@ -227,7 +229,7 @@ stargazer(lm_dev_2016_1a, lm_dev_2016_1b, lm_dev_2016_1c,
           title = "Estimated treatment effects of localized defeats on development and administration expenditures from linear fixed effects models",
           label = "tab:lfe_mech",
           style = "apsr",
-          out = "../../figure/200205_reg_table_mech.tex",
+          out = "../../figure/200422_reg_table_mech.tex",
           column.labels = c("Development Expenditure", "Administrative Expenditure"),
           column.separate = c(3,3),
           covariate.labels = c("Treatment Effect"),
@@ -242,7 +244,7 @@ stargazer(lm_dev_2016_1a, lm_dev_2016_1b, lm_dev_2016_1c,
                          c("Year FEs", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes")),
           table.layout = "=c#-t-a-s=n")
 
-#### RDD and synthetic control results
+## RDD and synthetic control results
 
 lay <- cbind(c(NA, 3, NA, NA, rep(9,5)),
              c(1,4,7,10:15),
@@ -276,11 +278,13 @@ mech_results_table <- arrangeGrob(layout_matrix = lay,
                                   grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/200205_mech_results.png", width = 8, height = 8, units="in", res = 96)
+png("../../figure/200422_mech_results.png", width = 8, height = 8, units="in", res = 96)
 mech_results <- grid.draw(mech_results_table)
 dev.off()
 
-#### Table tabulating promotion outcomes
+#### Appendix: Absence of punishment ####
+
+## Table tabulating promotion outcomes
 promotion_table <- rbind(cbind(rbind(table(promoted = dat_promo_2006$num.promoted,
                                            defeat = dat_promo_2006$defeat), c(0,0)),
                                rbind(table(promoted = dat_promo_2007$num.promoted,
@@ -332,9 +336,11 @@ print(xtable(promotion_table,
       latex.environments = "center",
       include.colnames = FALSE,
       sanitize.text.function = function(x) {x},
-      file = "../../figure/200205_table_promo.tex")
+      file = "../../figure/200422_table_promo.tex")
 
-#### Synthetic control results specfically for Can Tho ####
+#### Appendix: No effect of bargaining
+
+## Synthetic control results specfically for Can Tho
 
 lay <- cbind(c(rep(1,3), NA),
              c(2:5))
@@ -359,7 +365,7 @@ synth_results_table <- arrangeGrob(layout_matrix = lay,
                                    grid.text("Year", draw = FALSE))
 grid.newpage()
 
-png("../../figure/200205_synth_results_CanTho.png", width = 8, height = 3.5, units="in", res = 96)
+png("../../figure/200422_synth_results_CanTho.png", width = 8, height = 3.5, units="in", res = 96)
 synth_results <- grid.draw(synth_results_table)
 dev.off()
 
@@ -392,3 +398,276 @@ digit_test_table <- grid.arrange(layout_matrix = lay,
                                  digit_test(result2016$vote, digit=3, title="3rd Digit"),
                                  y_axe(0,.4,flip=F) + scale_y_continuous(position = "right"))
 ggsave("../../figure/190716_digit_test.png", plot=digit_test_table, width = 8, height = 10)
+
+#### Appendix: Robustness to small sample ####
+boot_plot_dat_gen <- function(boot_summary) {
+  boot_summary %>%
+    mutate(one_change = if("Ha Noi" %in% names(.)) 
+      (abs(n_change) == 3 & `Ha Noi` == 1 & `TP HCM` == 1) else (abs(n_change) == 1)) %>%
+    filter(one_change) %>%
+    select(Model, Estimate, SE, P) %>%
+    mutate(lower = Estimate - 1.96*SE,
+           upper = Estimate + 1.96*SE,
+           lower_90 = Estimate - 1.65*SE,
+           upper_90 = Estimate + 1.65*SE) %>%
+    separate(Model, into = c("Effect", "Model"), sep = 1) %>%
+    mutate(Effect = factor(Effect, 
+                           labels = c("Instantaenous Effect", "Persistent Effect")),
+           Model = factor(Model, 
+                          labels=c("a" = "Province FEs +\nYear FEs", 
+                                   "b" = "Time-variant Covs +\nProvince FEs +\nYear FEs",
+                                   "c" = "Competitiveness +\nYear FEs"))) %>%
+    filter(Effect == "Instantaenous Effect")
+}
+
+lm_2016_treat_add_plot_dat <- boot_plot_dat_gen(lm_2016_treat_add_summary)
+
+ggplot(lm_2016_treat_add_plot_dat, aes(x = Model, y = Estimate, ymin = lower, ymax = upper, group = Estimate)) +
+  geom_pointrange(position = position_dodge(width = 0.4), fatten = 5) +
+  geom_linerange(aes(ymin = lower_90, ymax = upper_90),
+                 position = position_dodge(width = 0.4),
+                 size = 1.2, alpha = .5) +
+  geom_hline(aes(yintercept = 0), linetype="dashed", colour="black") +
+  ylab("Estimated Treatment Effect") +
+  xlab("Model Specification") +
+  theme_bw() + 
+  theme(axis.title = element_text(size = 11, face = "bold"),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 10, face = "bold"),
+        legend.position="bottom")
+ggsave("../../figure/200423_perturb_results_treat_add.png", width = 8, height = 2.5)
+
+lm_2016_treat_drop_plot_dat <- boot_plot_dat_gen(lm_2016_treat_drop_summary)
+
+ggplot(lm_2016_treat_drop_plot_dat, aes(x = Model, y = Estimate, ymin = lower, ymax = upper, group = Estimate)) +
+  geom_pointrange(position = position_dodge(width = 0.4), fatten = 5) +
+  geom_linerange(aes(ymin = lower_90, ymax = upper_90),
+                 position = position_dodge(width = 0.4),
+                 size = 1.2, alpha = .5) +
+  geom_hline(aes(yintercept = 0), linetype="dashed", colour="black") +
+  ylab("Estimated Treatment Effect") +
+  xlab("Model Specification") +
+  theme_bw() + 
+  theme(axis.title = element_text(size = 11, face = "bold"),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 10, face = "bold"),
+        legend.position="bottom")
+ggsave("../../figure/200423_perturb_results_treat_drop.png", width = 8, height = 2.5)
+
+lm_2016_control_add_plot_dat <- boot_plot_dat_gen(lm_2016_control_add_summary)
+
+ggplot(lm_2016_control_add_plot_dat, aes(x = Model, y = Estimate, ymin = lower, ymax = upper, group = Estimate)) +
+  geom_pointrange(position = position_dodge(width = 0.8), fatten = 5) +
+  geom_linerange(aes(ymin = lower_90, ymax = upper_90),
+                 position = position_dodge(width = 0.8),
+                 size = 1.2, alpha = .5) +
+  geom_hline(aes(yintercept = 0), linetype="dashed", colour="black") +
+  ylab("Estimated Treatment Effect") +
+  xlab("Model Specification") +
+  theme_bw() + 
+  theme(axis.title = element_text(size = 11, face = "bold"),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 10, face = "bold"),
+        legend.position="bottom")
+ggsave("../../figure/200423_perturb_results_control_add.png", width = 8, height = 2.5)
+
+lm_2016_control_drop_plot_dat <- boot_plot_dat_gen(lm_2016_control_drop_summary)
+
+ggplot(lm_2016_control_drop_plot_dat, aes(x = Model, y = Estimate, ymin = lower, ymax = upper, group = Estimate)) +
+  geom_pointrange(position = position_dodge(width = 0.8), fatten = 5) +
+  geom_linerange(aes(ymin = lower_90, ymax = upper_90),
+                 position = position_dodge(width = 0.8),
+                 size = 1.2, alpha = .5) +
+  geom_hline(aes(yintercept = 0), linetype="dashed", colour="black") +
+  ylab("Estimated Treatment Effect") +
+  xlab("Model Specification") +
+  theme_bw() + 
+  theme(axis.title = element_text(size = 11, face = "bold"),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 10, face = "bold"),
+        legend.position="bottom")
+ggsave("../../figure/200423_perturb_results_control_drop.png", width = 8, height = 2.5)
+
+
+#### Appendix: 2011 and 2007 results ####
+
+## Naive estimates
+
+# 2011
+lfe_2011_plot_dat <- data.frame(ATT = sapply(list(lm_2011_1a, lm_2011_1b, lm_2011_1c,
+                                                  lm_2011_1_placebo2009a, lm_2011_1_placebo2009b, lm_2011_1_placebo2009c,
+                                                  lm_2011_1_placebo2010a, lm_2011_1_placebo2010b, lm_2011_1_placebo2010c,
+                                                  lm_2011_1_placebo2011a, lm_2011_1_placebo2011b, lm_2011_1_placebo2011c), 
+                                             function(mod){
+                                               coef(mod)[2]
+                                             }),
+                                se = sapply(list(vcov_2011_1a, vcov_2011_1b, vcov_2011_1c,
+                                                 vcov_2011_1_placebo2009a, vcov_2011_1_placebo2009b, vcov_2011_1_placebo2009c,
+                                                 vcov_2011_1_placebo2010a, vcov_2011_1_placebo2010b, vcov_2011_1_placebo2010c,
+                                                 vcov_2011_1_placebo2011a, vcov_2011_1_placebo2011b, vcov_2011_1_placebo2011c), 
+                                            function(vcov){
+                                              sqrt(diag(vcov))[2]
+                                            })) %>%
+  mutate(lower = ATT - se*1.96, upper = ATT + se*1.96) %>%
+  mutate(spec = rep(c("Province FEs + Year FEs", "Time-variant Covs + Province FEs + Year FEs", "Competitiveness + Year FEs"), 4),
+         treat_year = rep(c(2011, 2008, 2009, 2010), each = 3),
+         placebo = c(rep("Estimated Effect", 3), rep("Estimated Effect, Placebo Treatments", 9))) %>%
+  mutate(treat_year = factor(treat_year, levels = c("2011", "2008", "2009", "2010")),
+         spec = factor(spec, levels = c("Province FEs + Year FEs", "Time-variant Covs + Province FEs + Year FEs", "Competitiveness + Year FEs")))
+
+ggplot(lfe_2011_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, ymax = upper, shape = spec)) +
+  geom_point(position = position_dodge(width = 0.4)) +
+  geom_errorbar(width = 0, position = position_dodge(width = 0.4)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  ylab("Estimated Treatment Effect") +
+  scale_shape_discrete(name="") +
+  scale_x_discrete(labels=c("2011" = "Election in 2011\n\nActual Treatment", 
+                            "2008" = "Election in 2008",
+                            "2009" = "Election in 2009\n\nPlacebo Treatments",
+                            "2010" = "Election in 2010")) +
+  facet_grid( ~ placebo, scales="free_x", space="free_x") +
+  theme_bw()+ 
+  theme(axis.title = element_text(size = 11, face = "bold"),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 10, face = "bold"),
+        legend.position="bottom") 
+ggsave("../../figure/200422_lfe_placebo_2011.png", width = 8, height = 4)
+
+# 2007
+
+#### Coefficient plot for main regression results + placebo results
+lfe_2007_plot_dat <- data.frame(ATT = sapply(list(lm_2007_1a, lm_2007_1b, lm_2007_1c,
+                                                  lm_2007_1_placebo2006a, lm_2007_1_placebo2006b, lm_2007_1_placebo2006c,
+                                                  lm_2007_1_placebo2007a, lm_2007_1_placebo2007b, lm_2007_1_placebo2007c), 
+                                             function(mod){
+                                               coef(mod)[2]
+                                             }),
+                                se = sapply(list(vcov_2007_1a, vcov_2007_1b, vcov_2007_1c,
+                                                 vcov_2007_1_placebo2006a, vcov_2007_1_placebo2006b, vcov_2007_1_placebo2006c,
+                                                 vcov_2007_1_placebo2007a, vcov_2007_1_placebo2007b, vcov_2007_1_placebo2007c), 
+                                            function(vcov){
+                                              sqrt(diag(vcov))[2]
+                                            })) %>%
+  mutate(lower = ATT - se*1.96, upper = ATT + se*1.96) %>%
+  mutate(spec = rep(c("Province FEs + Year FEs", "Time-variant Covs + Province FEs + Year FEs", "Competitiveness + Year FEs"), 3),
+         treat_year = rep(c(2007, 2005, 2006), each = 3),
+         placebo = c(rep("Estimated Effect", 3), rep("Estimated Effect, Placebo Treatments", 6))) %>%
+  mutate(treat_year = factor(treat_year, levels = c("2007", "2005", "2006")),
+         spec = factor(spec, levels = c("Province FEs + Year FEs", "Time-variant Covs + Province FEs + Year FEs", "Competitiveness + Year FEs")))
+
+ggplot(lfe_2007_plot_dat, aes(x = as.factor(treat_year), y = ATT, ymin = lower, ymax = upper, shape = spec)) +
+  geom_point(position = position_dodge(width = 0.4)) +
+  geom_errorbar(width = 0, position = position_dodge(width = 0.4)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  ylab("Estimated Treatment Effect") +
+  scale_shape_discrete(name="") +
+  scale_x_discrete(labels=c("2007" = "Election in 2007\n\nActual Treatment", 
+                            "2005" = "Election in 2005\n\nPlacebo Treatments",
+                            "2006" = "Election in 2006")) +
+  facet_grid( ~ placebo, scales="free_x", space="free_x") +
+  theme_bw()+ 
+  theme(axis.title = element_text(size = 11, face = "bold"),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 10, face = "bold"),
+        legend.position="bottom") 
+ggsave("../../figure/200202_lfe_placebo_2007.png", width = 6, height = 4)
+
+## Synthetic control
+
+# 2011
+
+synth_results_table <- grid.arrange(layout_matrix = lay,
+                                    heights= c(2.5,.5,.5),
+                                    widths= c(0.5,8),
+                                    grid.text("Estimated Treatment Effect", rot = 90, draw = FALSE),
+                                    #grid.text("Actual Treatment", draw = FALSE),
+                                    gsynth_plot(synth_2011_p, xmin = -6, xmax = 4, ymin = -10, ymax = 30),
+                                    # slightly hacky solution to align the axis of x_axe with the rest
+                                    # of the graph
+                                    x_axe(-6,4) + 
+                                      scale_x_continuous(labels = function(x) {x + 2011},
+                                                         breaks = c(-6:4)) +
+                                      # set breaks = -10 s.t the axis text takes up exactly as much space
+                                      # as that of the real graphs
+                                      scale_y_continuous(breaks = -10),
+                                    grid.text("Year", draw = FALSE))
+grid.newpage()
+
+png("../../figure/200422_synth_results_2011.png", width = 8, height = 3.5, units="in", res = 96)
+synth_results <- grid.draw(synth_results_table)
+dev.off()
+
+
+## Imputation Output
+
+# 2011
+impute_2011_plot_dat <- data.frame(impute_2011_1) %>% 
+  na.omit %>%
+  gather(key = "model",
+         value = "beta")
+
+ggplot(impute_2011_plot_dat, aes(x = model, y = beta)) +
+  geom_violin(alpha = .3, fill = "gray") +
+  geom_hline(aes(yintercept = 0), linetype="dashed", colour="black") +
+  ylab("Estimated Treatment Effect") +
+  xlab("Model Specification") +
+  scale_x_discrete(labels=c("beta_1a" = "Province FEs +\nYear FEs", 
+                            "beta_1b" = "Time-variant Covs +\nProvince FEs +\nYear FEs",
+                            "beta_1c" = "Competitiveness +\nYear FEs")) +
+  theme_bw() + 
+  theme(axis.title = element_text(size = 11, face = "bold"),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 10, face = "bold"),
+        legend.position="bottom")
+
+ggsave("../../figure/200423_impute_results_2011.png", width = 6, height = 3)
+
+# 2007 
+impute_2007_plot_dat <- data.frame(impute_2007_1) %>% 
+  na.omit %>%
+  gather(key = "model",
+         value = "beta")
+
+ggplot(impute_2007_plot_dat, aes(x = model, y = beta)) +
+  geom_violin(alpha = .3, fill = "gray") +
+  geom_hline(aes(yintercept = 0), linetype="dashed", colour="black") +
+  ylab("Estimated Treatment Effect") +
+  xlab("Model Specification") +
+  scale_x_discrete(labels=c("beta_1a" = "Province FEs +\nYear FEs", 
+                            "beta_1b" = "Time-variant Covs +\nProvince FEs +\nYear FEs",
+                            "beta_1c" = "Competitiveness +\nYear FEs")) +
+  theme_bw() + 
+  theme(axis.title = element_text(size = 11, face = "bold"),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 10, face = "bold"),
+        legend.position="bottom")
+
+ggsave("../../figure/200423_impute_results_2007.png", width = 6, height = 3)
+
+#### Appendix: Absence of strategic behavior ####
+
+## regression table
+stargazer(lm_repeat_1a, 
+          lm_repeat_1b,
+          lm_repeat_1c,
+          se = list(sqrt(diag(vcov_repeat_1a)), 
+                    sqrt(diag(vcov_repeat_1b)),
+                    sqrt(diag(vcov_repeat_1c))),
+          title = "Estimated effects of past central candidate defeat and net transfer changes
+          on probability of defeat from linear fixed effects models",
+          label = "tab:lfe_repeat",
+          style = "apsr",
+          out = "../../figure/200225_reg_table_repeat.tex",
+          #column.labels = c("Instantaneous Effect", "Persistent Effect"),
+          #column.separate = c(2,2),
+          covariate.labels = c("Previous Central Candidate Defeat", 
+                               "(Logged) Net Transfer Change", 
+                               "Previous Central Candidate Defeat $\\times$ \\\\ (Logged) Net Transfer Change"),
+          dep.var.caption = "Any Central Candidate Defeat",
+          dep.var.labels.include = TRUE,
+          digits = 3,
+          keep = c("defeat.lag$", "net.trans.change.log.lag$"),
+          add.lines=list(c("Province FEs", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes"),
+                         c("Year FEs", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes")),
+          keep.stat = c("n", "rsq"),
+          table.layout = "=c#-t-a-s=n")
