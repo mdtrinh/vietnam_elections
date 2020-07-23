@@ -1,0 +1,27 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Digit tests showing no evidence of high-level manipulation}{2}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B}Effect of 2015 State Budget Law}{5}{appendix.B}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {C}Robustness despite small sample size}{7}{appendix.C}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {D}Extending main analysis to previous elections}{9}{appendix.D}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {D.1}Why focus on the 2016 election?}{9}{subsection.D.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {D.2}Responses to localized defeats in 2011 election}{12}{subsection.D.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {D.3}Responses to localized defeats in 2007 election}{18}{subsection.D.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {E}Causal mechanism: effects on development and administrative spending}{21}{appendix.E}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {F}Individual treatment effect for Can Tho}{23}{appendix.F}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {G}Absence of other punishment for leaders in provinces with central defeats, 2007 and 2011}{24}{appendix.G}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {H}Difference in central candidate vote shares as alternative measure}{26}{appendix.H}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {I}Absence of strategic behavior by voters}{28}{appendix.I}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{References}{33}{section*.17}% 
