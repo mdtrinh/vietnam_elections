@@ -12,7 +12,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {D.2}Responses to localized defeats in 2011 election}{12}{subsection.D.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {D.3}Responses to localized defeats in 2007 election}{19}{subsection.D.3}% 
+\contentsline {subsection}{\numberline {D.3}Responses to localized defeats in 2007 election}{18}{subsection.D.3}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {E}Causal mechanism: effects on development and administrative spending}{21}{appendix.E}% 
 \defcounter {refsection}{0}\relax 
