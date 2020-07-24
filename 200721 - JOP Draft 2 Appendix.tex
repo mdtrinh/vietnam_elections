@@ -253,7 +253,10 @@ Figure \ref{fig:Benford} shows the results, in the form of histograms for the em
 In 2015, the Vietnamese government issued a revised Law on the State Budget (hereafter 2015 State Budget Law), which became effective from the 2017 fiscal year. Among other changes, the revised law reiterated the centrality of the central government budget in fiscal governance i.e. fiscal recentralization \citep{Vu2016}. Practically, it led to major adjustments to provincial budgets, particularly through changes in sharing rates i.e. the proportions of the shared revenue that provinces have to remit back to the central government (recall that the revenue generated into each province can be divided into two categories: revenues that belong to the province exclusively and revenues that must be shared between the provincial and the central government according to a fixed ratio). \autoref{tab:2015_budget_law_changes} lists out provinces that were impacted by these adjustments, along with the proportions they get to keep from the shared revenues before and after the adjustments.
 
 \begin{table}[!htp]
+	\caption{Table showing changes to the proportions that individual provinces get to keep out of revenue sources designated as shared revenues. Sources: adapted from \autocite{BaoViet2016} with updated data from Ministry of Finance.}
+	\label{tab:2015_budget_law_changes} 
 	\centering
+	
 		\begin{tabular}{@{}lccll@{}}
 			\toprule
 			&
@@ -277,8 +280,7 @@ In 2015, the Vietnamese government issued a revised Law on the State Budget (her
 			Hung Yen         & 1   & .93 &                       &                       \\
 			Hai Duong        & 1   & .98 &                       &                       \\ \bottomrule
 		\end{tabular}
-	\caption{Table showing changes to the proportions that individual provinces get to keep out of revenue sources designated as shared revenues. Sources: adapted from \autocite{BaoViet2016} with updated data from Ministry of Finance.}
-	\label{tab:2015_budget_law_changes} 
+	
 \end{table}
 
 Because the changes to the proportions became effective in 2017, the same post-election year that budgetary responses to localized defeats are expected to take place, they could potentially confound the results. Specifically, because the changes mostly result in more productive provinces having to surrender a larger share of their revenues to the central government (with the exception of Ba Ria-Vung Tau and Quang Ngai, where oil-based revenues have been hit by falling prices), and because \autoref{tab:balance} in the main paper indicates these provinces are more likely to experience central candidate defeats (this difference is not statistically significant, nonetheless), the confounding may lead to an upward bias in the effect estimates.
@@ -447,15 +449,43 @@ In Section \ref{sec:additional} of the main manuscript, I argue that a narrative
 \section{Individual treatment effect for Can Tho}
 \label{app:alt_mech}
 
-Because the generalized synthetic control method allows treatment effects to be extracted for individual units, I show in Figure \ref{fig:synth_mech} that Can Tho experienced increased central transfers in 2017 and 2018 when compared to the synthetic control. Although the 95\% confidence intervals are large and cross zero due to insufficient power, the point estimates suggest that it saw large a large increase in central transfers of approximately 20\% of previous years' annual change. While this finding is far from conclusive, it does offer some good evidence to dismiss negotiation and bargaining through representation as the primary driver for the main treatment effects.
+In Can Tho's second electoral district, the 2016 election saw four candidates competed for two seats in the VNA. Among them, Nguyen Van Quyen, a 63-year-old native of Ninh Binh, is the central candidate. He is the Party Secretary and Chairman of the Vietnam Lawyers Association -- a state-sanctioned organization of legal professionals operating in parallel with the Vietnam Bar Association. Outside of his role in the Lawyers Association, Nguyen Van Quyen also serves in the central leadership of Vietnam Fatherland Front (VFF) -- an umbrella organization to which all mass organizations must be affiliated -- and in a 16-delegate committee on judicial reforms within the CPV central leadership. His multiple roles as leader of a central-level mass organization and a high-ranking CPV official earn him a nomination by the central leadership.
 
-\begin{figure}[!htbp]
+Also competing in this district are three local candidates: Tran Quoc Trung, the sitting Party Secretary of Can Tho and member of the CPV Central Committee; Ngo Trung Quan, a local business owner who also holds a rank-and-file position in the VFF Central Committee; and Dao Thi Sa Ron, a vice-principal of a local public school. 
+
+\begin{table}[htb]
+	\caption{Candidate profiles and election results, Can Tho's second electoral district}
+	\label{tab:cantho_mech}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}[t]{@{}llllll@{}}
+			\toprule
+			Name            & Age & Gender & Central/Local & Professional Profile                                                                    & Vote Share (\%) \\ \midrule
+			Tran Quoc Trung & 56  & Male   & Local         & \begin{tabular}[c]{@{}l@{}}Can Tho Party Secretary\\ Member, CPV Central Committee\end{tabular} & 74.35           \\
+			Ngo Trung Quan  & 56  & Male   & Local         & \begin{tabular}[c]{@{}l@{}}Member, VFF Central Committee\\ Local Business Owner\end{tabular}    & 49.09           \\
+			\textbf{Nguyen Van Quyen} &
+			63 &
+			Male &
+			Central &
+			\begin{tabular}[c]{@{}l@{}}Chairman, Vietnam Lawyers Association\\ Deputy Party Secretary and Vice Chairman, VFF Central Committee\\ Member, CPV Committee on Judicial Reforms\end{tabular} &
+			47.12 \\
+			Dao Thi Sa Ron  & 43  & Female & Local         & Vice Principal, Can Tho Boarding School for Ethnic Minorities                           & 28.24           \\ \bottomrule
+		\end{tabular}%
+	}
+\end{table}
+
+With two seats up for contest, it would have been possible for both the central candidate Nguyen Van Quyen and the provincial chief Tran Quoc Trung to both win. With each voter casting two votes, the total vote shares among all four candidates in this election is 200\%. However, because Tran Quoc Trung ended up securing a large number of votes -- 74.35\% -- the remaining vote shares were split thinly among all three remaining candidates, as seen in Table \ref{tab:cantho_mech}. As a result, none of them secured approval from more than 50\% of the voters, thus failing to pass the minimum threshold for election. Nguyen Van Quyen himself was supported by 47.12\% of the voters.
+
+The large vote shares given to the strong local candidate Tran Quoc Trung thus plays an important role in the central candidate defeat in Can Tho. The CPV could interpret this as either as a result of Tran Quoc Trung exerting too much effort to get himself elected, or of Can Tho voters' disapproval of the central regime. An increase in central transfers to Can Tho would show that the CPV believes in the latter interpretation. Yet, another hypothesis suggests that increases in transfers to provinces with defeated central candidates could have resulted from these provinces having more local candidates elected and thus a greater voice in the budget allocation process. However, in the case of Can Tho, because no local candidate captured the empty seat,\fnote{In a second election round in which three defeated candidates competed for the empty seats, Nguyen Van Quyen won with 55.11\% of votes and ended up taking this seat.} this election result did not lead to an increased representation for the province in the VNA. An increase in central transfers to Can Tho therefore could not have been triggered by VNA representation. Observing this effect still manifesting would thus rule out the alternative hypothesis.
+
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=\textwidth]{figure/200205_synth_results_CanTho.png}
 	\captionsetup{singlelinecheck=off}
 	\caption[Individual synthetic control treatment effect]{Individual estimate of treatment effects on central transfers for Can Tho, estimated using the generalized synthetic control method similar to \autoref{fig:synth_placebo}.}
 	\label{fig:synth_mech}
 \end{figure}
+
+Because the generalized synthetic control method allows treatment effects to be extracted for individual units, I show in Figure \ref{fig:synth_mech} that Can Tho did indeed experience increased central transfers in 2017 and 2018 when compared to the synthetic control. Although the 95\% confidence intervals are large and cross zero due to insufficient power, the point estimates suggest that it saw large a large increase in central transfers of approximately 20\% of previous years' annual change. While this finding is far from conclusive, it does offer some good evidence to dismiss negotiation and bargaining through representation as the primary driver for the main treatment effects.
 
 \clearpage
 \section{Absence of other punishment for leaders in provinces with central defeats, 2007 and 2011}
@@ -465,7 +495,7 @@ To further confirm that provincial leaders did not receive punishment for centra
 
 The data in Table \ref{tab:promo_mech} shows the number of provinces that have had zero, one, or both of its top leaders promoted, separated by treatment status. In case there is shuffling of provincial leadership in the election year, I calculated promotion records for both leaders who are in power \textit{before} and \textit{during} the election year. This would account for both the possibilities that the CPV sees elections as a referendum on either the governing performance or the election management performance of provincial officials. Promotion records are calculated for the entire term i.e. 2006-2010 for those governing in 2005 and 2006, and 2011-2015 for those governing in 2010 and 2011.
 
-\input{figure/190618_table_promo}
+\input{figure/200422_table_promo}
 
 Table \ref{tab:promo_mech} shows no significant difference in the frequency of promotion among officials in provinces with and in provinces without central candidate defeats. Where there seems to be a difference, the gap is never big enough for a Fisher's exact test to reject the null hypothesis. This evidence suggests that the top party leadership did not delay the promotion of provincial officials even when central candidate defeats had happened under their jurisdiction.
 

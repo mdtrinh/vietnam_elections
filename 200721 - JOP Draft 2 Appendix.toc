@@ -18,10 +18,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {F}Individual treatment effect for Can Tho}{23}{appendix.F}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {G}Absence of other punishment for leaders in provinces with central defeats, 2007 and 2011}{24}{appendix.G}% 
+\contentsline {section}{\numberline {G}Absence of other punishment for leaders in provinces with central defeats, 2007 and 2011}{26}{appendix.G}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {H}Difference in central candidate vote shares as alternative measure}{26}{appendix.H}% 
+\contentsline {section}{\numberline {H}Difference in central candidate vote shares as alternative measure}{28}{appendix.H}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {I}Absence of strategic behavior by voters}{28}{appendix.I}% 
+\contentsline {section}{\numberline {I}Absence of strategic behavior by voters}{30}{appendix.I}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{References}{33}{section*.17}% 
+\contentsline {section}{References}{35}{section*.18}% 

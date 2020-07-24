@@ -67,7 +67,11 @@ rownames(balance_table) <- c("Budget Revenue (Billions of VND)",
                              "Number of Schools",
                              "Number of Primary Schools")
 
+<<<<<<< HEAD
 colnames(balance_table) <- c("Control Mean ($N = 9$)", "Treated Mean ($N = 4$)", "Std. Diff. in Means", "RI Std. Error", "RI p-value", "OLS Std. Error", "OLS p-value",
+=======
+colnames(balance_table) <- c("Control Mean ($N = 9$)", "Treated Mean ($N = 5$)", "Std. Diff. in Means", "RI Std. Error", "RI p-value", "OLS Std. Error", "OLS p-value",
+>>>>>>> 5307c55249baeceacf37018c729e761c0a75c100
                              "Control Mean ($N = 11$)", "Treated Mean ($N = 4$)", "Std. Diff. in Means", "RI Std. Error", "RI p-value", "OLS Std. Error", "OLS p-value")
 
 # Experiment with kable()

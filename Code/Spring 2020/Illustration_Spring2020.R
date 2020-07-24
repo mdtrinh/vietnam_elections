@@ -336,6 +336,7 @@ print(xtable(promotion_table,
       latex.environments = "center",
       include.colnames = FALSE,
       sanitize.text.function = function(x) {x},
+      caption.placement = "top",
       file = "../../figure/200422_table_promo.tex")
 
 #### Appendix: No effect of bargaining
