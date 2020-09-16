@@ -1,4 +1,4 @@
-#### From 2019/11/09, use this file to clean raw data from PCI ####
+#### From 2020/08/21, use this file to clean raw data from PCI ####
 
 library(haven)
 library(xlsx)
@@ -9,8 +9,8 @@ library(vietnamdata)
 
 comp_name <- Sys.info()["nodename"]
 if(comp_name == 'MDTRINH-WIN10'){
-  setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data")
-  dropbox <- ("C:/Users/Minh Trinh/Dropbox (MIT)")
+  setwd("G:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data")
+  dropbox <- ("G:/Dropbox (MIT)")
   OS <- "Windows"
 } else if (comp_name == 'Minh-Trinh-PC' | comp_name == 'MINHTRINH-PC') {
   setwd("/media/dropbox/dropbox/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data")
@@ -68,10 +68,20 @@ pci <- do.call(bind_rows, lapply(1:nrow(guide.pci), function(i) {
     return(pci)
 }))
 
+# Read in .dta for 2005-2019 from Eddy which contains Infrastructure Index
+pci_infra <- read_dta("PCI_2005-2019_Eddy.dta") %>%
+  mutate(pci_infrastructure = sub11_infrastructure,
+         prov = pci_id) %>%
+  select(prov, year, pci_infrastructure)
+
 #### Cleaning
 
 # clean up province names using the Vietnam Code function
 pci$prov <- vietnamcode(pci$prov, origin = "province_name", destination = "province_name")
+pci_infra$prov <- vietnamcode(pci_infra$prov, origin = "pci", destination = "province_name")
+
+# merge public data with infrastructure index data
+pci_full <- left_join(pci, pci_infra, by = c("prov", "year"))
 
 # arrange variables
 pci <- pci %>%

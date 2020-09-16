@@ -1,4 +1,4 @@
-#### From 2019/11/09, use this file to clean raw data from PAPI ####
+#### From 2020/08/21, use this file to clean raw data from PAPI ####
 
 library(haven)
 library(xlsx)
@@ -9,8 +9,8 @@ library(vietnamdata)
 
 comp_name <- Sys.info()["nodename"]
 if(comp_name == 'MDTRINH-WIN10'){
-  setwd("C:/Users/Minh Trinh/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data")
-  dropbox <- ("C:/Users/Minh Trinh/Dropbox (MIT)")
+  setwd("G:/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data")
+  dropbox <- ("G:/Dropbox (MIT)")
   OS <- "Windows"
 } else if (comp_name == 'Minh-Trinh-PC' | comp_name == 'MINHTRINH-PC') {
   setwd("/media/dropbox/dropbox/Dropbox (MIT)/Documents/Works/Vietnam Elections/Data")
@@ -25,11 +25,11 @@ setwd("PAPI")
 
 #### Import PAPI Data
 # file name
-file.papi <- "PAPI 2011-2018.xlsx"
+file.papi <- "PAPI 2011-2019.xlsx"
 
 # read in PAPI data for every year
 # raw data is already consistently formatted
-papi <- do.call(bind_rows, lapply(1:8, function(i) {
+papi <- do.call(bind_rows, lapply(1:9, function(i) {
   
   if(i < 6) {
     colnames <- c("prov",
@@ -50,7 +50,7 @@ papi <- do.call(bind_rows, lapply(1:8, function(i) {
                      "papi_procedures", "papi_procedures_certification", "papi_procedures_construction", "papi_procedures_landuse", "papi_procedures_personal",
                      "papi_service", "papi_service_health", "papi_service_primary", "papi_service_infrastructure", "papi_service_law",
                      "papi_unweighted")
-  } else {
+  } else if(i == 8) {
     # in 2018 theere are some new changes in indicators
     colnames <- c("prov",
                      "papi_participation", "papi_participation_knowledge", "papi_participation_opportunities", "papi_participation_localelections", "papi_participation_contributions",
@@ -61,8 +61,19 @@ papi <- do.call(bind_rows, lapply(1:8, function(i) {
                      "papi_service", "papi_service_health", "papi_service_primary", "papi_service_infrastructure", "papi_service_law",
                      "papi_environment", "papi_environment_seriousprotection", "papi_environment_air", "papi_environment_water",
                      "papi_egovernment", "papi_egovernment_accessportal", "papi_egovernment_accessinternet")
+  } else {
+    # in 2019 theere one new indicator is added to E-government
+    colnames <- c("prov",
+                  "papi_participation", "papi_participation_knowledge", "papi_participation_opportunities", "papi_participation_localelections", "papi_participation_contributions",
+                  "papi_transparency", "papi_transparency_accessinfo", "papi_transparency_povertylists", "papi_transparency_budgetexpenditure", "papi_transparency_landuse",
+                  "papi_accountability", "papi_accountability_interaction", "papi_accountability_responsiveappeals", "papi_accountability_justiceservices",
+                  "papi_corruption", "papi_corruption_public", "papi_corruption_service", "papi_corruption_employment", "papi_corruption_willingness",
+                  "papi_procedures", "papi_procedures_certification", "papi_procedures_construction", "papi_procedures_landuse", "papi_procedures_personal",
+                  "papi_service", "papi_service_health", "papi_service_primary", "papi_service_infrastructure", "papi_service_law",
+                  "papi_environment", "papi_environment_seriousprotection", "papi_environment_air", "papi_environment_water",
+                  "papi_egovernment", "papi_egovernment_accessportal", "papi_egovernment_accessinternet", "papi_egovernment_responsiveness")
   }
-  years <- c(2011:2018)
+  years <- c(2011:2019)
   
   papi <- read.xlsx2(file.papi, sheetIndex=i, startRow=3, endRow = 65, colIndex = c(3:(length(colnames)+2)),
                      header=F, colClasses = c("character", rep("numeric",length(colnames)-1)), stringsAsFactors=F)
@@ -91,7 +102,7 @@ papi <- papi %>%
          papi_procedures_certification, papi_procedures_construction, papi_procedures_landuse, papi_procedures_personal,
          papi_service_health, papi_service_primary, papi_service_infrastructure, papi_service_law,
          papi_environment, papi_environment_seriousprotection, papi_environment_air, papi_environment_water,
-         papi_egovernment, papi_egovernment_accessportal, papi_egovernment_accessinternet) %>%
+         papi_egovernment, papi_egovernment_accessportal, papi_egovernment_accessinternet, papi_egovernment_responsiveness) %>%
   arrange(prov, year)
 
 # fill in unweighted score for all obs
