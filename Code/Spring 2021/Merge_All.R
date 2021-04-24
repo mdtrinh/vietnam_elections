@@ -383,7 +383,6 @@ save(provinces2007, provinces2011, provinces2016,
      districts2007, districts2011, districts2016,
      file = "../Working Data/Vietnam_Elections_Treatment.RData")
 
-
 ##### Merge Treatment with Budget Data #####
 plan <- plan %>%
   left_join(provinces2007 %>%
