@@ -1,0 +1,42 @@
+
+\begin{landscape}\begin{table}[!h]
+
+\caption{\label{tab:balance}Balance between control and treatment provinces based on 2015 data}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{14em}>{\raggedleft\arraybackslash}p{4.1em}>{\raggedleft\arraybackslash}p{4.1em}>{\centering\arraybackslash}p{4.1em}>{\centering\arraybackslash}p{4.1em}>{\centering\arraybackslash}p{4.1em}>{\raggedleft\arraybackslash}p{4.1em}>{\raggedleft\arraybackslash}p{4.1em}>{\centering\arraybackslash}p{4.1em}>{\centering\arraybackslash}p{4.1em}>{\centering\arraybackslash}p{4.1em}}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{5}{c}{Linear Fixed Effects Sample} & \multicolumn{5}{c}{Local Randomization RDD Sample} \\
+\cmidrule(l{3pt}r{3pt}){2-6} \cmidrule(l{3pt}r{3pt}){7-11}
+\multicolumn{1}{>{\centering\arraybackslash}p{14em}}{ } & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{Control Mean ($N = 9$)} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{Treated Mean ($N = 4$)} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{Std. Diff. in Means} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{RI p-value} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{OLS p-value} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{Control Mean ($N = 11$)} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{Treated Mean ($N = 4$)} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{Std. Diff. in Means} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{RI p-value} & \multicolumn{1}{>{\centering\arraybackslash}p{4.1em}}{OLS p-value}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Budget}}\\
+\hspace{1em}Budget Revenue (Billions of VND) & 2871.2 & 3753.2 & 0.49 & 0.51 & 0.51 & 2871.2 & 3753.2 & 0.49 & 0.51 & 0.51\\
+\hspace{1em}Budget Expenditure (Billions of VND) & 5017.6 & 4942.5 & -0.05 & 0.94 & 0.93 & 5017.6 & 4942.5 & -0.05 & 0.94 & 0.93\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Election}}\\
+\hspace{1em}Number of Seats & 7.4 & 6.8 & -0.60 & 0.46 & 0.31 & 7.4 & 6.8 & -0.60 & 0.46 & 0.31\\
+\hspace{1em}Number of Candidates & 13.2 & 11.8 & -0.77 & 0.30 & 0.23 & 13.2 & 11.8 & -0.77 & 0.30 & 0.23\\
+\hspace{1em}Number of Central Candidates & 3.1 & 2.5 & -0.81 & 0.33 & 0.17 & 3.1 & 2.5 & -0.81 & 0.33 & 0.17\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Structural Condition}}\\
+\hspace{1em}Surface Area (Thousands Km$^2$) & 4579.9 & 3047.4 & -0.47 & 0.35 & 0.39 & 4579.9 & 3047.4 & -0.47 & 0.35 & 0.39\\
+\hspace{1em}Population (Thousands) & 1277.3 & 1215.1 & -0.13 & 0.80 & 0.82 & 1277.3 & 1215.1 & -0.13 & 0.80 & 0.82\\
+\hspace{1em}Population Density (Thousands/Km$^2$) & 399.3 & 500.8 & 0.31 & 0.58 & 0.60 & 399.3 & 500.8 & 0.31 & 0.58 & 0.60\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Economic}}\\
+\hspace{1em}Provincial GDP (Billions of VND) & 44646.2 & 43129.7 & -0.08 & 0.88 & 0.90 & 44646.2 & 43129.7 & -0.08 & 0.88 & 0.90\\
+\hspace{1em}Average Monthly Income (Thousands of VND) & 2083.9 & 2221.0 & 0.33 & 0.59 & 0.56 & 2083.9 & 2221.0 & 0.33 & 0.59 & 0.56\\
+\hspace{1em}Employment Rate Among >15yo Population ($\%$) & 59.9 & 57.5 & -0.48 & 0.38 & 0.39 & 59.9 & 57.5 & -0.48 & 0.38 & 0.39\\
+\hspace{1em}Share of Agriculture Land ($\%$) & 46.8 & 62.2 & 0.71 & 0.23 & 0.25 & 46.8 & 62.2 & 0.71 & 0.23 & 0.25\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Public Goods}}\\
+\hspace{1em}Infant (<5yo) Mortality Rate (\textperthousand) & 22.8 & 18.2 & -0.40 & 0.56 & 0.46 & 22.8 & 18.2 & -0.40 & 0.56 & 0.46\\
+\hspace{1em}Number of Beds in Public Hospitals & 3566.8 & 3442.2 & -0.12 & 0.89 & 0.87 & 3566.8 & 3442.2 & -0.12 & 0.89 & 0.87\\
+\hspace{1em}Number of Schools & 435.3 & 359.8 & -0.55 & 0.36 & 0.34 & 435.3 & 359.8 & -0.55 & 0.36 & 0.34\\
+\hspace{1em}Number of Primary Schools & 244.8 & 220.5 & -0.28 & 0.65 & 0.63 & 244.8 & 220.5 & -0.28 & 0.65 & 0.63\\
+\bottomrule
+\end{tabular}}
+\end{table}
+\end{landscape}

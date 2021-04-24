@@ -60,6 +60,7 @@ lm_2016_treat_add <- t(sapply(prov_heavy_2016, function(x) {
   
   # 2016 only -- positive effect
   dat_2016_p <- dat_lme %>%
+    filter(year < 2020) %>%
     mutate(defeat.true = defeat.true.2016*(year >= 2017)) 
   
   # without covariates
@@ -172,6 +173,7 @@ lm_2016_treat_drop <- t(apply(prov_defeat_2016_grid, 1, function(p) {
   
   # 2016 only -- positive effect
   dat_2016_p <- dat_lme %>%
+    filter(year < 2020) %>%
     mutate(defeat.true = defeat.true.2016*(year >= 2017)) 
   
   # without covariates
@@ -364,6 +366,7 @@ lm_2016_control_drop <- t(apply(prov_closewin_2016_grid, 1, function(p) {
   
   # 2016 only -- positive effect
   dat_2016_p <- dat_lme %>%
+    filter(year < 2020) %>%
     mutate(defeat.true = defeat.true.2016*(year >= 2017)) 
   
   # without covariates
