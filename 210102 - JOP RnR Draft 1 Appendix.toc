@@ -1,0 +1,81 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Digit tests showing no evidence of high-level manipulation}{2}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B}Effect of 2015 State Budget Law}{5}{appendix.B}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {C}Robustness to small sample size}{7}{appendix.C}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {D}Robustness outside of close elections}{10}{appendix.D}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {E}Findings from previous elections}{13}{appendix.E}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {E.1}Why focus on the 2016 election?}{13}{subsection.E.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {E.2}Responses to localized defeats in the 2011 election}{15}{subsection.E.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {E.3}Responses to localized defeats in the 2007 election}{22}{subsection.E.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {F}Causal mechanism: development and administrative spending}{24}{appendix.F}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {G}Individual Accounts of Provinces with Central Candidate Defeats}{27}{appendix.G}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {G.1}Can Tho}{28}{subsection.G.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Election Results.}{28}{section*.16}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Funding Patterns.}{29}{section*.18}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Public Projects.}{30}{section*.21}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Career Trajectories of Provincial Leaders.}{32}{section*.23}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {G.2}Dong Thap}{32}{subsection.G.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Election Results.}{32}{section*.24}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Funding Patterns.}{32}{section*.26}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Public Projects.}{33}{section*.28}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Career Trajectories of Provincial Leaders.}{34}{section*.29}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {G.3}Phu Yen}{34}{subsection.G.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Election Results.}{34}{section*.30}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Funding Patterns.}{35}{section*.32}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Public Projects.}{35}{section*.34}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Career Trajectories of Provincial Leaders.}{36}{section*.35}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {G.4}Tra Vinh}{36}{subsection.G.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Election Results.}{36}{section*.36}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Funding Patterns.}{37}{section*.38}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Public Projects.}{37}{section*.40}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Career Trajectories of Provincial Leaders.}{38}{section*.42}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {G.5}Soc Trang}{39}{subsection.G.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Election Results.}{39}{section*.43}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Funding Patterns.}{40}{section*.45}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Public Projects.}{40}{section*.47}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Career Trajectories of Provincial Leaders.}{40}{section*.49}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {H}Absence of other forms of punishment}{42}{appendix.H}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {H.1}Following the 2007 and 2011 elections}{44}{subsection.H.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {H.2}Following the 2016 election}{45}{subsection.H.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {I}Effectiveness of the CPV's placation strategy}{48}{appendix.I}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{References}{53}{section*.54}% 
